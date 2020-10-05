@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Service Novigrad</string>
+    <string name="login_button">SIGN IN</string>
+    <string name="register_button">REGISTER</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="placeholder_message">You shouldn\'t be seeing this</string>
+    <string name="register_message">Welcome to Service Novigrad!\nWhat type of account would you like to register?</string>
+    <string name="register_customer">Customer Account</string>
+    <string name="register_branch">Branch Employee Account</string>
+    <string name="service_novigrad">Service Novigrad</string>
+    <string name="enter_credentials">Please enter your credentials</string>
+    <string name="first_name_hint">First Name</string>
+    <string name="last_name_hint">Last Name</string>
+    <string name="email_hint">Email</string>
+    <string name="confirm_password_hint">Confirm Password</string>
+</resources>
