@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.servicenovigrad">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainPage">
+        <activity android:name=".ui.MainPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,39 +19,39 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterPage"
-            android:parentActivityName=".MainPage">
+            android:name=".ui.RegisterPage"
+            android:parentActivityName=".ui.MainPage">
 
             <!-- The meta-data tag is required for API 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainPage" />
+                android:value=".ui.MainPage" />
         </activity>
         <activity
-            android:name=".LoginPage"
-            android:parentActivityName=".MainPage">
+            android:name=".ui.LoginPage"
+            android:parentActivityName=".ui.MainPage">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainPage" />
+                android:value=".ui.MainPage" />
         </activity>
         <activity
-            android:name=".WelcomePage"
-            android:parentActivityName=".LoginPage">
+            android:name=".destinations.CustomerHomePage"
+            android:parentActivityName=".ui.LoginPage">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LoginPage" />
+                android:value=".ui.LoginPage" />
         </activity>
-        <activity android:name=".RegisterBranchEmployee"
-            android:parentActivityName=".RegisterPage">
+        <activity android:name=".ui.RegisterBranchEmployee"
+            android:parentActivityName=".ui.RegisterPage">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".RegisterPage" />
+                android:value=".ui.RegisterPage" />
         </activity>
-        <activity android:name=".RegisterCustomer"
-            android:parentActivityName=".RegisterPage">
+        <activity android:name=".ui.RegisterCustomer"
+            android:parentActivityName=".ui.RegisterPage">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".RegisterPage" />
+                android:value=".ui.RegisterPage" />
         </activity>
     </application>
 

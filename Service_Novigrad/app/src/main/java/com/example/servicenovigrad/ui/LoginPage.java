@@ -1,4 +1,4 @@
-package com.example.servicenovigrad;
+package com.example.servicenovigrad.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+
+import com.example.servicenovigrad.R;
 
 public class LoginPage extends AppCompatActivity {
 
@@ -34,7 +36,7 @@ public class LoginPage extends AppCompatActivity {
     }
 
     public void openWelcomePage(View view) {
-        Intent intent = new Intent(this, WelcomePage.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, destinations.CustomerHomePage.class);
+        //startActivity(intent);
     }
 }
