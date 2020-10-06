@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.servicenovigrad.R;
+import com.example.servicenovigrad.destinations.*;
 
 public class LoginPage extends AppCompatActivity {
 
@@ -36,7 +37,7 @@ public class LoginPage extends AppCompatActivity {
     }
 
     public void openWelcomePage(View view) {
-        //Intent intent = new Intent(this, destinations.CustomerHomePage.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, CustomerHomePage.class);
+        startActivity(intent);
     }
 }

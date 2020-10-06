@@ -32,7 +32,7 @@ public class CustomerHomePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome_page);
+        setContentView(R.layout.activity_customer_home_page);
 
         curUser = FirebaseAuth.getInstance().getCurrentUser();
         customerRef = FirebaseDatabase.getInstance().getReference().child("users").child(curUser.getUid());
@@ -52,7 +52,6 @@ public class CustomerHomePage extends AppCompatActivity {
         displayWelcomeMessage(customer);
 
         logout = findViewById(R.id.logout);
-
 
 
     }
