@@ -49,7 +49,7 @@ public class RegisterCustomer extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
 
         if (fAuth.getCurrentUser() != null) {
-            startActivity(new Intent(getApplicationContext(), MainPage.class));
+            startActivity(new Intent(RegisterCustomer.this, MainPage.class));
             finish();
         }
 
@@ -97,7 +97,7 @@ public class RegisterCustomer extends AppCompatActivity {
                         Toast.makeText(RegisterCustomer.this, "Customer account successfully created!", Toast.LENGTH_SHORT).show();
                         user = fAuth.getCurrentUser();
                         writeNewCustomer(first, last, uName, user.getUid());
-                        startActivity(new Intent(getApplicationContext(), CustomerHomePage.class));
+                        startActivity(new Intent(RegisterCustomer.this, CustomerHomePage.class));
                         finish();
                     }
                     else {

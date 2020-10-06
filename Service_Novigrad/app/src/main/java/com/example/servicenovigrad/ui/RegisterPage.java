@@ -23,16 +23,14 @@ public class RegisterPage extends AppCompatActivity {
         registerCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterCustomer.class));
-                finish();
+                startActivity(new Intent(RegisterPage.this, RegisterCustomer.class));
             }
         });
 
         registerBranchEmployee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterBranchEmployee.class));
-                finish();
+                startActivity(new Intent(RegisterPage.this, RegisterBranchEmployee.class));
             }
         });
     }
