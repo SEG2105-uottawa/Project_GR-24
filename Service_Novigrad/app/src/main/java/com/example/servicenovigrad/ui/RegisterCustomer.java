@@ -46,7 +46,7 @@ public class RegisterCustomer extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.register_customer_progressBar);
 
         if (fAuth.getCurrentUser() != null) {
             startActivity(new Intent(RegisterCustomer.this, MainPage.class));
