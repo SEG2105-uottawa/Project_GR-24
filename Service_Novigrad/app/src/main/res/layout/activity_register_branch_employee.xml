@@ -14,7 +14,7 @@
         android:fillViewport="true">
 
         <LinearLayout
-            android:id="@+id/register_branch_linearLayout"
+            android:id="@+id/register_employee_linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -37,7 +37,7 @@
 
 
             <EditText
-                android:id="@+id/register_branch_firstName"
+                android:id="@+id/register_employee_firstName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -47,7 +47,7 @@
                 android:importantForAutofill="no" />
 
             <EditText
-                android:id="@+id/register_branch_lastName"
+                android:id="@+id/register_employee_lastName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -57,7 +57,7 @@
                 android:importantForAutofill="no" />
 
             <EditText
-                android:id="@+id/register_branch_email"
+                android:id="@+id/register_employee_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -67,7 +67,7 @@
                 android:importantForAutofill="no" />
 
             <EditText
-                android:id="@+id/register_branch_username"
+                android:id="@+id/register_employee_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -77,7 +77,7 @@
                 android:importantForAutofill="no" />
 
             <EditText
-                android:id="@+id/register_branch_password"
+                android:id="@+id/register_employee_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -87,7 +87,7 @@
                 android:importantForAutofill="no" />
 
             <EditText
-                android:id="@+id/register_branch_confirm"
+                android:id="@+id/register_employee_confirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -120,7 +120,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_branch_linearLayout"
+            app:layout_constraintTop_toBottomOf="@+id/register_employee_linearLayout"
             app:layout_constraintVertical_bias="0.0" />
 
         <Space
