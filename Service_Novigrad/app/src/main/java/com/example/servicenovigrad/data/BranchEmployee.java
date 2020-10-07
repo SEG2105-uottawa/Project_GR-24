@@ -9,7 +9,7 @@ package com.example.servicenovigrad.data;
 public class BranchEmployee extends Account {
 
     /*Variable initialization*/
-    private final static String role = "BRANCH_EMPLOYEE";
+    private final static Roles role = Roles.BRANCH_EMPLOYEE;
 
     private String branchName;
 
@@ -30,12 +30,8 @@ public class BranchEmployee extends Account {
      * @param branchName
      */
     public BranchEmployee(String firstName, String lastName, String userName, String branchName) {
-        super(firstName, lastName, userName);
+        super(firstName, lastName, userName, role);
         this.branchName = branchName;
-    }
-
-    public String getRole() {
-        return role;
     }
 
     public String getBranchName() {

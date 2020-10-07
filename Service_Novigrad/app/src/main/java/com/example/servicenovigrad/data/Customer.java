@@ -9,7 +9,7 @@ package com.example.servicenovigrad.data;
 public class Customer extends Account {
 
     /*Variable initialization*/
-    private final static String role = "CUSTOMER";
+    private final static Roles role = Roles.CUSTOMER;
 
     /**
      * Default constructor
@@ -26,10 +26,7 @@ public class Customer extends Account {
      * @param userName
      */
     public Customer(String firstName, String lastName, String userName) {
-        super(firstName, lastName, userName);
+        super(firstName, lastName, userName, role);
     }
-
-    public String getRole() {
-        return role;
-    }
+    
 }

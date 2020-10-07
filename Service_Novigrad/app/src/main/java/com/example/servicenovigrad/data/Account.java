@@ -7,8 +7,10 @@ package com.example.servicenovigrad.data;
 
 public class Account {
 
-    /*Variable initialization*/
+    protected enum Roles {ADMIN, CUSTOMER, BRANCH_EMPLOYEE};
+
     private String firstName, lastName, userName;
+    private Roles role;
 
     /**
      * Default constructor
@@ -17,12 +19,14 @@ public class Account {
         firstName = null;
         lastName = null;
         userName = null;
+        role = null;
     }
 
-    public Account(String firstName, String lastName, String userName){
+    public Account(String firstName, String lastName, String userName, Roles role){
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
+        this.role = role;
     }
 
     public String getFirstName() {
@@ -35,5 +39,9 @@ public class Account {
 
     public String getUserName() {
         return userName;
+    }
+
+    public String getRole() {
+        return role.toString();
     }
 }
