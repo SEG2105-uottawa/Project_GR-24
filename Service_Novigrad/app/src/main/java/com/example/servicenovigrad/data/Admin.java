@@ -8,14 +8,21 @@ package com.example.servicenovigrad.data;
 
 public class Admin extends Account {
 
-    /*Variable initialization*/
-    private static final String role = "ADMIN";
-
-    private static final String username = "ADMIN";
-
-    private static final String password = "ADMIN";
+    private final static String role = "ADMIN";
 
     public Admin() {
+        super();
+    }
 
+    public Admin(String firstName, String lastName, String userName){
+        super(firstName, lastName, userName);
+    }
+
+    public String getType() {
+        return role;
+    }
+
+    public String getRole() {
+        return role;
     }
 }

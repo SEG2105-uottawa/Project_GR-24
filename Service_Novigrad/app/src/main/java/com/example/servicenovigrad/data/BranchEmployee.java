@@ -6,64 +6,39 @@
 
 package com.example.servicenovigrad.data;
 
-public class BranchEmployee {
+public class BranchEmployee extends Account {
 
     /*Variable initialization*/
-    private final static String role = "EMPLOYEE";
+    private final static String role = "BRANCH_EMPLOYEE";
 
-    private String username;
-
-    private String password;
-
-    private String fName;
-
-    private String lName;
-
-    private String email;
+    private String branchName;
 
     /**
      * Default constructor
      */
     public BranchEmployee() {
+        super();
+        branchName = null;
     }
 
     /**
      * Constructor
      *
-     * @param aFirstName
-     * @param aLastName
-     * @param aUsername
-     * @param aEmail
+     * @param firstName
+     * @param lastName
+     * @param userName
+     * @param branchName
      */
-    public BranchEmployee(String aFirstName, String aLastName, String aUsername, String aEmail) {
-        fName = aFirstName;
-        lName = aLastName;
-        username = aUsername;
-        email = aEmail;
+    public BranchEmployee(String firstName, String lastName, String userName, String branchName) {
+        super(firstName, lastName, userName);
+        this.branchName = branchName;
     }
 
-    /* First name getter method*/
-    public String getFName() {
-        return fName;
+    public String getRole() {
+        return role;
     }
 
-    /* Last name getter method*/
-    public String getLName() {
-        return lName;
-    }
-
-    /* Full name getter method*/
-    public String getName() {
-        return fName+" "+lName;
-    }
-
-    /*Email getter method*/
-    public String getEmail() {
-        return email;
-    }
-
-    /*Email setter method*/
-    public void setEmail(String email) {
-        this.email = email;
+    public String getBranchName() {
+        return branchName;
     }
 }

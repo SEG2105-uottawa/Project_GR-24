@@ -115,8 +115,8 @@ public class RegisterBranchEmployee extends AppCompatActivity {
 
     }
 
-    private void writeNewEmployee(String first, String last, String uName, String anEmail, String userID) {
-        BranchEmployee employee = new BranchEmployee(first, last, uName, anEmail);
+    private void writeNewEmployee(String first, String last, String uName, String branchName, String userID) {
+        BranchEmployee employee = new BranchEmployee(first, last, uName, branchName);
 
         mDatabase.child("users").child(userID).setValue(employee);
 

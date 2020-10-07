@@ -8,40 +8,32 @@ package com.example.servicenovigrad.data;
 public class Account {
 
     /*Variable initialization*/
-    private String role;
-
-    private String username;
-
-    private String password;
+    private String firstName, lastName, userName;
 
     /**
      * Default constructor
      */
     public Account() {
+        firstName = null;
+        lastName = null;
+        userName = null;
     }
 
-    /*Role getter method*/
-    public String getRole() {
-        return role;
+    public Account(String firstName, String lastName, String userName){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
     }
 
-    /*Username getter method*/
-    public String getUsername() {
-        return username;
+    public String getFirstName() {
+        return firstName;
     }
 
-    /*Username setter method*/
-    public void setUsername(String username) {
-        this.username = username;
+    public String getLastName() {
+        return lastName;
     }
 
-    /*Password getter method*/
-    public String getPassword() {
-        return password;
-    }
-
-    /*Password setter method*/
-    public void setPassword(String password) {
-        this.password = password;
+    public String getUserName() {
+        return userName;
     }
 }

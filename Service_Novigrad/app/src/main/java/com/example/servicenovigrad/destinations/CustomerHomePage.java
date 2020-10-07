@@ -45,8 +45,9 @@ public class CustomerHomePage extends AppCompatActivity {
         customerRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String fName = dataSnapshot.child("fName").getValue().toString();
-                String welcomeMessage = "Welcome, "+ fName +", to the customer homepage!";
+                String fName = dataSnapshot.child("firstName").getValue().toString();
+                String role = dataSnapshot.child("role").getValue().toString();
+                String welcomeMessage = "Welcome, "+ fName +", to the customer homepage!" + role;
                 message.setText(welcomeMessage);
             }
 

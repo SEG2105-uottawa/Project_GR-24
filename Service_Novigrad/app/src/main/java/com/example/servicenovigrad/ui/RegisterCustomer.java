@@ -114,7 +114,7 @@ public class RegisterCustomer extends AppCompatActivity {
     }
 
     private void writeNewCustomer(String first, String last, String uName, String anEmail, String userID) {
-        Customer customer = new Customer(first, last, uName, anEmail);
+        Customer customer = new Customer(first, last, uName);
 
         mDatabase.child("users").child(userID).setValue(customer);
 
