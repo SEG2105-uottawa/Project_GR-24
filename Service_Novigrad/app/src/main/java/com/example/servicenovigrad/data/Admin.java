@@ -18,10 +18,6 @@ public class Admin extends Account {
         super(firstName, lastName, userName);
     }
 
-    public String getType() {
-        return role;
-    }
-
     public String getRole() {
         return role;
     }
