@@ -69,40 +69,42 @@ public class LoginPage extends AppCompatActivity {
                     finish();
                 }
 
-                login_progressBar.setVisibility(View.VISIBLE);
+                else {
 
-                fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(LoginPage.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
-                            curUser = fAuth.getCurrentUser();
-                            userRef = FirebaseDatabase.getInstance().getReference().child("users").child(curUser.getUid());
+                    login_progressBar.setVisibility(View.VISIBLE);
 
-                            userRef.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    String type = dataSnapshot.child("type").getValue().toString();
-                                    if (type.equals("BRANCH_EMPLOYEE")) {
-                                        startActivity(new Intent(LoginPage.this, BranchEmployeeHomePage.class));
+                    fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(LoginPage.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
+                                curUser = fAuth.getCurrentUser();
+                                userRef = FirebaseDatabase.getInstance().getReference().child("users").child(curUser.getUid());
+
+                                userRef.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        String type = dataSnapshot.child("type").getValue().toString();
+                                        if (type.equals("BRANCH_EMPLOYEE")) {
+                                            startActivity(new Intent(LoginPage.this, BranchEmployeeHomePage.class));
+                                        } else if (type.equals("CUSTOMER")) {
+                                            startActivity(new Intent(LoginPage.this, CustomerHomePage.class));
+                                        }
                                     }
-                                    else if (type.equals("CUSTOMER")) {
-                                        startActivity(new Intent(LoginPage.this, CustomerHomePage.class));
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                                        Toast.makeText(LoginPage.this, "Error retrieving data...", Toast.LENGTH_SHORT).show();
                                     }
-                                }
+                                });
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-                                    Toast.makeText(LoginPage.this, "Error retrieving data...", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-
-                        } else {
-                            Toast.makeText(LoginPage.this, "ERROR! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            login_progressBar.setVisibility(View.INVISIBLE);
+                            } else {
+                                Toast.makeText(LoginPage.this, "ERROR! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                login_progressBar.setVisibility(View.INVISIBLE);
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         });
     }
