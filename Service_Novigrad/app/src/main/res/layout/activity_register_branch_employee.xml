@@ -86,6 +86,7 @@
                 android:inputType="textPassword"
                 android:importantForAutofill="no" />
 
+
             <EditText
                 android:id="@+id/register_branch_confirm"
                 android:layout_width="match_parent"
