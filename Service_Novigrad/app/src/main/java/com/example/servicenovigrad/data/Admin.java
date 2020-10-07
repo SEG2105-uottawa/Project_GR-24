@@ -17,8 +17,5 @@ public class Admin extends Account {
     public Admin(String firstName, String lastName, String userName){
         super(firstName, lastName, userName, role);
     }
-
-    public String getRole() {
-        return role.toString();
-    }
+    
 }

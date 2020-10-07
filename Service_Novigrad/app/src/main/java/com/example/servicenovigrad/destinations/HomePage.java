@@ -16,10 +16,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public abstract class HomePage extends AppCompatActivity {
-    Button logout;
-    FirebaseUser curUser;
-    TextView message;
-    DatabaseReference userRef;
+    protected Button logout;
+    protected FirebaseUser curUser;
+    protected TextView message;
+    protected DatabaseReference userRef;
 
     public abstract void updateHomePage(DatabaseReference userRef);
 
