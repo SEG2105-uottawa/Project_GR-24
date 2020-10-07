@@ -1,20 +1,20 @@
 package com.example.servicenovigrad.data;
 
 public class BranchEmployee {
-    private String branchName, fName, lName, userName;
+    private String branchName, firstName, lastName, userName;
     final static String type = "BRANCH_EMPLOYEE";
 
     public BranchEmployee() {
         branchName = null;
-        fName = null;
-        lName = null;
+        firstName = null;
+        lastName = null;
         userName = null;
     }
 
-    public BranchEmployee(String branchName, String fName, String lName, String userName) {
+    public BranchEmployee(String branchName, String firstName, String lastName, String userName) {
         this.branchName = branchName;
-        this.fName = fName;
-        this.lName = lName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.userName = userName;
     }
 
@@ -22,12 +22,12 @@ public class BranchEmployee {
         return branchName;
     }
 
-    public String getFName() {
-        return fName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getLName() {
-        return lName;
+    public String getLastName() {
+        return lastName;
     }
 
     public String getUserName() {
