@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.servicenovigrad.R;
 import com.example.servicenovigrad.data.BranchEmployee;
-import com.example.servicenovigrad.destinations.CustomerHomePage;
+import com.example.servicenovigrad.destinations.BranchEmployeeHomePage;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -101,7 +101,7 @@ public class RegisterBranchEmployee extends AppCompatActivity {
                             user = fAuth.getCurrentUser();
                             writeNewBranchEmployee(branchName, firstName, lastName, userName, user.getUid());
                             Toast.makeText(RegisterBranchEmployee.this, "Successfully created a branch employee account!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(RegisterBranchEmployee.this, CustomerHomePage.class));
+                            startActivity(new Intent(RegisterBranchEmployee.this,  BranchEmployeeHomePage.class));
                             finish();
                         }
                         else {

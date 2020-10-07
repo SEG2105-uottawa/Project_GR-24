@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.servicenovigrad.R;
+import com.example.servicenovigrad.data.Customer;
 import com.example.servicenovigrad.ui.MainPage;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,15 +39,16 @@ public class CustomerHomePage extends AppCompatActivity {
         curUser = FirebaseAuth.getInstance().getCurrentUser();
         customerRef = FirebaseDatabase.getInstance().getReference().child("users").child(curUser.getUid());
 
-        //updateHomePage(customerRef);
+        updateHomePage(customerRef);
     }
 
     public void updateHomePage(DatabaseReference customerRef) {
-        customerRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        customerRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String fName = dataSnapshot.child("fName").getValue().toString();
-                String welcomeMessage = "Welcome, "+ fName +", to the customer homepage!";
+                String firstName = dataSnapshot.child("firstName").getValue().toString();
+                String role = dataSnapshot.child("type").getValue().toString();
+                String welcomeMessage = "Welcome, "+ firstName +", to the customer homepage!\nYou are logged in as: " + role;
                 message.setText(welcomeMessage);
             }
 

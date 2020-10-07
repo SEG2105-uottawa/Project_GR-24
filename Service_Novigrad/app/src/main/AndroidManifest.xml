@@ -41,6 +41,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.LoginPage" />
         </activity>
+        <activity
+            android:name=".destinations.BranchEmployeeHomePage"
+            android:parentActivityName=".ui.LoginPage">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.LoginPage" />
+        </activity>
         <activity android:name=".ui.RegisterBranchEmployee"
             android:parentActivityName=".ui.RegisterPage">
             <meta-data
@@ -53,6 +60,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.RegisterPage" />
         </activity>
+
     </application>
 
 </manifest>
