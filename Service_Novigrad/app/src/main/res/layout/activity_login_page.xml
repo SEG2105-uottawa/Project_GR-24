@@ -38,7 +38,7 @@
         android:id="@+id/login_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="authenticateUser"
+        android:onClick="openWelcomePage"
         android:text="@string/login_button"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"

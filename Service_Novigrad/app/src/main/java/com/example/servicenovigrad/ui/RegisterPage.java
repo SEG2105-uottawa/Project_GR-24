@@ -23,7 +23,7 @@ public class RegisterPage extends AppCompatActivity {
         registerCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterCustomer.class));
+                startActivity(new Intent(RegisterPage.this, RegisterCustomer.class));
                 finish();
             }
         });
@@ -31,7 +31,7 @@ public class RegisterPage extends AppCompatActivity {
         registerBranchEmployee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterBranchEmployee.class));
+                startActivity(new Intent(RegisterPage.this, RegisterBranchEmployee.class));
                 finish();
             }
         });

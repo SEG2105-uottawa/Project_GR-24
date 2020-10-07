@@ -26,16 +26,16 @@ public class MainPage extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            startActivity(new Intent(getApplicationContext(), LoginPage.class));
-
+            startActivity(new Intent(MainPage.this, LoginPage.class));
+            finish();
             }
         });
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            startActivity(new Intent(getApplicationContext(), RegisterPage.class));
-
+            startActivity(new Intent(MainPage.this, RegisterPage.class));
+            finish();
             }
         });
     }
