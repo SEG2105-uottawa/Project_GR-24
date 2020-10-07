@@ -38,5 +38,13 @@ public class MainPage extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FirebaseAuth.getInstance().signOut(); // Ensures that no user is currently signed in when returning to Main Page
+
+    }
+
+
 
 }

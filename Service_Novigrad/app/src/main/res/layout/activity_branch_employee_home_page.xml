@@ -9,14 +9,16 @@
 
     <TextView
         android:id="@+id/message_customer_HP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_width="50dp"
+        android:layout_height="18dp"
         app:layout_constraintBottom_toBottomOf="@+id/logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-<Button
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:text="@string/placeholder_message"
+        app:layout_constraintVertical_bias="0.255" />
+    <Button
         android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,7 +27,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.51" />
+        app:layout_constraintStart_toStartOf="parent" />
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/welcome_message"
+    app:layout_constraintVertical_bias="0.51" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
