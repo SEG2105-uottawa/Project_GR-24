@@ -1,39 +1,70 @@
+/**
+ * Customer class is for customer users and a subclass of Account class
+ * It has customer credential informations and methods for serching branches
+ * making ServiceRequest and rating a Brach
+ */
+
 package com.example.servicenovigrad.data;
 
-public class Customer {
-    private String fName, lName, userName;
-    final static String type = "CUSTOMER";
+public class Customer extends Account {
 
+    /*Variable initialization*/
+    private final static String role = "CUSTOMER";
+
+    private String username;
+
+    private String password;
+
+    private String fName;
+
+    private String lName;
+
+    private String email;
+
+    /**
+     * Default constructor
+     */
     public Customer() {
-        fName = null;
-        lName = null;
-        userName = null;
     }
 
-    public Customer(String first, String last, String uName) {
-        fName = first;
-        lName = last;
-        userName = uName;
+    /**
+     * Constructor
+     *
+     * @param aFirstName
+     * @param aLastName
+     * @param aUsername
+     * @param aEmail
+     */
+    public Customer(String aFirstName, String aLastName, String aUsername, String aEmail) {
+        fName = aFirstName;
+        lName = aLastName;
+        username = aUsername;
+        email = aEmail;
     }
 
+    /* First name getter method*/
     public String getFName() {
         return fName;
     }
 
+    /* Last name getter method*/
     public String getLName() {
         return lName;
     }
 
+    /* Full name getter method*/
     public String getName() {
         return fName+" "+lName;
     }
 
-    public String getUserName() {
-        return userName;
+    /*Email getter method*/
+    public String getEmail() {
+        return email;
     }
 
-    public String getType() {
-        return type;
+    /*Email setter method*/
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }
