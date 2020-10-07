@@ -95,7 +95,7 @@ public class RegisterCustomer extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         user = fAuth.getCurrentUser();
-                        writeNewCustomer(first, last, uName, user.getUid());
+                        writeNewCustomer(first, last, uName, email, user.getUid());
                         Toast.makeText(RegisterCustomer.this, "Successfully created a customer account!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(RegisterCustomer.this, CustomerHomePage.class));
                         finish();
@@ -113,8 +113,8 @@ public class RegisterCustomer extends AppCompatActivity {
 
     }
 
-    private void writeNewCustomer(String first, String last, String uName, String userID) {
-        Customer customer = new Customer(first, last, uName);
+    private void writeNewCustomer(String first, String last, String uName, String anEmail, String userID) {
+        Customer customer = new Customer(first, last, uName, anEmail);
 
         mDatabase.child("users").child(userID).setValue(customer);
 
