@@ -93,17 +93,17 @@ public class RegisterCustomer extends AppCompatActivity {
                 fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        user = fAuth.getCurrentUser();
-                        writeNewCustomer(first, last, uName, user.getUid());
-                        Toast.makeText(RegisterCustomer.this, "Successfully created a customer account!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(RegisterCustomer.this, CustomerHomePage.class));
-                        finish();
-                    }
-                    else {
-                        Toast.makeText(RegisterCustomer.this, "ERROR! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        progressBar.setVisibility(View.INVISIBLE);
-                    }
+                        if (task.isSuccessful()) {
+                            user = fAuth.getCurrentUser();
+                            writeNewCustomer(first, last, uName, user.getUid());
+                            Toast.makeText(RegisterCustomer.this, "Successfully created a customer account!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(RegisterCustomer.this, CustomerHomePage.class));
+                            finish();
+                        }
+                        else {
+                            Toast.makeText(RegisterCustomer.this, "ERROR! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.INVISIBLE);
+                        }
                     }
                 });
 

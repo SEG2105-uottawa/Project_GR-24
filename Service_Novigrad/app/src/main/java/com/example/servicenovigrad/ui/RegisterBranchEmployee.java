@@ -37,7 +37,7 @@ public class RegisterBranchEmployee extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_branch_employee);
-    
+
         register_branch_branchName = findViewById(R.id.register_branch_branchName);
         register_branch_firstName = findViewById(R.id.register_branch_firstName);
         register_branch_lastName = findViewById(R.id.register_branch_lastName);
@@ -99,7 +99,7 @@ public class RegisterBranchEmployee extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             user = fAuth.getCurrentUser();
-                            writeNewBranchEmployee(branchName, firstName, lastName, userName, user.getUid());
+                            writeNewBranchEmployee(firstName, lastName, userName, branchName, user.getUid());
                             Toast.makeText(RegisterBranchEmployee.this, "Successfully created a branch employee account!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(RegisterBranchEmployee.this,  BranchEmployeeHomePage.class));
                             finish();
@@ -117,8 +117,8 @@ public class RegisterBranchEmployee extends AppCompatActivity {
 
     }
 
-    private void writeNewBranchEmployee(String branchName, String firstName, String lastName, String userName, String userID) {
-        BranchEmployee branch = new BranchEmployee(branchName, firstName, lastName, userName);
+    private void writeNewBranchEmployee(String firstName, String lastName, String userName, String branchName, String userID) {
+        BranchEmployee branch = new BranchEmployee(firstName, lastName, userName, branchName);
 
         mDatabase.child("users").child(userID).setValue(branch);
 

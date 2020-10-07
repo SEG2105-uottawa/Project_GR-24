@@ -27,7 +27,7 @@ public class BranchEmployeeHomePage extends HomePage {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String branchName = dataSnapshot.child("branchName").getValue().toString();
                 String firstName = dataSnapshot.child("firstName").getValue().toString();
-                String role = dataSnapshot.child("type").getValue().toString();
+                String role = dataSnapshot.child("role").getValue().toString();
                 String welcomeMessage = "Welcome, "+ firstName + " of branch: "+ branchName + ", to the Employee homepage!\nYou are logged in as: " + role;
                 message.setText(welcomeMessage);
             }
