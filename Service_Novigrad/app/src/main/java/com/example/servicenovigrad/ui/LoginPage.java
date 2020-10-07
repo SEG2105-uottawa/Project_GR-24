@@ -66,6 +66,7 @@ public class LoginPage extends AppCompatActivity {
 
                 if (email.equals("admin") && password.equals("admin")){
                     startActivity(new Intent(LoginPage.this, AdminHomePage.class));
+                    finish();
                 }
 
                 login_progressBar.setVisibility(View.VISIBLE);
