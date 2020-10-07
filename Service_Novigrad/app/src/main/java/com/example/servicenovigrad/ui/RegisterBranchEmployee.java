@@ -13,8 +13,10 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.servicenovigrad.R;
+import com.example.servicenovigrad.data.BranchEmployee;
 import com.example.servicenovigrad.data.Customer;
 import com.example.servicenovigrad.destinations.CustomerHomePage;
+import com.example.servicenovigrad.destinations.EmployeeHomePage;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -36,7 +38,7 @@ public class RegisterBranchEmployee extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_branch_employee);
 
-        fName = findViewById(R.id.register_employee_firstName_firstName);
+        fName = findViewById(R.id.register_employee_firstName);
         lName = findViewById(R.id.register_employee_lastName);
         iEmail = findViewById(R.id.register_employee_email);
         iUserName = findViewById(R.id.register_employee_username);
@@ -97,11 +99,11 @@ public class RegisterBranchEmployee extends AppCompatActivity {
                             user = fAuth.getCurrentUser();
                             writeNewEmployee(first, last, uName, email, user.getUid());
                             Toast.makeText(RegisterBranchEmployee.this, "Successfully created an employee account!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(RegisterBranchEmployee.this, CustomerHomePage.class));
+                            startActivity(new Intent(RegisterBranchEmployee.this, EmployeeHomePage.class));
                             finish();
                         }
                         else {
-                            Toast.makeText(RegisterCustomer.this, "ERROR! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterBranchEmployee.this, "ERROR! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.INVISIBLE);
                         }
                     }
@@ -114,9 +116,9 @@ public class RegisterBranchEmployee extends AppCompatActivity {
     }
 
     private void writeNewEmployee(String first, String last, String uName, String anEmail, String userID) {
-        Customer customer = new Customer(first, last, uName, anEmail);
+        BranchEmployee employee = new BranchEmployee(first, last, uName, anEmail);
 
-        mDatabase.child("users").child(userID).setValue(customer);
+        mDatabase.child("users").child(userID).setValue(employee);
 
     }
 }
