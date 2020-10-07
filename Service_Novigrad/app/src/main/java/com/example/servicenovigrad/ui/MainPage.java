@@ -27,6 +27,7 @@ public class MainPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
             startActivity(new Intent(MainPage.this, LoginPage.class));
+            finish();
             }
         });
 
@@ -34,6 +35,7 @@ public class MainPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
             startActivity(new Intent(MainPage.this, RegisterPage.class));
+            finish();
             }
         });
     }

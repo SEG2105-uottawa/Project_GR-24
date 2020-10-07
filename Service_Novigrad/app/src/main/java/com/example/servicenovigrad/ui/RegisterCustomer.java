@@ -46,7 +46,7 @@ public class RegisterCustomer extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.register_customer_progressBar);
 
         if (fAuth.getCurrentUser() != null) {
             startActivity(new Intent(RegisterCustomer.this, MainPage.class));
@@ -94,9 +94,9 @@ public class RegisterCustomer extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Toast.makeText(RegisterCustomer.this, "Customer account successfully created!", Toast.LENGTH_SHORT).show();
                         user = fAuth.getCurrentUser();
                         writeNewCustomer(first, last, uName, user.getUid());
+                        Toast.makeText(RegisterCustomer.this, "Successfully created a customer account!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(RegisterCustomer.this, CustomerHomePage.class));
                         finish();
                     }
