@@ -1,4 +1,8 @@
-package com.example.servicenovigrad.data;
+package com.example.servicenovigrad;
+
+import com.example.servicenovigrad.data.Admin;
+import com.example.servicenovigrad.data.BranchEmployee;
+import com.example.servicenovigrad.data.Customer;
 
 import org.junit.Before;
 import org.junit.Test;

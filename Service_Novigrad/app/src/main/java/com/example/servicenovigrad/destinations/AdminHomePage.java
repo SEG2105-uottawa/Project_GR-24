@@ -5,6 +5,7 @@ import com.example.servicenovigrad.R;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,14 +13,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.servicenovigrad.ui.MainPage;
 
 public class AdminHomePage extends AppCompatActivity {
+    Button logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home_page);
 
+        logout = findViewById(R.id.logout);
+
         TextView message = findViewById(R.id.message_admin_HP);
         message.setText("Welcome Administrator");
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout(v);
+            }
+        });
     }
 
     public void logout(View view) {

@@ -84,7 +84,7 @@ public class LoginPage extends AppCompatActivity {
                                 userRef.addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        String type = dataSnapshot.child("type").getValue().toString();
+                                        String type = dataSnapshot.child("role").getValue().toString();
                                         if (type.equals("BRANCH_EMPLOYEE")) {
                                             startActivity(new Intent(LoginPage.this, BranchEmployeeHomePage.class));
                                         } else if (type.equals("CUSTOMER")) {
