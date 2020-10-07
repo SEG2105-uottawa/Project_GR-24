@@ -33,6 +33,7 @@ public class RegisterPage extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(RegisterPage.this, RegisterBranchEmployee.class));
                 finish();
+
             }
         });
     }
