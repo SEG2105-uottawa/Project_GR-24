@@ -1,43 +1,74 @@
 package com.example.servicenovigrad.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.servicenovigrad.R;
-import com.example.servicenovigrad.destinations.*;
+import com.example.servicenovigrad.destinations.CustomerHomePage;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginPage extends AppCompatActivity {
+
+    EditText login_email, login_password;
+    Button login_button;
+    ProgressBar login_progressBar;
+    FirebaseAuth fAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
-    }
 
-    public void authenticateUser(View view) {
-        EditText login_username = findViewById(R.id.login_username);
-        EditText login_password = findViewById(R.id.login_password);
+        fAuth = FirebaseAuth.getInstance();
 
-        String username = login_username.getText().toString();
-        String password = login_password.getText().toString();
+        login_email = findViewById(R.id.login_email);
+        login_password = findViewById(R.id.login_password);
+        login_button = findViewById(R.id.login_login);
+        login_progressBar = findViewById(R.id.login_progressBar);
 
-        //debugging
-        Log.i(null, "Username: " + username);
-        Log.i(null, "Password: " + password);
+        login_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = login_email.getText().toString();
+                String password = login_password.getText().toString();
 
-        // TBD: Authenticate username & password
-        // if authenticated:
+                if (TextUtils.isEmpty(email)) {
+                    login_email.setError("Email is required");
+                    return;
+                }
 
-        openWelcomePage(view);
-    }
+                if (TextUtils.isEmpty(password)) {
+                    login_password.setError("Password is required");
+                    return;
+                }
 
-    public void openWelcomePage(View view) {
-        Intent intent = new Intent(this, CustomerHomePage.class);
-        startActivity(intent);
+                login_progressBar.setVisibility(View.VISIBLE);
+
+                fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(LoginPage.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(LoginPage.this, CustomerHomePage.class));
+                        } else {
+                            Toast.makeText(LoginPage.this, "ERROR! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            login_progressBar.setVisibility(View.INVISIBLE);
+                        }
+                    }
+                });
+            }
+        });
     }
 }
