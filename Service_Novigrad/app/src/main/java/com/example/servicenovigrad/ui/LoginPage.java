@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.servicenovigrad.R;
 import com.example.servicenovigrad.data.BranchEmployee;
+import com.example.servicenovigrad.destinations.AdminHomePage;
 import com.example.servicenovigrad.destinations.BranchEmployeeHomePage;
 import com.example.servicenovigrad.destinations.CustomerHomePage;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -61,6 +62,10 @@ public class LoginPage extends AppCompatActivity {
                 if (TextUtils.isEmpty(password)) {
                     login_password.setError("Password is required");
                     return;
+                }
+
+                if (email.equals("admin") && password.equals("admin")){
+                    startActivity(new Intent(LoginPage.this, AdminHomePage.class));
                 }
 
                 login_progressBar.setVisibility(View.VISIBLE);
