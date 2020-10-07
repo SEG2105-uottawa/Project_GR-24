@@ -59,7 +59,7 @@ public class RegisterCustomer extends AppCompatActivity {
                 final String first = fName.getText().toString().trim();
                 final String last = lName.getText().toString().trim();
                 final String uName = iUserName.getText().toString().trim();
-                String email = iEmail.getText().toString().trim();
+                final String email = iEmail.getText().toString().trim();
                 String password = iPassword.getText().toString().trim();
                 String confPassword = iConfPassword.getText().toString().trim();
 
