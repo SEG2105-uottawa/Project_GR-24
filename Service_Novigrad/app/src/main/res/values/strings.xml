@@ -14,6 +14,6 @@
     <string name="last_name_hint">Last Name</string>
     <string name="email_hint">Email</string>
     <string name="confirm_password_hint">Confirm Password</string>
-    <string name="logout">logout</string
+    <string name="logout">logout</string>
     <string name="branch_name_hint">Branch Name</string>
 </resources>

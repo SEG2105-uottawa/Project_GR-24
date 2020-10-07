@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:overScrollMode="always"
-    tools:context=".RegisterBranchEmployee">
+    tools:context=".ui.RegisterBranchEmployee">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -66,7 +66,6 @@
                 android:inputType="textEmailAddress"
                 android:importantForAutofill="no" />
 
-
             <EditText
                 android:id="@+id/register_branch_username"
                 android:layout_width="match_parent"
@@ -76,7 +75,6 @@
                 android:hint="@string/username_hint"
                 android:inputType="textPersonName"
                 android:importantForAutofill="no" />
-
 
             <EditText
                 android:id="@+id/register_branch_password"
@@ -136,9 +134,10 @@
             app:layout_constraintTop_toBottomOf="@+id/register_branch_btn" />
 
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/register_branch_progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:visibility="invisible"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

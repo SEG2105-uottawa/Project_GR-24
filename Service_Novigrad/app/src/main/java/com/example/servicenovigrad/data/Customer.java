@@ -1,31 +1,27 @@
 package com.example.servicenovigrad.data;
 
 public class Customer {
-    private String fName, lName, userName;
+    private String firstName, lastName, userName;
     final static String type = "CUSTOMER";
 
     public Customer() {
-        fName = null;
-        lName = null;
+        firstName = null;
+        lastName = null;
         userName = null;
     }
 
     public Customer(String first, String last, String uName) {
-        fName = first;
-        lName = last;
+        firstName = first;
+        lastName = last;
         userName = uName;
     }
 
-    public String getFName() {
-        return fName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getLName() {
-        return lName;
-    }
-
-    public String getName() {
-        return fName+" "+lName;
+    public String getLastName() {
+        return lastName;
     }
 
     public String getUserName() {
@@ -35,5 +31,4 @@ public class Customer {
     public String getType() {
         return type;
     }
-
 }
