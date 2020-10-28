@@ -10,10 +10,6 @@ public class Admin extends Account {
 
     private final static Roles role = Roles.ADMIN;
 
-    public Admin() {
-        super();
-    }
-
     public Admin(String firstName, String lastName, String userName){
         super(firstName, lastName, userName, role);
     }

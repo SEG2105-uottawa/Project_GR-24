@@ -8,18 +8,9 @@ package com.example.servicenovigrad.data;
 
 public class BranchEmployee extends Account {
 
-    /*Variable initialization*/
     private final static Roles role = Roles.BRANCH_EMPLOYEE;
 
     private String branchName;
-
-    /**
-     * Default constructor
-     */
-    public BranchEmployee() {
-        super();
-        branchName = null;
-    }
 
     /**
      * Constructor

@@ -12,13 +12,6 @@ public class Customer extends Account {
     private final static Roles role = Roles.CUSTOMER;
 
     /**
-     * Default constructor
-     */
-    public Customer() {
-        super();
-    }
-
-    /**
      * Constructor
      *
      * @param firstName
