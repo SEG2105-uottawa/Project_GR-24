@@ -37,6 +37,6 @@ public abstract class HomePage extends AppCompatActivity {
     public void logout(View view) {
         FirebaseAuth.getInstance().signOut(); // Logs out current active user
         startActivity(new Intent(getApplicationContext(), MainPage.class));
-        finish();
+        finishAffinity();
     }
 }

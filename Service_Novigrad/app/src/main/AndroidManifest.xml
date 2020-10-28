@@ -11,58 +11,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".destinations.AdminHomePage"></activity>
         <activity android:name=".ui.MainPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.RegisterPage"
-            android:parentActivityName=".ui.MainPage">
-
-            <!-- The meta-data tag is required for API 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainPage" />
-        </activity>
-        <activity
-            android:name=".ui.LoginPage"
-            android:parentActivityName=".ui.MainPage">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainPage" />
-        </activity>
-        <activity
-            android:name=".destinations.CustomerHomePage"
-            android:parentActivityName=".ui.LoginPage">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.LoginPage" />
-        </activity>
-        <activity
-            android:name=".destinations.BranchEmployeeHomePage"
-            android:parentActivityName=".ui.LoginPage">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.LoginPage" />
-        </activity>
-        <activity
-            android:name=".ui.RegisterBranchEmployee"
-            android:parentActivityName=".ui.RegisterPage">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.RegisterPage" />
-        </activity>
-        <activity
-            android:name=".ui.RegisterCustomer"
-            android:parentActivityName=".ui.RegisterPage">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.RegisterPage" />
-        </activity>
+        <activity android:name=".destinations.AdminHomePage" />
+        <activity android:name=".destinations.CustomerHomePage"/>
+        <activity android:name=".destinations.BranchEmployeeHomePage" />
+        <activity android:name=".ui.RegisterPage"
+            android:parentActivityName=".ui.MainPage"/>
+        <activity android:name=".ui.LoginPage"
+            android:parentActivityName=".ui.MainPage"/>
+        <activity android:name=".ui.RegisterBranchEmployee"
+            android:parentActivityName=".ui.RegisterPage"/>
+        <activity android:name=".ui.RegisterCustomer"
+            android:parentActivityName=".ui.RegisterPage"/>
+        <activity android:name=".ui.AdminEditBranchAccounts"
+             android:parentActivityName=".destinations.AdminHomePage"/>
+        <activity android:name=".ui.AdminEditServices"
+            android:parentActivityName=".ui.AdminEditBranchAccounts"/>
+        <activity android:name=".ui.AdminEditCustomerAccounts"
+            android:parentActivityName=".destinations.AdminHomePage"/>
     </application>
 
 </manifest>

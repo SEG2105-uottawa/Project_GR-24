@@ -28,5 +28,9 @@ public class Customer extends Account {
     public Customer(String firstName, String lastName, String userName) {
         super(firstName, lastName, userName, role);
     }
+
+    public String toString(){
+        return (getFullName() +"\n" + getUserName());
+    }
     
 }

@@ -10,10 +10,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.servicenovigrad.ui.AdminEditBranchAccounts;
+import com.example.servicenovigrad.ui.AdminEditCustomerAccounts;
 import com.example.servicenovigrad.ui.MainPage;
 
 public class AdminHomePage extends AppCompatActivity {
-    Button logout;
+    Button logout, admin_branch_accounts, admin_customer_accounts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +23,25 @@ public class AdminHomePage extends AppCompatActivity {
         setContentView(R.layout.activity_admin_home_page);
 
         logout = findViewById(R.id.logout);
+        admin_branch_accounts = findViewById(R.id.admin_branch_accounts);
+        admin_customer_accounts = findViewById(R.id.admin_customer_accounts);
 
         TextView message = findViewById(R.id.message_admin_HP);
         message.setText("Welcome Administrator");
+
+        admin_branch_accounts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminHomePage.this, AdminEditBranchAccounts.class));
+            }
+        });
+
+        admin_customer_accounts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminHomePage.this, AdminEditCustomerAccounts.class));
+            }
+        });
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +53,6 @@ public class AdminHomePage extends AppCompatActivity {
 
     public void logout(View view) {
         startActivity(new Intent(getApplicationContext(), MainPage.class));
-        finish();
+        finishAffinity();
     }
 }

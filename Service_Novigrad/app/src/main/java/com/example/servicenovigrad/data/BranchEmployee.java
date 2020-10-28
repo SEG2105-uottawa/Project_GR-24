@@ -37,5 +37,10 @@ public class BranchEmployee extends Account {
     public String getBranchName() {
         return branchName;
     }
+
+    @Override
+    public String toString(){
+        return ("Branch Name: " + branchName + "\nEmployee Name: " + getFullName());
+    }
 }
 

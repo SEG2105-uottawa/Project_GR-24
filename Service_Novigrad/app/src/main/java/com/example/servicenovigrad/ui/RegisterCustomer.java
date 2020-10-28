@@ -64,27 +64,40 @@ public class RegisterCustomer extends AppCompatActivity {
                 String confPassword = iConfPassword.getText().toString().trim();
 
                 // Validating fields
+                boolean invalid = false;
 
                 if (TextUtils.isEmpty(email)) {
                     iEmail.setError("Email is required...");
-                    return;
+                    invalid = true;
                 }
 
                 if (TextUtils.isEmpty(password)) {
                     iPassword.setError("Password is required...");
-                    return;
+                    invalid = true;
                 }
 
                 if (password.length() < 6) {
                     iPassword.setError("Password must be atleast 6 characters...");
-                    return;
+                    invalid = true;
                 }
 
                 if (!password.equals(confPassword)) {
                     iPassword.setError("Make sure passwords match...");
                     iConfPassword.setError("Make sure passwords match...");
-                    return;
+                    invalid = true;
                 }
+
+                if (!(first.matches("[a-zA-Z]+") || first.matches("[a-zA-Z]+-[a-zA-Z]+"))){
+                    fName.setError("Names may only contain letters (hyphenated names are acceptable)...");
+                    invalid = true;
+                }
+
+                if (!(last.matches("[a-zA-Z]+") || last.matches("[a-zA-Z]+-[a-zA-Z]+"))){
+                    lName.setError("Names may only contain letters (hyphenated names are acceptable)...");
+                    invalid = true;
+                }
+
+                if (invalid) return;
 
                 progressBar.setVisibility(View.VISIBLE);
 
@@ -98,7 +111,7 @@ public class RegisterCustomer extends AppCompatActivity {
                             writeNewCustomer(first, last, uName, user.getUid());
                             Toast.makeText(RegisterCustomer.this, "Successfully created a customer account!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(RegisterCustomer.this, CustomerHomePage.class));
-                            finish();
+                            finishAffinity();
                         }
                         else {
                             Toast.makeText(RegisterCustomer.this, "ERROR! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

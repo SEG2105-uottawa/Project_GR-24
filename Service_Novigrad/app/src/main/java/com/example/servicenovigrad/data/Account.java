@@ -5,7 +5,10 @@
 
 package com.example.servicenovigrad.data;
 
-public class Account {
+import java.io.Serializable;
+
+//Serializable interface allows objects to be passed between activities
+public class Account implements Serializable {
 
     protected enum Roles {ADMIN, CUSTOMER, BRANCH_EMPLOYEE};
 
@@ -43,5 +46,9 @@ public class Account {
 
     public String getRole() {
         return role.toString();
+    }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 }

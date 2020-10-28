@@ -13,7 +13,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.servicenovigrad.R;
-import com.example.servicenovigrad.data.BranchEmployee;
 import com.example.servicenovigrad.destinations.AdminHomePage;
 import com.example.servicenovigrad.destinations.BranchEmployeeHomePage;
 import com.example.servicenovigrad.destinations.CustomerHomePage;
@@ -66,7 +65,7 @@ public class LoginPage extends AppCompatActivity {
 
                 if (email.equals("admin") && password.equals("admin")){
                     startActivity(new Intent(LoginPage.this, AdminHomePage.class));
-                    finish();
+                    finishAffinity();
                 }
 
                 else {
@@ -77,33 +76,58 @@ public class LoginPage extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(LoginPage.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
                                 curUser = fAuth.getCurrentUser();
+
                                 userRef = FirebaseDatabase.getInstance().getReference().child("users").child(curUser.getUid());
 
                                 userRef.addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        String type = dataSnapshot.child("role").getValue().toString();
-                                        if (type.equals("BRANCH_EMPLOYEE")) {
-                                            startActivity(new Intent(LoginPage.this, BranchEmployeeHomePage.class));
-                                        } else if (type.equals("CUSTOMER")) {
-                                            startActivity(new Intent(LoginPage.this, CustomerHomePage.class));
+                                        //If userID has been deleted from database (By admin), delete the user
+                                        Object test = dataSnapshot.getValue();
+                                        if (dataSnapshot.getValue() == null){
+                                            deleteUser();
+                                            login_progressBar.setVisibility(View.INVISIBLE);
+                                            return;
                                         }
+                                        else{
+                                            Toast.makeText(LoginPage.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
+                                            String type = dataSnapshot.child("role").getValue().toString();
+                                            if (type.equals("BRANCH_EMPLOYEE")) {
+                                                startActivity(new Intent(LoginPage.this, BranchEmployeeHomePage.class));
+                                            } else if (type.equals("CUSTOMER")) {
+                                                startActivity(new Intent(LoginPage.this, CustomerHomePage.class));
+                                            }
+                                        }
+                                        //Should remove listener if it's a one time thing
+                                        //Else it gets called whenever data is changed - can crash
+                                        userRef.removeEventListener(this);
+                                        //Closes all activities
+                                        finishAffinity();
                                     }
-
                                     @Override
                                     public void onCancelled(@NonNull DatabaseError databaseError) {
                                         Toast.makeText(LoginPage.this, "Error retrieving data...", Toast.LENGTH_SHORT).show();
                                     }
                                 });
-
                             } else {
                                 Toast.makeText(LoginPage.this, "ERROR! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 login_progressBar.setVisibility(View.INVISIBLE);
                             }
                         }
                     });
+                }
+            }
+        });
+    }
+    public void deleteUser(){
+        boolean complete = false;
+        curUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(LoginPage.this,
+                        "Sorry, but your account has been deleted by an administrator", Toast.LENGTH_LONG).show();
                 }
             }
         });

@@ -68,27 +68,40 @@ public class RegisterBranchEmployee extends AppCompatActivity {
                 confPassword = register_branch_confirm.getText().toString().trim();
 
                 // Validating fields
+                boolean invalid = false;
 
                 if (TextUtils.isEmpty(email)) {
                     register_branch_email.setError("Email is required...");
-                    return;
+                    invalid = true;
                 }
 
                 if (TextUtils.isEmpty(password)) {
                     register_branch_password.setError("Password is required...");
-                    return;
+                    invalid = true;
                 }
 
                 if (password.length() < 6) {
                     register_branch_password.setError("Password must be atleast 6 characters...");
-                    return;
+                    invalid = true;
                 }
 
                 if (!password.equals(confPassword)) {
                     register_branch_password.setError("Make sure passwords match...");
                     register_branch_confirm.setError("Make sure passwords match...");
-                    return;
+                    invalid = true;
                 }
+
+                if (!(firstName.matches("[a-zA-Z]+") || firstName.matches("[a-zA-Z]+-[a-zA-Z]+"))){
+                    register_branch_firstName.setError("Names may only contain letters (hyphenated names are acceptable)...");
+                    invalid = true;
+                }
+
+                if (!(lastName.matches("[a-zA-Z]+") || lastName.matches("[a-zA-Z]+-[a-zA-Z]+"))){
+                    register_branch_lastName.setError("Names may only contain letters (hyphenated names are acceptable)...");
+                    invalid = true;
+                }
+
+                if (invalid) return;
 
                 progressBar.setVisibility(View.VISIBLE);
 
@@ -102,7 +115,7 @@ public class RegisterBranchEmployee extends AppCompatActivity {
                             writeNewBranchEmployee(firstName, lastName, userName, branchName, user.getUid());
                             Toast.makeText(RegisterBranchEmployee.this, "Successfully created a branch employee account!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(RegisterBranchEmployee.this,  BranchEmployeeHomePage.class));
-                            finish();
+                            finishAffinity();
                         }
                         else {
                             Toast.makeText(RegisterBranchEmployee.this, "ERROR! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
