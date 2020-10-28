@@ -182,7 +182,7 @@ public class AdminEditCustomerAccounts extends AppCompatActivity {
                     currCustomerID = null;
                 }
                 else{
-                    Toast.makeText(AdminEditCustomerAccounts.this, "Error deleting user...", Toast.LENGTH_SHORT);
+                    Toast.makeText(AdminEditCustomerAccounts.this, "Error deleting user...", Toast.LENGTH_SHORT).show();
                     Log.e("TAG", error.toString());
                 }
             }
