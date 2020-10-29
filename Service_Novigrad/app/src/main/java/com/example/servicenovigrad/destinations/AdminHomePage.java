@@ -12,10 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.servicenovigrad.ui.AdminEditBranchAccounts;
 import com.example.servicenovigrad.ui.AdminEditCustomerAccounts;
+import com.example.servicenovigrad.ui.AdminEditServices;
 import com.example.servicenovigrad.ui.MainPage;
 
 public class AdminHomePage extends AppCompatActivity {
-    Button logout, admin_branch_accounts, admin_customer_accounts;
+    Button logout, admin_branch_accounts, admin_customer_accounts, admin_services_editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class AdminHomePage extends AppCompatActivity {
         logout = findViewById(R.id.logout);
         admin_branch_accounts = findViewById(R.id.admin_branch_accounts);
         admin_customer_accounts = findViewById(R.id.admin_customer_accounts);
+        admin_services_editor = findViewById(R.id.admin_services_editor);
 
         TextView message = findViewById(R.id.message_admin_HP);
         message.setText("Welcome Administrator");
@@ -40,6 +42,13 @@ public class AdminHomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(AdminHomePage.this, AdminEditCustomerAccounts.class));
+            }
+        });
+
+        admin_services_editor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminHomePage.this, AdminEditServices.class));
             }
         });
 

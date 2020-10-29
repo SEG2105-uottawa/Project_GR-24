@@ -31,7 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 public class AdminEditBranchAccounts extends AppCompatActivity {
 
     ListView admin_branch_list;
-    Button admin_edit_services_btn, admin_delete_branch_btn, admin_edit_cancel_btn,
+    Button admin_delete_branch_btn, admin_edit_cancel_btn,
             confirm_yes_btn, confirm_no_btn;
     TextView edit_branch_branchName, edit_branch_employeeName,
             edit_branch_userName, are_you_sure;
@@ -110,7 +110,6 @@ public class AdminEditBranchAccounts extends AppCompatActivity {
         edit_branch_branchName = dialog.findViewById(R.id.edit_branch_branchName);
         edit_branch_employeeName = dialog.findViewById(R.id.edit_branch_employeeName);
         edit_branch_userName = dialog.findViewById(R.id.edit_branch_userName);
-        admin_edit_services_btn = dialog.findViewById(R.id.admin_edit_services_btn);
         admin_delete_branch_btn = dialog.findViewById(R.id.admin_delete_branch_btn);
         admin_edit_cancel_btn = dialog.findViewById(R.id.admin_edit_cancel_btn);
 
@@ -120,19 +119,6 @@ public class AdminEditBranchAccounts extends AppCompatActivity {
         edit_branch_userName.setText(currBranchEmployee.getUserName());
 
         //Listeners
-        //Services button
-        admin_edit_services_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Open services editor
-                //Send branchEmployee and employeeID
-                Intent intent = new Intent(AdminEditBranchAccounts.this, AdminEditServices.class);
-                intent.putExtra("branchEmployee", currBranchEmployee);
-                intent.putExtra("employeeID", currEmployeeID);
-                startActivity(intent);
-                dialog.dismiss();
-            }
-        });
         //Delete button
         admin_delete_branch_btn.setOnClickListener(new View.OnClickListener() {
             @Override

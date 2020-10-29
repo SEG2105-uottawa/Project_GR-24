@@ -16,8 +16,5 @@ public class AdminEditServices extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_edit_services);
-
-        branchEmployee = (BranchEmployee) getIntent().getSerializableExtra("branchEmployee");
-        employeeID = getIntent().getStringExtra("employeeID");
     }
 }
