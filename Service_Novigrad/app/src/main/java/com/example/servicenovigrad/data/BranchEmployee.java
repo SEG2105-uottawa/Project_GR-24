@@ -6,11 +6,14 @@
 
 package com.example.servicenovigrad.data;
 
+import java.util.HashSet;
+
 public class BranchEmployee extends Account {
 
     private final static Roles role = Roles.BRANCH_EMPLOYEE;
 
     private String branchName;
+    private HashSet<ServiceType> servicesOffered;
 
     /**
      * Constructor
@@ -23,6 +26,19 @@ public class BranchEmployee extends Account {
     public BranchEmployee(String firstName, String lastName, String userName, String branchName) {
         super(firstName, lastName, userName, role);
         this.branchName = branchName;
+        servicesOffered = new HashSet<>();
+    }
+
+    public void addServiceType(ServiceType type){
+        servicesOffered.add(type);
+    }
+
+    public void removeServiceType(ServiceType type){
+        servicesOffered.remove(type);
+    }
+
+    public HashSet<ServiceType> getServicesOffered() {
+        return servicesOffered;
     }
 
     public String getBranchName() {
