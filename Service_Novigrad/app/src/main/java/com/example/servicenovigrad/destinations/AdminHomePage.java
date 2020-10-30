@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.servicenovigrad.ui.AdminEditBranchAccounts;
 import com.example.servicenovigrad.ui.AdminEditCustomerAccounts;
-import com.example.servicenovigrad.ui.AdminEditServices;
+import com.example.servicenovigrad.ui.AdminEditAllServices;
 import com.example.servicenovigrad.ui.MainPage;
 
 public class AdminHomePage extends AppCompatActivity {
@@ -48,7 +48,7 @@ public class AdminHomePage extends AppCompatActivity {
         admin_services_editor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdminHomePage.this, AdminEditServices.class));
+                startActivity(new Intent(AdminHomePage.this, AdminEditAllServices.class));
             }
         });
 

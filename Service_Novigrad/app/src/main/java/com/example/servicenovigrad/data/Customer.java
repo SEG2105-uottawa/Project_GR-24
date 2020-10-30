@@ -8,7 +8,6 @@ package com.example.servicenovigrad.data;
 
 public class Customer extends Account {
 
-    /*Variable initialization*/
     private final static Roles role = Roles.CUSTOMER;
 
     /**

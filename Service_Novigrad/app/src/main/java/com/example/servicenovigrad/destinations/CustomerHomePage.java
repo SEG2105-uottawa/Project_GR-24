@@ -22,16 +22,13 @@ public class CustomerHomePage extends HomePage {
     }
 
     public void updateHomePage(final DatabaseReference userRef) {
-        userRef.addValueEventListener(new ValueEventListener() {
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String firstName = dataSnapshot.child("firstName").getValue().toString();
                 String role = dataSnapshot.child("role").getValue().toString();
                 String welcomeMessage = "Welcome, "+ firstName +", to the customer homepage!\nYou are logged in as: " + role;
                 message.setText(welcomeMessage);
-                //Should remove listener if it's a one time thing
-                //Else it gets called whenever data is changed - can crash
-                userRef.removeEventListener(this);
             }
 
             @Override

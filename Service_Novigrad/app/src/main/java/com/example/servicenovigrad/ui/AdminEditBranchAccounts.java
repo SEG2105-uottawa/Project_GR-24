@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.servicenovigrad.R;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,13 +31,14 @@ public class AdminEditBranchAccounts extends AppCompatActivity {
 
     ListView admin_branch_list;
     Button admin_delete_branch_btn, admin_edit_cancel_btn,
-            confirm_yes_btn, confirm_no_btn;
+                confirm_yes_btn, confirm_no_btn;
     TextView edit_branch_branchName, edit_branch_employeeName,
-            edit_branch_userName, are_you_sure;
+                edit_branch_userName, are_you_sure;
     Dialog dialog, confirmDelete;
     DatabaseReference allUsersReference;
     ArrayList<BranchEmployee> allBranchEmployees;
     ArrayAdapter<BranchEmployee> arrayAdapter;
+
     //This HashMap lets you get the database ID of a user
     HashMap<BranchEmployee, String> employeeIDs;
 
@@ -104,7 +104,7 @@ public class AdminEditBranchAccounts extends AppCompatActivity {
         if (dialog != null) dialog.dismiss();
         //Display dialog
         dialog = new Dialog(this);
-        dialog.setContentView(R.layout.activity_admin_edit_branch_dialog);
+        dialog.setContentView(R.layout.dialog_admin_edit_branch);
 
         //Get views
         edit_branch_branchName = dialog.findViewById(R.id.edit_branch_branchName);

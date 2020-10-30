@@ -80,7 +80,7 @@ public class LoginPage extends AppCompatActivity {
 
                                 userRef = FirebaseDatabase.getInstance().getReference().child("users").child(curUser.getUid());
 
-                                userRef.addValueEventListener(new ValueEventListener() {
+                                userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         //If userID has been deleted from database (By admin), delete the user
@@ -99,9 +99,6 @@ public class LoginPage extends AppCompatActivity {
                                                 startActivity(new Intent(LoginPage.this, CustomerHomePage.class));
                                             }
                                         }
-                                        //Should remove listener if it's a one time thing
-                                        //Else it gets called whenever data is changed - can crash
-                                        userRef.removeEventListener(this);
                                         //Closes all activities
                                         finishAffinity();
                                     }

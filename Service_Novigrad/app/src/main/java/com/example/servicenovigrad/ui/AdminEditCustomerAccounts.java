@@ -31,13 +31,14 @@ public class AdminEditCustomerAccounts extends AppCompatActivity {
 
     ListView admin_customer_list;
     Button admin_delete_customer_btn, admin_customer_cancel_btn,
-            confirm_yes_btn, confirm_no_btn;
+                confirm_yes_btn, confirm_no_btn;
     TextView edit_customer_customerName,
-            edit_customer_userName, are_you_sure;
+                edit_customer_userName, are_you_sure;
     Dialog dialog, confirmDelete;
     DatabaseReference allUsersReference;
     ArrayList<Customer> allCustomers;
     ArrayAdapter<Customer> arrayAdapter;
+
     //This HashMap lets you get the database ID of a user
     HashMap<Customer, String> customerIDs;
 
@@ -103,7 +104,7 @@ public class AdminEditCustomerAccounts extends AppCompatActivity {
         if (dialog != null) dialog.dismiss();
         //Display dialog
         dialog = new Dialog(this);
-        dialog.setContentView(R.layout.activity_admin_edit_customer_dialog);
+        dialog.setContentView(R.layout.dialog_admin_edit_customer);
 
         //Get views
         edit_customer_customerName = dialog.findViewById(R.id.edit_customer_customerName);

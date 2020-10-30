@@ -1,45 +1,61 @@
 package com.example.servicenovigrad.data;
 
-import java.util.HashSet;
+import androidx.annotation.NonNull;
 
-public class Service {
+import java.io.Serializable;
+import java.util.HashMap;
 
+//Serializable interface allows objects to be passed between activities
+public class Service implements Serializable {
+
+    private static final String EMPTY = "<EMPTY>";
     private String name;
-    private HashSet<String> formFields;
-    private HashSet<String> documentTypes;
+    private HashMap<String,String> formFields;
+    private HashMap<String,Object> documentTypes;
 
     public Service(String name){
         this.name = name;
-        formFields = new HashSet<>();
-        documentTypes = new HashSet<>();
+        formFields = new HashMap<>();
+        documentTypes = new HashMap<>();
         }
 
-    public void createFormField(String field){
-        formFields.add(field);
+    public void addFormField(String field){
+        formFields.put(field,EMPTY);
     }
 
     public void removeFormField(String field){
         formFields.remove(field);
     }
 
-    public void createDocType(String type){
-        documentTypes.add(type);
+    public void addDocType(String type){
+        documentTypes.put(type,EMPTY);
     }
 
     public void removeDocType(String type){
         documentTypes.remove(type);
     }
 
-    public HashSet<String> getFormFields() {
+    public HashMap<String, String> getFormFields() {
         return formFields;
     }
 
-    public HashSet<String> getDocumentTypes() {
+    public HashMap<String, Object> getDocumentTypes() {
         return documentTypes;
     }
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    @NonNull
+    @Override
+    public String toString() {
+        return (name + "\nForm fields: " + formFields.size() + "\nDocuments: " + documentTypes.size());
     }
 }
 
