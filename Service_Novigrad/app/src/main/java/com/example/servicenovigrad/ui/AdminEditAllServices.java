@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.servicenovigrad.R;
-import com.example.servicenovigrad.data.Service;
+import com.example.servicenovigrad.services.Service;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -156,6 +157,13 @@ public class AdminEditAllServices extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String serviceName = dialog_input.getText().toString();
+
+                if (TextUtils.isEmpty(serviceName)) {
+                    dialog_input.setError("Service Name required...");
+                    return;
+
+                }
+
                 Service service = new Service(serviceName);
                 allServicesReference.child(serviceName).setValue(service);
                 Toast.makeText(getApplicationContext(), "New service created", Toast.LENGTH_SHORT).show();

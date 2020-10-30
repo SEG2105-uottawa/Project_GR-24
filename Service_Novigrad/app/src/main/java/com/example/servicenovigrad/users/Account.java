@@ -3,10 +3,9 @@
  * It has role, username, password labels
  */
 
-package com.example.servicenovigrad.data;
+package com.example.servicenovigrad.users;
 
 import java.io.Serializable;
-import java.util.HashSet;
 
 //Serializable interface allows objects to be passed between activities
 public class Account implements Serializable {

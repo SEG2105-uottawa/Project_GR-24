@@ -4,7 +4,7 @@
  * manage accounts of customers and branches
  */
 
-package com.example.servicenovigrad.data;
+package com.example.servicenovigrad.users;
 
 public class Admin extends Account {
 

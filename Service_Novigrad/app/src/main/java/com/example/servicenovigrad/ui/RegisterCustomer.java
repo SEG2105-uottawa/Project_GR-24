@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.servicenovigrad.R;
-import com.example.servicenovigrad.data.Customer;
+import com.example.servicenovigrad.users.Customer;
 import com.example.servicenovigrad.destinations.CustomerHomePage;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

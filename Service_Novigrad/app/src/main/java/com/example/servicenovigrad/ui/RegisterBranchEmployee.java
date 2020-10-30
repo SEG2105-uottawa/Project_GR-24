@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.servicenovigrad.R;
-import com.example.servicenovigrad.data.BranchEmployee;
+import com.example.servicenovigrad.users.BranchEmployee;
 import com.example.servicenovigrad.destinations.BranchEmployeeHomePage;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -118,7 +118,7 @@ public class RegisterBranchEmployee extends AppCompatActivity {
                             finishAffinity();
                         }
                         else {
-                            Toast.makeText(RegisterBranchEmployee.this, "ERROR! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterBranchEmployee.this, "ERROR! Employee creation unsuccessful...", Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.INVISIBLE);
                         }
                     }

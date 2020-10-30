@@ -1,14 +1,10 @@
 package com.example.servicenovigrad;
 
-import com.example.servicenovigrad.data.Admin;
-import com.example.servicenovigrad.data.BranchEmployee;
-import com.example.servicenovigrad.data.Customer;
+import com.example.servicenovigrad.users.Admin;
+import com.example.servicenovigrad.users.BranchEmployee;
+import com.example.servicenovigrad.users.Customer;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.JUnitCore;
-import org.junit.runner.Result;
-import org.junit.runner.notification.Failure;
 
 import static org.junit.Assert.*;
 

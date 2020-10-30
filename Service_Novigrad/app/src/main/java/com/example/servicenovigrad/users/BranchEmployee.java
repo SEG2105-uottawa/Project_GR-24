@@ -4,17 +4,13 @@
  * methods of the Branch class to edit it.
  */
 
-package com.example.servicenovigrad.data;
-
-import java.util.HashSet;
+package com.example.servicenovigrad.users;
 
 public class BranchEmployee extends Account {
 
     private final static Roles role = Roles.BRANCH_EMPLOYEE;
 
     private String branchName;
-
-    private HashSet<Service> servicesOffered;
 
     /**
      * Constructor
@@ -27,20 +23,8 @@ public class BranchEmployee extends Account {
     public BranchEmployee(String firstName, String lastName, String userName, String branchName) {
         super(firstName, lastName, userName, role);
         this.branchName = branchName;
-        servicesOffered = new HashSet<>();
     }
 
-    public void addService(Service service){
-        servicesOffered.add(service);
-    }
-
-    public void removeService(Service service){
-        servicesOffered.remove(service);
-    }
-
-    public HashSet<Service> getServicesOffered() {
-        return servicesOffered;
-    }
 
     public String getBranchName() {
         return branchName;

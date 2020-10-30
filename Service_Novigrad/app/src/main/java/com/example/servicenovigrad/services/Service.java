@@ -1,4 +1,4 @@
-package com.example.servicenovigrad.data;
+package com.example.servicenovigrad.services;
 
 import androidx.annotation.NonNull;
 
@@ -17,7 +17,8 @@ public class Service implements Serializable {
         this.name = name;
         formFields = new HashMap<>();
         documentTypes = new HashMap<>();
-        }
+
+    }
 
     public void addFormField(String field){
         formFields.put(field,EMPTY);

@@ -4,7 +4,7 @@
  * making ServiceRequest and rating a Brach
  */
 
-package com.example.servicenovigrad.data;
+package com.example.servicenovigrad.users;
 
 public class Customer extends Account {
 
