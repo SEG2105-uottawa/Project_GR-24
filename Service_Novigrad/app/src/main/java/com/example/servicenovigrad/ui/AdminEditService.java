@@ -143,7 +143,7 @@ public class AdminEditService extends AppCompatActivity {
                 cancelDialogBtn = dialog.findViewById(R.id.entry_dialog_cancel);
 
                 //Set text
-                dialog_header.setText("Please enter the name of the form you wish to add...");
+                dialog_header.setText("Please enter the name of the form field you wish to add...");
 
                 //Listeners
                 cancelDialogBtn.setOnClickListener(new View.OnClickListener() {
@@ -165,7 +165,7 @@ public class AdminEditService extends AppCompatActivity {
 
                         databaseServiceReference.child("formFields").child(formName).setValue("<EMPTY>");
                         service.addFormField(formName);
-                        Toast.makeText(getApplicationContext(), "New form added to service", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "New form field added to service", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
 
                         Intent intent = new Intent(AdminEditService.this, AdminEditService.class);

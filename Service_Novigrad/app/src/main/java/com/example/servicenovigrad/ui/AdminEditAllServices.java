@@ -39,9 +39,6 @@ public class AdminEditAllServices extends AppCompatActivity {
     TextView dialog_header;
     EditText dialog_input;
 
-    //Test Service
-    Service test;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,18 +57,6 @@ public class AdminEditAllServices extends AppCompatActivity {
                 openEntryDialog();
             }
         });
-
-//        //Add Test Services
-//        test = new Service("Test Name");
-//        test.addDocType("Test Document Type");
-//        test.addFormField("Test Form Field");
-//        //Add to database
-//        allServicesReference.child(test.getName()).setValue(test);
-//        //Add another one
-//        test.setName("Test Name 2");
-//        test.addDocType("Test Document Type 2");
-//        test.addFormField("Test Form Field 2");
-//        allServicesReference.child(test.getName()).setValue(test);
 
         allServicesReference.addValueEventListener(new ValueEventListener() {
             @Override
