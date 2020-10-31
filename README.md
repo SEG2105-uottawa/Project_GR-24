@@ -1,5 +1,11 @@
 # Project_GR-24
-SEG 2105 Project - Group 24
+SEG 2105 Project - Group 24  
+Repo link: https://github.com/SEG2105-uottawa/Project_GR-24
+
+## Members
+Chris Hamilton  
+Akarsh Gharge  
+Mustafa Sarikaya
 
 ## Admin credentials
 username: admin  
