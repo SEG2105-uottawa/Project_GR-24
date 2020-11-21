@@ -1,4 +1,4 @@
-package com.example.servicenovigrad.ui;
+package com.example.servicenovigrad.ui.admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

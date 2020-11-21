@@ -18,9 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".destinations.AdminHomePage" />
-        <activity android:name=".destinations.CustomerHomePage" />
-        <activity android:name=".destinations.BranchEmployeeHomePage" />
+        <activity android:name=".ui.homepages.AdminHomePage" />
+        <activity android:name=".ui.homepages.CustomerHomePage" />
+        <activity android:name=".ui.homepages.BranchEmployeeHomePage" />
         <activity
             android:name=".ui.RegisterPage"
             android:parentActivityName=".ui.MainPage" />
@@ -34,16 +34,16 @@
             android:name=".ui.RegisterCustomer"
             android:parentActivityName=".ui.RegisterPage" />
         <activity
-            android:name=".ui.AdminEditBranchAccounts"
-            android:parentActivityName=".destinations.AdminHomePage" />
+            android:name=".ui.admin.AdminEditBranchAccounts"
+            android:parentActivityName=".ui.homepages.AdminHomePage" />
         <activity
-            android:name=".ui.AdminEditAllServices"
-            android:parentActivityName=".destinations.AdminHomePage" />
+            android:name=".ui.admin.AdminEditAllServices"
+            android:parentActivityName=".ui.homepages.AdminHomePage" />
         <activity
-            android:name=".ui.AdminEditCustomerAccounts"
-            android:parentActivityName=".destinations.AdminHomePage" />
-        <activity android:name=".ui.AdminEditService"
-            android:parentActivityName=".ui.AdminEditAllServices"/>
+            android:name=".ui.admin.AdminEditCustomerAccounts"
+            android:parentActivityName=".ui.homepages.AdminHomePage" />
+        <activity android:name=".ui.admin.AdminEditService"
+            android:parentActivityName=".ui.admin.AdminEditAllServices"/>
     </application>
 
 </manifest>

@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.servicenovigrad.R;
 import com.example.servicenovigrad.users.BranchEmployee;
-import com.example.servicenovigrad.destinations.BranchEmployeeHomePage;
+import com.example.servicenovigrad.ui.homepages.BranchEmployeeHomePage;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

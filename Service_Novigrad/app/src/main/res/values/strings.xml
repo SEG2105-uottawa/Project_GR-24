@@ -37,4 +37,9 @@
     <string name="document_types">Required Documents</string>
     <string name="submit">Submit</string>
     <string name="edit_service_name">Edit Name</string>
+    <string name="edit_branch">Edit Branch</string>
+    <string name="branch_info">Branch Info</string>
+    <string name="services_offered">Services Offered</string>
+    <string name="service_requests">Service Requests</string>
+    <string name="edit">Edit</string>
 </resources>

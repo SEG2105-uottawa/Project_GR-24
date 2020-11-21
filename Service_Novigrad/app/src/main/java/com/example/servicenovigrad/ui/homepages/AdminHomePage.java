@@ -1,4 +1,4 @@
-package com.example.servicenovigrad.destinations;
+package com.example.servicenovigrad.ui.homepages;
 
 import com.example.servicenovigrad.R;
 
@@ -10,9 +10,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.servicenovigrad.ui.AdminEditBranchAccounts;
-import com.example.servicenovigrad.ui.AdminEditCustomerAccounts;
-import com.example.servicenovigrad.ui.AdminEditAllServices;
+import com.example.servicenovigrad.ui.admin.AdminEditBranchAccounts;
+import com.example.servicenovigrad.ui.admin.AdminEditCustomerAccounts;
+import com.example.servicenovigrad.ui.admin.AdminEditAllServices;
 import com.example.servicenovigrad.ui.MainPage;
 
 public class AdminHomePage extends AppCompatActivity {

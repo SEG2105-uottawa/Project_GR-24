@@ -13,9 +13,9 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.servicenovigrad.R;
-import com.example.servicenovigrad.destinations.AdminHomePage;
-import com.example.servicenovigrad.destinations.BranchEmployeeHomePage;
-import com.example.servicenovigrad.destinations.CustomerHomePage;
+import com.example.servicenovigrad.ui.homepages.AdminHomePage;
+import com.example.servicenovigrad.ui.homepages.BranchEmployeeHomePage;
+import com.example.servicenovigrad.ui.homepages.CustomerHomePage;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

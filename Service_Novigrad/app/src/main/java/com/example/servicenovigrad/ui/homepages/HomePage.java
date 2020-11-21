@@ -1,4 +1,4 @@
-package com.example.servicenovigrad.destinations;
+package com.example.servicenovigrad.ui.homepages;
 
 import android.content.Intent;
 import android.os.Bundle;

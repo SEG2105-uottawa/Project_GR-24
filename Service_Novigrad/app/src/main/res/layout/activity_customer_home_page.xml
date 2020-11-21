@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/service_novigrad_background"
-    tools:context="destinations.CustomerHomePage">
+    tools:context=".ui.homepages.CustomerHomePage">
 
     <TextView
         android:id="@+id/message_customer_HP"
