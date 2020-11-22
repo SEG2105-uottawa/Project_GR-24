@@ -11,15 +11,21 @@ public class Service implements Serializable {
     private static final String EMPTY = "<EMPTY>";
     private String name;
     private double price;
-    private HashMap<String,String> formFields;
-    private HashMap<String,Object> documentTypes;
+    protected HashMap<String,String> formFields;
+    protected HashMap<String,Object> documentTypes;
 
     public Service(String name, double price){
         this.name = name;
         this.price = price;
         formFields = new HashMap<>();
         documentTypes = new HashMap<>();
+    }
 
+    public Service(Service service){
+        name = service.getName();
+        price = service.returnPrice();
+        formFields = service.getFormFields();
+        documentTypes = service.getDocumentTypes();
     }
 
     public void addFormField(String field){
