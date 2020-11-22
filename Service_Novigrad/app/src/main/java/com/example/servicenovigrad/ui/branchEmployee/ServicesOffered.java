@@ -16,10 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.servicenovigrad.R;
-import com.example.servicenovigrad.services.Service;
+import com.example.servicenovigrad.data.Service;
 import com.example.servicenovigrad.ui.UserPage;
-import com.example.servicenovigrad.ui.admin.AdminEditAllServices;
-import com.example.servicenovigrad.ui.admin.AdminEditService;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

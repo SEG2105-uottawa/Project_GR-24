@@ -6,9 +6,15 @@
 
 package com.example.servicenovigrad.users;
 
-import com.example.servicenovigrad.services.Service;
+import android.util.Log;
+import android.widget.ArrayAdapter;
 
+import com.example.servicenovigrad.data.Service;
+import com.example.servicenovigrad.data.WorkingHours;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class BranchEmployee extends Account {
 
@@ -16,6 +22,8 @@ public class BranchEmployee extends Account {
 
     private String branchName, address, phoneNumber;
     private HashMap<String, Service> servicesOffered;
+    private ArrayList<WorkingHours> hours = new ArrayList<WorkingHours>();
+
 
     /**
      * Constructor
@@ -34,6 +42,10 @@ public class BranchEmployee extends Account {
         this.address = address;
         this.phoneNumber = phoneNumber;
         servicesOffered = new HashMap<>();
+
+        for (int i=0; i<7; i++) {
+            hours.add(i, new WorkingHours(i));
+        }
     }
 
     /**
@@ -45,7 +57,7 @@ public class BranchEmployee extends Account {
      * @param branchName
      */
     public BranchEmployee(String firstName, String lastName, String userName, String branchName) {
-        this(firstName, lastName, userName, branchName, null, null);
+        this(firstName, lastName, userName, branchName, "NO ADDRESS", "NO NUMBER");
     }
 
     public void addService(Service service){
@@ -55,7 +67,6 @@ public class BranchEmployee extends Account {
     public void deleteService(Service service){
         servicesOffered.remove(service.getName());
     }
-
 
     public String getBranchName() {
         return branchName;
@@ -79,6 +90,10 @@ public class BranchEmployee extends Account {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public ArrayList<WorkingHours> getHours() {
+        return hours;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.servicenovigrad.services;
+package com.example.servicenovigrad.data;
 
 import androidx.annotation.NonNull;
 

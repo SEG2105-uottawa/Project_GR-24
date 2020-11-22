@@ -2,22 +2,18 @@ package com.example.servicenovigrad.ui.branchEmployee;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.servicenovigrad.R;
-import com.example.servicenovigrad.services.Service;
+import com.example.servicenovigrad.data.Service;
 import com.example.servicenovigrad.ui.UserPage;
-import com.example.servicenovigrad.ui.admin.AdminEditService;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

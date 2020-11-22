@@ -17,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.servicenovigrad.R;
-import com.example.servicenovigrad.services.Service;
+import com.example.servicenovigrad.data.Service;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;

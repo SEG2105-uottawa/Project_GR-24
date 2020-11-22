@@ -135,5 +135,9 @@ public class RegisterBranchEmployee extends AppCompatActivity {
 
         mDatabase.child("users").child(userID).setValue(branch);
 
+        for (int i=0; i<7; i++) {
+            mDatabase.child("users").child(userID).child("hours").setValue(branch.getHours());
+        }
+
     }
 }

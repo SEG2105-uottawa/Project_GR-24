@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 
 import com.example.servicenovigrad.R;
 
-import com.example.servicenovigrad.services.Service;
+import com.example.servicenovigrad.data.Service;
 import com.example.servicenovigrad.ui.UserPage;
 import com.example.servicenovigrad.ui.branchEmployee.BranchInfo;
 import com.example.servicenovigrad.ui.branchEmployee.ServiceRequests;

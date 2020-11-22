@@ -16,12 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.servicenovigrad.R;
-import com.example.servicenovigrad.services.Service;
+import com.example.servicenovigrad.data.Service;
 import com.example.servicenovigrad.ui.UserPage;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class AdminEditAllServices extends UserPage {
