@@ -17,9 +17,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public abstract class HomePage extends UserPage {
     protected Button logout;
-    protected FirebaseUser curUser;
     protected TextView message;
-    protected DatabaseReference userRef;
+
 
     public abstract void updateHomePage();
 
@@ -28,10 +27,8 @@ public abstract class HomePage extends UserPage {
         super.onCreate(savedInstanceState);
 
         logout = findViewById(R.id.logout);
-
         curUser = FirebaseAuth.getInstance().getCurrentUser();
         userRef = FirebaseDatabase.getInstance().getReference().child("users").child(curUser.getUid());
-
     }
 
     public void logout(View view) {

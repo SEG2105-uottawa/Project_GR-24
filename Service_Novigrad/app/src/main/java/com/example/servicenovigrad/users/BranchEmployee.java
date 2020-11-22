@@ -6,11 +6,16 @@
 
 package com.example.servicenovigrad.users;
 
+import com.example.servicenovigrad.services.Service;
+
+import java.util.HashMap;
+
 public class BranchEmployee extends Account {
 
     private final static Roles role = Roles.BRANCH_EMPLOYEE;
 
     private String branchName, address, phoneNumber;
+    private HashMap<String, Service> servicesOffered;
 
     /**
      * Constructor
@@ -28,6 +33,7 @@ public class BranchEmployee extends Account {
         this.branchName = branchName;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        servicesOffered = new HashMap<>();
     }
 
     /**
@@ -42,6 +48,14 @@ public class BranchEmployee extends Account {
         this(firstName, lastName, userName, branchName, null, null);
     }
 
+    public void addService(Service service){
+        servicesOffered.put(service.getName(), service);
+    }
+
+    public void deleteService(Service service){
+        servicesOffered.remove(service.getName());
+    }
+
 
     public String getBranchName() {
         return branchName;
@@ -50,6 +64,10 @@ public class BranchEmployee extends Account {
     public String getAddress() { return address; }
 
     public String getPhoneNumber() { return phoneNumber; }
+
+    public HashMap<String, Service> getServicesOffered(){
+        return servicesOffered;
+    }
 
     public void setBranchName(String branchName) {
         this.branchName = branchName;

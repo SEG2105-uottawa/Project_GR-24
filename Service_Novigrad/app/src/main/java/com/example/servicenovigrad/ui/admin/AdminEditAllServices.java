@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.servicenovigrad.R;
 import com.example.servicenovigrad.services.Service;
+import com.example.servicenovigrad.ui.homepages.UserPage;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,12 +29,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AdminEditAllServices extends AppCompatActivity {
+public class AdminEditAllServices extends UserPage {
 
     ListView list;
     Button add_button, submit_button, cancel_button;
     DatabaseReference databaseReference, allServicesReference;
-    ArrayList<Service> allServices;
     ArrayAdapter<Service> arrayAdapter;
     Dialog dialog;
     TextView dialog_header;
@@ -62,41 +62,6 @@ public class AdminEditAllServices extends AppCompatActivity {
             @Override
             @SuppressWarnings("unchecked")
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //Clear local data after a deletion
-                allServices = new ArrayList<>();
-
-                //Get JSON tree of all services (Firebase sends it as nested HashMaps)
-                HashMap<String,Object> servicesByName = (HashMap<String,Object>) snapshot.getValue();
-
-                //Loop through outer HashMap (Service names)
-                for (Map.Entry<String, Object> serviceName : servicesByName.entrySet()){
-                    //Convert each value to a HashMap of strings (this is the service object)
-                    HashMap<String, Object> serviceData = (HashMap<String,Object>) serviceName.getValue();
-                    //Get price, form fields and document types
-                    String price;
-                    HashMap<String,String> formFields, documentTypes;
-                    price = (String) serviceData.get("price");
-                    formFields = (HashMap<String,String>) serviceData.get("formFields");
-                    documentTypes = (HashMap<String,String>) serviceData.get("documentTypes");
-
-                    //Convert data to objects
-                    Service service = new Service(serviceName.getKey(), Double.parseDouble(price));
-                    //Loop through form fields (if any)
-                    if (formFields != null){
-                        for (Map.Entry<String,String> formField: formFields.entrySet()){
-                            service.addFormField(formField.getKey());
-                        }
-                    }
-                    //Loop through document types (if any)
-                    if (documentTypes != null){
-                        for (Map.Entry<String,String> documentType : documentTypes.entrySet()){
-                            service.addDocType(documentType.getKey());
-                        }
-                    }
-
-                    allServices.add(service);
-                }
-
                 //Put the data into the list view
                 arrayAdapter = new ArrayAdapter<>(AdminEditAllServices.this,
                         android.R.layout.simple_expandable_list_item_1, allServices);
