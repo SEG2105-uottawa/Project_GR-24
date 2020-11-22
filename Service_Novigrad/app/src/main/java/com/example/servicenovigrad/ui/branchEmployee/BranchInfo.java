@@ -14,7 +14,6 @@ public class BranchInfo extends UserPage {
     TextView branchName, branchAddress, branchPhoneNumber;
     Button editBranchName, editBranchAddress, editBranchPhoneNumber;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

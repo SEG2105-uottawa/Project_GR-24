@@ -21,6 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class BranchEmployeeHomePage extends HomePage {
     Button branchInfo, servicesOffered, serviceRequests;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_branch_employee_home_page);

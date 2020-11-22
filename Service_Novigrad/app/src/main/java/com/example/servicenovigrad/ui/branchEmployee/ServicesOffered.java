@@ -9,6 +9,7 @@ import com.example.servicenovigrad.ui.homepages.UserPage;
 public class ServicesOffered extends UserPage {
     TextView header;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_services_offered);

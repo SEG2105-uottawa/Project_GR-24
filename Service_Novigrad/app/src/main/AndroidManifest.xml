@@ -11,8 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.branchEmployee.ServiceRequests"></activity>
-        <activity android:name=".ui.branchEmployee.ServicesOffered" />
         <activity android:name=".ui.homepages.UserPage" />
         <activity android:name=".ui.MainPage">
             <intent-filter>
@@ -48,6 +46,16 @@
         <activity
             android:name=".ui.admin.AdminEditService"
             android:parentActivityName=".ui.admin.AdminEditAllServices" />
+        <activity
+            android:name=".ui.branchEmployee.BranchInfo"
+            android:parentActivityName=".ui.homepages.BranchEmployeeHomePage" />
+        <activity
+            android:name=".ui.branchEmployee.ServiceRequests"
+            android:parentActivityName=".ui.homepages.BranchEmployeeHomePage" />
+        <activity
+            android:name=".ui.branchEmployee.ServicesOffered"
+            android:parentActivityName=".ui.homepages.BranchEmployeeHomePage" />
+
     </application>
 
 </manifest>
