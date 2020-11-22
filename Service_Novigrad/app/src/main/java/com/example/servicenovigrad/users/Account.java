@@ -39,4 +39,16 @@ public class Account implements Serializable {
     public String getFullName() {
         return firstName + " " + lastName;
     }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 }

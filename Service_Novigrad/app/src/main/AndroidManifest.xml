@@ -11,6 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.branchEmployee.ServiceRequests"></activity>
+        <activity android:name=".ui.branchEmployee.ServicesOffered" />
+        <activity android:name=".ui.homepages.UserPage" />
         <activity android:name=".ui.MainPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,8 +45,9 @@
         <activity
             android:name=".ui.admin.AdminEditCustomerAccounts"
             android:parentActivityName=".ui.homepages.AdminHomePage" />
-        <activity android:name=".ui.admin.AdminEditService"
-            android:parentActivityName=".ui.admin.AdminEditAllServices"/>
+        <activity
+            android:name=".ui.admin.AdminEditService"
+            android:parentActivityName=".ui.admin.AdminEditAllServices" />
     </application>
 
 </manifest>

@@ -51,6 +51,18 @@ public class BranchEmployee extends Account {
 
     public String getPhoneNumber() { return phoneNumber; }
 
+    public void setBranchName(String branchName) {
+        this.branchName = branchName;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     @Override
     public String toString(){
         return ("Branch Name: " + branchName + "\nEmployee Name: " + getFullName());

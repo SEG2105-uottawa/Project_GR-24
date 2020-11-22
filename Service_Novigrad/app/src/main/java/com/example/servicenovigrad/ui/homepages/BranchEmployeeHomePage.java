@@ -24,13 +24,14 @@ public class BranchEmployeeHomePage extends HomePage {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_branch_employee_home_page);
+        linkUserObject();
 
         branchInfo = findViewById(R.id.branch_info);
         servicesOffered = findViewById(R.id.services_offered);
         serviceRequests = findViewById(R.id.service_requests);
 
         message = findViewById(R.id.message_employee_HP);
-        updateHomePage(userRef);
+        updateHomePage();
 
         branchInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,9 +53,10 @@ public class BranchEmployeeHomePage extends HomePage {
                 startActivity(new Intent(BranchEmployeeHomePage.this, ServiceRequests.class));
             }
         });
+
     }
 
-    public void updateHomePage(final DatabaseReference userRef) {
+    public void updateHomePage() {
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -67,6 +69,27 @@ public class BranchEmployeeHomePage extends HomePage {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(BranchEmployeeHomePage.this, "Error retrieving data...", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void linkUserObject(){
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userObject = new BranchEmployee(
+                        (String) snapshot.child("firstName").getValue(),
+                        (String) snapshot.child("lastName").getValue(),
+                        (String) snapshot.child("userName").getValue(),
+                        (String) snapshot.child("branchName").getValue(),
+                        (String) snapshot.child("address").getValue(),
+                        (String) snapshot.child("phoneNumber").getValue()
+                );
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(BranchEmployeeHomePage.this, "Error retrieving data...", Toast.LENGTH_SHORT).show();
             }
         });

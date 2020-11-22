@@ -76,10 +76,6 @@ public class AdminEditAllServices extends AppCompatActivity {
                     String price;
                     HashMap<String,String> formFields, documentTypes;
                     price = (String) serviceData.get("price");
-                    if (price == null){
-                        price = "10.00";
-                        allServicesReference.child(serviceName.getKey()).child("price").setValue(price);
-                    }
                     formFields = (HashMap<String,String>) serviceData.get("formFields");
                     documentTypes = (HashMap<String,String>) serviceData.get("documentTypes");
 

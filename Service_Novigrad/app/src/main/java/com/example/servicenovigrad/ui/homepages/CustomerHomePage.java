@@ -20,12 +20,12 @@ public class CustomerHomePage extends HomePage {
 
 
         message = findViewById(R.id.message_customer_HP);
-        updateHomePage(userRef);
+        updateHomePage();
 
 
     }
 
-    public void updateHomePage(final DatabaseReference userRef) {
+    public void updateHomePage() {
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -15,13 +15,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public abstract class HomePage extends AppCompatActivity {
+public abstract class HomePage extends UserPage {
     protected Button logout;
     protected FirebaseUser curUser;
     protected TextView message;
     protected DatabaseReference userRef;
 
-    public abstract void updateHomePage(DatabaseReference userRef);
+    public abstract void updateHomePage();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

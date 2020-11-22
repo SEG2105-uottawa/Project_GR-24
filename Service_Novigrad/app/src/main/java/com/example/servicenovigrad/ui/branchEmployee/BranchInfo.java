@@ -7,8 +7,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.servicenovigrad.R;
+import com.example.servicenovigrad.ui.homepages.UserPage;
 
-public class BranchInfo extends AppCompatActivity {
+public class BranchInfo extends UserPage {
 
     TextView branchName, branchAddress, branchPhoneNumber;
     Button editBranchName, editBranchAddress, editBranchPhoneNumber;
