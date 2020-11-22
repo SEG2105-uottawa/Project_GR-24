@@ -11,9 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".ui.UserPage" />
-
         <activity android:name=".ui.MainPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,8 +57,10 @@
             android:parentActivityName=".ui.homepages.BranchEmployeeHomePage" />
         <activity
             android:name=".ui.branchEmployee.ServiceInfo"
-            android:parentActivityName=".ui.branchEmployee.ServicesOffered"/>
-
+            android:parentActivityName=".ui.branchEmployee.ServicesOffered" />
+        <activity
+            android:name=".ui.branchEmployee.ProcessRequest"
+            android:parentActivityName=".ui.branchEmployee.ServiceRequests"/>
     </application>
 
 </manifest>

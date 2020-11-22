@@ -7,6 +7,7 @@
 package com.example.servicenovigrad.users;
 
 import com.example.servicenovigrad.services.Service;
+import com.example.servicenovigrad.services.ServiceRequest;
 
 import java.util.HashMap;
 
@@ -16,6 +17,7 @@ public class BranchEmployee extends Account {
 
     private String branchName, address, phoneNumber;
     private HashMap<String, Service> servicesOffered;
+    private HashMap<String, ServiceRequest> serviceRequests;
 
     /**
      * Constructor
@@ -34,6 +36,7 @@ public class BranchEmployee extends Account {
         this.address = address;
         this.phoneNumber = phoneNumber;
         servicesOffered = new HashMap<>();
+        serviceRequests = new HashMap<>();
     }
 
     /**
@@ -56,6 +59,15 @@ public class BranchEmployee extends Account {
         servicesOffered.remove(service.getName());
     }
 
+    public void addServiceRequest(ServiceRequest request){
+        if(!serviceRequests.containsKey(request.getRequestID())){
+            serviceRequests.put(request.getRequestID(), request);
+        }
+        else throw new IllegalArgumentException("The request ID " +
+                request.getRequestID() + " is a duplicate..." +
+                "\nExisting request: " + serviceRequests.get(request.getRequestID()) +
+                "\nNew Request: " + request);
+    }
 
     public String getBranchName() {
         return branchName;
@@ -67,6 +79,10 @@ public class BranchEmployee extends Account {
 
     public HashMap<String, Service> getServicesOffered(){
         return servicesOffered;
+    }
+
+    public HashMap<String, ServiceRequest> getServiceRequests() {
+        return serviceRequests;
     }
 
     public void setBranchName(String branchName) {

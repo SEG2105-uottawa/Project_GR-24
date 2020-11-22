@@ -35,8 +35,6 @@ public abstract class UserPage extends AppCompatActivity {
     protected static FirebaseUser curUser;
     protected static final DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
     protected static final DatabaseReference serviceRef = databaseRef.child("services");
-    protected static DatabaseReference counterRef = databaseRef.child("requestCounter");
-    protected static long requestCounter;
     //Used for displaying in list views
     protected static ArrayList<Service> allServices;
     protected static HashMap<String, Service> allServicesMap;
@@ -98,21 +96,4 @@ public abstract class UserPage extends AppCompatActivity {
         });
     }
 
-    protected void linkRequestCounter(){
-        counterRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                requestCounter = (long) snapshot.getValue();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getApplicationContext(), "Error retrieving data...", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    protected void incrementRequestCounter(){
-        counterRef.setValue(requestCounter + 1);
-    }
 }
