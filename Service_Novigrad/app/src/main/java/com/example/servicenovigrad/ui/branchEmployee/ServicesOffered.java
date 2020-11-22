@@ -45,13 +45,6 @@ public class ServicesOffered extends UserPage {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_services_offered);
 
-//        //Testing
-//        final BranchEmployee branchObject = branchObject();
-//        branchObject.addService(new Service("test service 1", 20.00));
-//        branchObject.addService(new Service("test service 2", 20.00));
-//        branchObject.addService(new Service("test service 3", 20.00));
-//        userRef.setValue(branchObject);
-
         //get views
         branchName_header = findViewById(R.id.services_offered_branchName);
         edit_button = findViewById(R.id.services_offered_edit);

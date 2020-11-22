@@ -44,8 +44,7 @@
                 android:id="@+id/service_info_employee_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_margin="10dp"
                 android:text="@string/placeholder"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
@@ -54,8 +53,7 @@
                 android:id="@+id/service_info_employee_form_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_margin="10dp"
                 android:text="@string/form_fields"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -72,8 +70,7 @@
                 android:id="@+id/service_info_employee_doc_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_margin="10dp"
                 android:text="@string/document_types"
                 android:textSize="18sp"
                 android:textStyle="bold" />

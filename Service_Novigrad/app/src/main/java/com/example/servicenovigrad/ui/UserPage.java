@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.example.servicenovigrad.R;
-import com.example.servicenovigrad.services.Service;
+import com.example.servicenovigrad.data.Service;
 import com.example.servicenovigrad.ui.admin.AdminEditAllServices;
 import com.example.servicenovigrad.ui.admin.AdminEditService;
 import com.example.servicenovigrad.users.Account;
@@ -33,17 +33,11 @@ public abstract class UserPage extends AppCompatActivity {
     protected static Account userObject;
     protected static DatabaseReference userRef;
     protected static FirebaseUser curUser;
-    protected static final DatabaseReference serviceRef = FirebaseDatabase.getInstance().getReference().child("services");
+    protected static final DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
+    protected static final DatabaseReference serviceRef = databaseRef.child("services");
     //Used for displaying in list views
     protected static ArrayList<Service> allServices;
     protected static HashMap<String, Service> allServicesMap;
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        linkAllServices();
-    }
 
     protected BranchEmployee branchObject(){
         return (BranchEmployee) userObject;
@@ -54,7 +48,7 @@ public abstract class UserPage extends AppCompatActivity {
     }
 
     //Auto updates allServices
-    private void linkAllServices(){
+    protected void linkAllServices(){
         serviceRef.addValueEventListener(new ValueEventListener() {
             @Override
             @SuppressWarnings("unchecked")
@@ -101,4 +95,5 @@ public abstract class UserPage extends AppCompatActivity {
             }
         });
     }
+
 }

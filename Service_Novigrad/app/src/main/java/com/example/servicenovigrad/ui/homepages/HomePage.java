@@ -22,6 +22,7 @@ public abstract class HomePage extends UserPage {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        linkAllServices();
 
         logout = findViewById(R.id.logout);
         curUser = FirebaseAuth.getInstance().getCurrentUser();

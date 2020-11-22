@@ -6,15 +6,14 @@
 
 package com.example.servicenovigrad.users;
 
-import android.util.Log;
-import android.widget.ArrayAdapter;
 
 import com.example.servicenovigrad.data.Service;
+import com.example.servicenovigrad.data.ServiceRequest;
+
 import com.example.servicenovigrad.data.WorkingHours;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class BranchEmployee extends Account {
 
@@ -24,6 +23,7 @@ public class BranchEmployee extends Account {
     private HashMap<String, Service> servicesOffered;
     private ArrayList<WorkingHours> hours = new ArrayList<WorkingHours>();
 
+    private HashMap<String, ServiceRequest> serviceRequests;
 
     /**
      * Constructor
@@ -46,6 +46,7 @@ public class BranchEmployee extends Account {
         for (int i=0; i<7; i++) {
             hours.add(i, new WorkingHours(i));
         }
+        serviceRequests = new HashMap<>();
     }
 
     /**
@@ -68,6 +69,16 @@ public class BranchEmployee extends Account {
         servicesOffered.remove(service.getName());
     }
 
+    public void addServiceRequest(ServiceRequest request){
+        if(!serviceRequests.containsKey(request.getRequestID())){
+            serviceRequests.put(request.getRequestID(), request);
+        }
+        else throw new IllegalArgumentException("The request ID " +
+                request.getRequestID() + " is a duplicate..." +
+                "\nExisting request: " + serviceRequests.get(request.getRequestID()) +
+                "\nNew Request: " + request);
+    }
+
     public String getBranchName() {
         return branchName;
     }
@@ -78,6 +89,10 @@ public class BranchEmployee extends Account {
 
     public HashMap<String, Service> getServicesOffered(){
         return servicesOffered;
+    }
+
+    public HashMap<String, ServiceRequest> getServiceRequests() {
+        return serviceRequests;
     }
 
     public void setBranchName(String branchName) {

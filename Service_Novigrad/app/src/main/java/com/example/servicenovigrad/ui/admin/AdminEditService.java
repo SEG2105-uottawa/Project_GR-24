@@ -118,11 +118,10 @@ public class AdminEditService extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()) {
                                     Toast.makeText(AdminEditService.this, "Successfully deleted service.", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(AdminEditService.this, AdminEditAllServices.class));
+                                    finish();
                                 }
                                 else {
                                     Toast.makeText(AdminEditService.this, "Unable to delete service...", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(AdminEditService.this, AdminEditAllServices.class));
                                 }
                             }
                         });
