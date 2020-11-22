@@ -43,4 +43,5 @@
     <string name="service_requests">Service Requests</string>
     <string name="edit">Edit</string>
     <string name="change">Change</string>
+    <string name="select_services_offered">Select Services Offered</string>
 </resources>

@@ -1,7 +1,6 @@
 package com.example.servicenovigrad.ui.admin;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -18,22 +17,17 @@ import android.widget.Toast;
 
 import com.example.servicenovigrad.R;
 import com.example.servicenovigrad.services.Service;
-import com.example.servicenovigrad.ui.homepages.UserPage;
+import com.example.servicenovigrad.ui.UserPage;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 public class AdminEditAllServices extends UserPage {
 
     ListView list;
     Button add_button, submit_button, cancel_button;
-    DatabaseReference databaseReference, allServicesReference;
     ArrayAdapter<Service> arrayAdapter;
     Dialog dialog;
     TextView dialog_header;
@@ -48,9 +42,6 @@ public class AdminEditAllServices extends UserPage {
         list = findViewById(R.id.admin_services_list);
         add_button = findViewById(R.id.admin_services_button);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        allServicesReference = databaseReference.child("services");
-
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +49,7 @@ public class AdminEditAllServices extends UserPage {
             }
         });
 
-        allServicesReference.addValueEventListener(new ValueEventListener() {
+        serviceRef.addValueEventListener(new ValueEventListener() {
             @Override
             @SuppressWarnings("unchecked")
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -132,7 +123,7 @@ public class AdminEditAllServices extends UserPage {
                 if(invalid) return;
 
                 Service service = new Service(serviceName, Double.parseDouble(servicePrice));
-                allServicesReference.child(serviceName).setValue(service);
+                serviceRef.child(serviceName).setValue(service);
                 Toast.makeText(getApplicationContext(), "New service created", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }

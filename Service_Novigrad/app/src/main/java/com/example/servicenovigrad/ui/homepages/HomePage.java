@@ -6,13 +6,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.servicenovigrad.R;
 import com.example.servicenovigrad.ui.MainPage;
+import com.example.servicenovigrad.ui.UserPage;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public abstract class HomePage extends UserPage {

@@ -1,11 +1,9 @@
 package com.example.servicenovigrad.ui.branchEmployee;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 import com.example.servicenovigrad.R;
-import com.example.servicenovigrad.ui.homepages.UserPage;
+import com.example.servicenovigrad.ui.UserPage;
 
 public class ServiceRequests extends UserPage {
 

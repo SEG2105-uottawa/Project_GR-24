@@ -1,5 +1,7 @@
 package com.example.servicenovigrad.ui.branchEmployee;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,13 +13,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.servicenovigrad.R;
 import com.example.servicenovigrad.services.Service;
-import com.example.servicenovigrad.ui.homepages.UserPage;
-import com.example.servicenovigrad.users.BranchEmployee;
+import com.example.servicenovigrad.ui.UserPage;
+import com.example.servicenovigrad.ui.admin.AdminEditAllServices;
+import com.example.servicenovigrad.ui.admin.AdminEditService;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -25,14 +30,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ServicesOffered extends UserPage {
+
     TextView branchName_header, list_header;
     Button edit_button;
     ListView list;
     ArrayList<Service> servicesOfferedList;
     ArrayAdapter<Service> arrayAdapter;
-    String[] allServices;
-    boolean[] checkedServices;
-    ArrayList<Integer> selectedServices;
+    String[] listItems;
+    boolean[] checkedItems;
+    ArrayList<Integer> selectedItems;
+    HashMap<String, Service> servicesOffered;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +65,7 @@ public class ServicesOffered extends UserPage {
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editServicesDialog();
+                openAddDialog();
             }
         });
 
@@ -86,6 +93,8 @@ public class ServicesOffered extends UserPage {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(ServicesOffered.this, ServiceInfo.class);
+                        intent.putExtra("service", (Service) list.getItemAtPosition(position));
+                        startActivity(intent);
                     }
                 });
             }
@@ -97,18 +106,61 @@ public class ServicesOffered extends UserPage {
         });
     }
 
-    private void editServicesDialog(){
-        selectedServices = new ArrayList<>();
-        serviceRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                HashMap<String,Object> servicesByName = (HashMap<String,Object>) snapshot.getValue();
-            }
+    private void openAddDialog(){
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        servicesOffered = branchObject().getServicesOffered();
+        listItems = new String[allServices.size()];
+        selectedItems = new ArrayList<>();
 
+        int i = 0;
+        for (Service service : allServices){
+            listItems[i] = service.getName();
+            i++;
+        }
+        checkedItems = new boolean[listItems.length];
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(ServicesOffered.this);
+        mBuilder.setTitle("Select Services to Add");
+        mBuilder.setMultiChoiceItems(listItems, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                if(isChecked){
+                    if(!selectedItems.contains(which)){
+                        selectedItems.add(which);
+                    }else{
+                        selectedItems.remove(which);
+                    }
+                }
             }
         });
+        mBuilder.setCancelable(false);
+        mBuilder.setPositiveButton("Add Selected", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                for (int i=0; i <selectedItems.size(); i++){
+                    Service service = allServicesMap.get(listItems[selectedItems.get(i)]);
+                    userRef.child("servicesOffered").child(service.getName()).setValue(service);
+                }
+            }
+        });
+        mBuilder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        mBuilder.setNeutralButton("Delete all", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                userRef.child("servicesOffered").removeValue(new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                        Toast.makeText(getApplicationContext(), "All services removed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+        AlertDialog dialog = mBuilder.create();
+        dialog.show();
     }
 }

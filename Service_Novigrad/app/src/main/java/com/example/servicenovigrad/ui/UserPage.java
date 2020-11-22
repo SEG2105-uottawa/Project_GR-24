@@ -1,4 +1,4 @@
-package com.example.servicenovigrad.ui.homepages;
+package com.example.servicenovigrad.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,7 +34,9 @@ public abstract class UserPage extends AppCompatActivity {
     protected static DatabaseReference userRef;
     protected static FirebaseUser curUser;
     protected static final DatabaseReference serviceRef = FirebaseDatabase.getInstance().getReference().child("services");
+    //Used for displaying in list views
     protected static ArrayList<Service> allServices;
+    protected static HashMap<String, Service> allServicesMap;
 
 
     @Override
@@ -51,6 +53,7 @@ public abstract class UserPage extends AppCompatActivity {
         return (Customer) userObject;
     }
 
+    //Auto updates allServices
     private void linkAllServices(){
         serviceRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -58,6 +61,7 @@ public abstract class UserPage extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Clear local data after a change
                 allServices = new ArrayList<>();
+                allServicesMap = new HashMap<>();
 
                 //Get JSON tree of all services (Firebase sends it as nested HashMaps)
                 HashMap<String,Object> servicesByName = (HashMap<String,Object>) snapshot.getValue();
@@ -88,6 +92,7 @@ public abstract class UserPage extends AppCompatActivity {
                         }
                     }
                     allServices.add(service);
+                    allServicesMap.put(service.getName(), service);
                 }
             }
             @Override

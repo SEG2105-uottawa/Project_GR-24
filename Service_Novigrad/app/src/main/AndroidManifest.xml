@@ -11,11 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.branchEmployee.ServiceInfo"></activity>
-        <activity android:name=".ui.branchEmployee.EditServicesOffered" />
+        <activity android:name=".ui.branchEmployee.EditServicesOffered"></activity>
+        <activity android:name=".ui.branchEmployee.ServiceInfo" />
         <activity android:name=".ui.branchEmployee.ServiceRequests" />
         <activity android:name=".ui.branchEmployee.ServicesOffered" />
-        <activity android:name=".ui.homepages.UserPage" />
+        <activity android:name=".ui.UserPage" />
         <activity android:name=".ui.MainPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

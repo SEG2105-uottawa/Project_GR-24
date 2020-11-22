@@ -11,13 +11,13 @@ import androidx.annotation.NonNull;
 import com.example.servicenovigrad.R;
 
 import com.example.servicenovigrad.services.Service;
+import com.example.servicenovigrad.ui.UserPage;
 import com.example.servicenovigrad.ui.branchEmployee.BranchInfo;
 import com.example.servicenovigrad.ui.branchEmployee.ServiceRequests;
 import com.example.servicenovigrad.ui.branchEmployee.ServicesOffered;
 import com.example.servicenovigrad.users.BranchEmployee;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
@@ -78,6 +78,7 @@ public class BranchEmployeeHomePage extends HomePage {
         });
     }
 
+    //Auto updates userObject
     public void linkUserObject(){
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
