@@ -10,14 +10,18 @@ import androidx.annotation.NonNull;
 
 import com.example.servicenovigrad.R;
 
+import com.example.servicenovigrad.services.Service;
+import com.example.servicenovigrad.ui.UserPage;
 import com.example.servicenovigrad.ui.branchEmployee.BranchInfo;
 import com.example.servicenovigrad.ui.branchEmployee.ServiceRequests;
 import com.example.servicenovigrad.ui.branchEmployee.ServicesOffered;
 import com.example.servicenovigrad.users.BranchEmployee;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class BranchEmployeeHomePage extends HomePage {
     Button branchInfo, servicesOffered, serviceRequests;
@@ -76,11 +80,13 @@ public class BranchEmployeeHomePage extends HomePage {
         });
     }
 
+    //Auto updates userObject
     public void linkUserObject(){
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
+            @SuppressWarnings("unchecked")
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                userObject = new BranchEmployee(
+                BranchEmployee userObject = new BranchEmployee(
                         (String) snapshot.child("firstName").getValue(),
                         (String) snapshot.child("lastName").getValue(),
                         (String) snapshot.child("userName").getValue(),
@@ -88,6 +94,39 @@ public class BranchEmployeeHomePage extends HomePage {
                         (String) snapshot.child("address").getValue(),
                         (String) snapshot.child("phoneNumber").getValue()
                 );
+                //Get JSON tree of all services offered (Firebase sends it as nested HashMaps)
+                HashMap<String,Object> servicesByName = (HashMap<String,Object>) snapshot.child("servicesOffered").getValue();
+                //Check if there any services
+                if (servicesByName != null) {
+                    //Loop through outer HashMap (Service names)
+                    for (Map.Entry<String, Object> serviceName : servicesByName.entrySet()) {
+                        //Convert each value to a HashMap of strings (this is the service object)
+                        HashMap<String, Object> serviceData = (HashMap<String, Object>) serviceName.getValue();
+                        //Get price, form fields and document types
+                        String price;
+                        HashMap<String, String> formFields, documentTypes;
+                        price = (String) serviceData.get("price");
+                        formFields = (HashMap<String, String>) serviceData.get("formFields");
+                        documentTypes = (HashMap<String, String>) serviceData.get("documentTypes");
+
+                        //Convert data to objects
+                        Service service = new Service(serviceName.getKey(), Double.parseDouble(price));
+                        //Loop through form fields (if any)
+                        if (formFields != null) {
+                            for (Map.Entry<String, String> formField : formFields.entrySet()) {
+                                service.addFormField(formField.getKey());
+                            }
+                        }
+                        //Loop through document types (if any)
+                        if (documentTypes != null) {
+                            for (Map.Entry<String, String> documentType : documentTypes.entrySet()) {
+                                service.addDocType(documentType.getKey());
+                            }
+                        }
+                        userObject.addService(service);
+                    }
+                }
+                UserPage.userObject = userObject;
             }
 
             @Override
