@@ -10,11 +10,13 @@ public class Service implements Serializable {
 
     private static final String EMPTY = "<EMPTY>";
     private String name;
+    private double price;
     private HashMap<String,String> formFields;
     private HashMap<String,Object> documentTypes;
 
-    public Service(String name){
+    public Service(String name, double price){
         this.name = name;
+        this.price = price;
         formFields = new HashMap<>();
         documentTypes = new HashMap<>();
 
@@ -48,15 +50,28 @@ public class Service implements Serializable {
         return name;
     }
 
+    //For firebase
+    public String getPrice() {
+        return Double.toString(price);
+    }
+
+    //For normal use
+    public double returnPrice(){
+        return price;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     @NonNull
     @Override
     public String toString() {
-        return (name + "\nForm fields: " + formFields.size() + "\nDocuments: " + documentTypes.size());
+        return (name + "\nPrice: $" + String.format("%.2f", price));
     }
 }
 

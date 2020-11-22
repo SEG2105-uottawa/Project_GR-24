@@ -30,9 +30,9 @@ import java.util.Map;
 public class AdminEditService extends AppCompatActivity {
 
     Service service;
-    TextView header;
+    TextView header, servicePrice;
     ListView reqFormsList, reqDocsList;
-    Button delServiceBtn, addFormBtn, addDocBtn, delDialogBtn, cancelDialogBtn, submitDialogBtn;
+    Button delServiceBtn, addFormBtn, addDocBtn, delDialogBtn, cancelDialogBtn, submitDialogBtn, changePriceBtn;
     DatabaseReference databaseServiceReference;
     ArrayList<String> allForms, allDocs;
     ArrayAdapter<String> formsAdapter, docsAdapter;
@@ -54,11 +54,14 @@ public class AdminEditService extends AppCompatActivity {
         delServiceBtn = findViewById(R.id.admin_del_service);
         addFormBtn = findViewById(R.id.admin_add_form_field);
         addDocBtn = findViewById(R.id.admin_add_doc_type);
+        changePriceBtn = findViewById(R.id.admin_change_service_price);
+        servicePrice = findViewById(R.id.admin_edit_service_price);
 
         databaseServiceReference = FirebaseDatabase.getInstance().getReference().child("services").child(service.getName());
 
         //Set text
         header.setText(service.getName());
+        servicePrice.setText("Price: $" + String.format("%.2f",service.returnPrice()));
 
         //Populate Lists
         allForms = new ArrayList<>();
@@ -123,6 +126,59 @@ public class AdminEditService extends AppCompatActivity {
                                 }
                             }
                         });
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+
+        changePriceBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog = new Dialog(AdminEditService.this);
+                dialog.setContentView(R.layout.dialog_enter_string);
+
+                //Get Views
+                dialog_header = dialog.findViewById(R.id.entry_dialog_header);
+                dialog_input = dialog.findViewById(R.id.entry_dialog_string);
+                submitDialogBtn = dialog.findViewById(R.id.entry_dialog_submit);
+                cancelDialogBtn = dialog.findViewById(R.id.entry_dialog_cancel);
+
+                //Set text
+                dialog_header.setText("Please enter the new price");
+
+                //Listeners
+                cancelDialogBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                submitDialogBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String price = dialog_input.getText().toString().trim();
+
+                        if (TextUtils.isEmpty(price)) {
+                            dialog_input.setError("Price required...");
+                            return;
+                        }
+                        if (!price.matches("^[0-9]+.?[0-9]?[0-9]?$") ){
+                            dialog_input.setError("Invalid price format: Digits only, with optional decimal and two decimal places.");
+                            return;
+                        }
+
+                        databaseServiceReference.child("price").setValue(price);
+                        service.setPrice(Double.parseDouble(price));
+                        Toast.makeText(getApplicationContext(), "Price changed", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+
+                        Intent intent = new Intent(AdminEditService.this, AdminEditService.class);
+                        intent.putExtra("service", service);
+                        startActivity(intent);
+                        finish();
                     }
                 });
 

@@ -37,7 +37,7 @@ public class AdminEditAllServices extends AppCompatActivity {
     ArrayAdapter<Service> arrayAdapter;
     Dialog dialog;
     TextView dialog_header;
-    EditText dialog_input;
+    EditText dialog_name, dialog_price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,13 +72,19 @@ public class AdminEditAllServices extends AppCompatActivity {
                 for (Map.Entry<String, Object> serviceName : servicesByName.entrySet()){
                     //Convert each value to a HashMap of strings (this is the service object)
                     HashMap<String, Object> serviceData = (HashMap<String,Object>) serviceName.getValue();
-                    //Get form fields and document types
+                    //Get price, form fields and document types
+                    String price;
                     HashMap<String,String> formFields, documentTypes;
+                    price = (String) serviceData.get("price");
+                    if (price == null){
+                        price = "10.00";
+                        allServicesReference.child(serviceName.getKey()).child("price").setValue(price);
+                    }
                     formFields = (HashMap<String,String>) serviceData.get("formFields");
                     documentTypes = (HashMap<String,String>) serviceData.get("documentTypes");
 
                     //Convert data to objects
-                    Service service = new Service(serviceName.getKey());
+                    Service service = new Service(serviceName.getKey(), Double.parseDouble(price));
                     //Loop through form fields (if any)
                     if (formFields != null){
                         for (Map.Entry<String,String> formField: formFields.entrySet()){
@@ -119,16 +125,19 @@ public class AdminEditAllServices extends AppCompatActivity {
 
     public void openEntryDialog(){
         dialog = new Dialog(this);
-        dialog.setContentView(R.layout.dialog_enter_string);
+        dialog.setContentView(R.layout.dialog_enter_string2);
 
-        //get Views
+        //Get Views
         dialog_header = dialog.findViewById(R.id.entry_dialog_header);
-        dialog_input = dialog.findViewById(R.id.entry_dialog_string);
+        dialog_name = dialog.findViewById(R.id.entry_dialog_string);
+        dialog_price = dialog.findViewById(R.id.entry_dialog_string2);
         submit_button = dialog.findViewById(R.id.entry_dialog_submit);
         cancel_button = dialog.findViewById(R.id.entry_dialog_cancel);
 
         //Set text
-        dialog_header.setText("Please enter the name of the new service");
+        dialog_header.setText("Please enter the name and price of the new service");
+        dialog_name.setHint("Service Name");
+        dialog_price.setHint("Price of service");
 
         //Listeners
         cancel_button.setOnClickListener(new View.OnClickListener() {
@@ -141,15 +150,27 @@ public class AdminEditAllServices extends AppCompatActivity {
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String serviceName = dialog_input.getText().toString();
+                String serviceName = dialog_name.getText().toString();
+                String servicePrice = dialog_price.getText().toString();
 
+                //Form validation
+                boolean invalid = false;
                 if (TextUtils.isEmpty(serviceName)) {
-                    dialog_input.setError("Service Name required...");
-                    return;
-
+                    dialog_name.setError("Service Name required...");
+                    invalid = true;
+                }
+                if (TextUtils.isEmpty(servicePrice)) {
+                    dialog_price.setError("Price required...");
+                    invalid = true;
+                }
+                if (!servicePrice.matches("^[0-9]+.?[0-9]?[0-9]?$") ){
+                    dialog_price.setError("Invalid price format: Digits only, with optional decimal and two decimal places.");
+                    invalid = true;
                 }
 
-                Service service = new Service(serviceName);
+                if(invalid) return;
+
+                Service service = new Service(serviceName, Double.parseDouble(servicePrice));
                 allServicesReference.child(serviceName).setValue(service);
                 Toast.makeText(getApplicationContext(), "New service created", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
