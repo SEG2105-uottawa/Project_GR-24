@@ -45,8 +45,10 @@ public class BranchInfo extends UserPage {
 
         // Set Texts
         branchName.setText(branchObject().getBranchName());
-        branchAddress.setText(branchObject().getAddress());
-        branchPhoneNumber.setText(branchObject().getPhoneNumber());
+        branchAddress.setText(branchObject().getAddress() == null ?
+                "Enter address here" : branchObject().getAddress());
+        branchPhoneNumber.setText(branchObject().getPhoneNumber() == null ?
+                "Enter phone number here" : branchObject().getPhoneNumber());
 
         editBranchName.setOnClickListener(new View.OnClickListener() {
             @Override
