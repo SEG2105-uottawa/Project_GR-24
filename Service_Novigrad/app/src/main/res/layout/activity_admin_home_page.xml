@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/service_novigrad_background"
     android:gravity="center_horizontal"
-    tools:context=".destinations.AdminHomePage">
+    tools:context=".ui.homepages.AdminHomePage">
 
     <LinearLayout
         android:layout_width="match_parent"

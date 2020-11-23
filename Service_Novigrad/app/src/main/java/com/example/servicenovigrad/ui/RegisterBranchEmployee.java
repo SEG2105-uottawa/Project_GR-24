@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.servicenovigrad.R;
 import com.example.servicenovigrad.users.BranchEmployee;
-import com.example.servicenovigrad.destinations.BranchEmployeeHomePage;
+import com.example.servicenovigrad.ui.homepages.BranchEmployeeHomePage;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -134,6 +134,10 @@ public class RegisterBranchEmployee extends AppCompatActivity {
         BranchEmployee branch = new BranchEmployee(firstName, lastName, userName, branchName);
 
         mDatabase.child("users").child(userID).setValue(branch);
+
+        for (int i=0; i<7; i++) {
+            mDatabase.child("users").child(userID).child("hours").setValue(branch.getHours());
+        }
 
     }
 }

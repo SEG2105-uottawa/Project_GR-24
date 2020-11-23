@@ -1,4 +1,4 @@
-package com.example.servicenovigrad.destinations;
+package com.example.servicenovigrad.ui.homepages;
 
 import com.example.servicenovigrad.R;
 
@@ -10,18 +10,23 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.servicenovigrad.ui.AdminEditBranchAccounts;
-import com.example.servicenovigrad.ui.AdminEditCustomerAccounts;
-import com.example.servicenovigrad.ui.AdminEditAllServices;
+import com.example.servicenovigrad.ui.UserPage;
+import com.example.servicenovigrad.ui.admin.AdminEditBranchAccounts;
+import com.example.servicenovigrad.ui.admin.AdminEditCustomerAccounts;
+import com.example.servicenovigrad.ui.admin.AdminEditAllServices;
 import com.example.servicenovigrad.ui.MainPage;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class AdminHomePage extends AppCompatActivity {
+public class AdminHomePage extends UserPage {
     Button logout, admin_branch_accounts, admin_customer_accounts, admin_services_editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home_page);
+
+        linkAllServices();
 
         logout = findViewById(R.id.logout);
         admin_branch_accounts = findViewById(R.id.admin_branch_accounts);
