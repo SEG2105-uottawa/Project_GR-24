@@ -20,5 +20,7 @@ password: chrisH
 
 Pressing refresh on the service requests page will generate a random service request for testing purposes.
 
+Deliv3 branch contains final Deliverable 3 submission.
+
 ## Circle CI
 [![Circle CI](https://circleci.com/gh/SEG2105-uottawa/Project_GR-24.svg?style=svg)](https://app.circleci.com/pipelines/github/SEG2105-uottawa/Project_GR-24)
