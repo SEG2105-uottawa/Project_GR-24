@@ -15,8 +15,8 @@ Note: After deleting an account, the deleted user must attempt to sign in once m
 
 ## Deliverable 3 notes:
 Sign in info for a branch test account:  
-e-mail: chris@toronto.com  
-password: chrisH  
+e-mail: deliv3@test.ca
+password: Group24Deliv3
 
 Pressing refresh on the service requests page will generate a random service request for testing purposes.
 
