@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,20 +14,34 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.example.servicenovigrad.R;
+import com.example.servicenovigrad.data.WorkingHours;
 import com.example.servicenovigrad.ui.UserPage;
 import com.example.servicenovigrad.ui.homepages.BranchEmployeeHomePage;
 import com.example.servicenovigrad.users.BranchEmployee;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.connection.ListenHashProvider;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BranchInfo extends UserPage {
 
     TextView branchName, branchAddress, branchPhoneNumber;
-    Button editBranchName, editBranchAddress, editBranchPhoneNumber, submit_button, cancel_button;
+    TextView sundayOpen, sundayClose, mondayOpen, mondayClose, tuesdayOpen, tuesdayClose,
+        wednesdayOpen, wednesdayClose, thursdayOpen, thursdayClose, fridayOpen,
+        fridayClose, saturdayOpen, saturdayClose;
+    TextView newSundayOpen, newSundayClose, newMondayOpen, newMondayClose, newTuesdayOpen, newTuesdayClose,
+            newWednesdayOpen, newWednesdayClose, newThursdayOpen, newThursdayClose, newFridayOpen,
+            newFridayClose, newSaturdayOpen, newSaturdayClose;
+    Button editBranchName, editBranchAddress, editBranchPhoneNumber, submit_button, cancel_button, editBranchWorkingHours;
     Dialog dialog;
     TextView dialog_header;
     EditText dialog_new_value;
+    ArrayList<WorkingHours> workingHours;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +53,10 @@ public class BranchInfo extends UserPage {
         branchAddress = findViewById(R.id.branch_address);
         branchPhoneNumber = findViewById(R.id.branch_phone_number);
 
-        // Listeners
         editBranchName = findViewById(R.id.edit_branch_name);
         editBranchAddress = findViewById(R.id.edit_branch_address);
         editBranchPhoneNumber = findViewById(R.id.edit_branch_phone_number);
+        editBranchWorkingHours = findViewById(R.id.edit_branch_working_hours);
 
         // Set Texts
         branchName.setText(branchObject().getBranchName());
@@ -50,6 +65,9 @@ public class BranchInfo extends UserPage {
         branchPhoneNumber.setText(branchObject().getPhoneNumber() == null ?
                 "Enter phone number here" : branchObject().getPhoneNumber());
 
+        updateBranchHours();
+
+        // Listeners
         editBranchName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,7 +154,6 @@ public class BranchInfo extends UserPage {
                             return;
                         }
 
-                        //branchObject().setBranchName(newBranchName);
                         userRef.child("address").setValue(newAddress);
 
                         Toast.makeText(getApplicationContext(), "Address Changed!", Toast.LENGTH_SHORT).show();
@@ -187,6 +204,11 @@ public class BranchInfo extends UserPage {
                             return;
                         }
 
+                        if (!(newNumber.matches("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$"))) {
+                            dialog_new_value.setError("Format: (123) 456 7890");
+                            return;
+                        }
+
                         //branchObject().setBranchName(newBranchName);
                         userRef.child("phoneNumber").setValue(newNumber);
 
@@ -203,7 +225,185 @@ public class BranchInfo extends UserPage {
             }
         });
 
+        editBranchWorkingHours.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog = new Dialog(BranchInfo.this);
+                dialog.setContentView(R.layout.dialog_edit_working_hours);
 
+                // Get Views
+                submit_button = dialog.findViewById(R.id.entry_dialog_submit);
+                cancel_button = dialog.findViewById(R.id.entry_dialog_cancel);
+
+                newSundayOpen = dialog.findViewById(R.id.new_sunday_open);
+                newSundayClose = dialog.findViewById(R.id.new_sunday_close);
+
+                newMondayOpen = dialog.findViewById(R.id.new_monday_open);
+                newMondayClose = dialog.findViewById(R.id.new_monday_close);
+
+                newTuesdayOpen = dialog.findViewById(R.id.new_tuesday_open);
+                newTuesdayClose = dialog.findViewById(R.id.new_tuesday_close);
+
+                newWednesdayOpen = dialog.findViewById(R.id.new_wednesday_open);
+                newWednesdayClose = dialog.findViewById(R.id.new_wednesday_close);
+
+                newThursdayOpen = dialog.findViewById(R.id.new_thursday_open);
+                newThursdayClose = dialog.findViewById(R.id.new_thursday_close);
+
+                newFridayOpen = dialog.findViewById(R.id.new_friday_open);
+                newFridayClose = dialog.findViewById(R.id.new_friday_close);
+
+                newSaturdayOpen = dialog.findViewById(R.id.new_saturday_open);
+                newSaturdayClose = dialog.findViewById(R.id.new_saturday_close);
+
+                // Listeners
+                cancel_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                submit_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DatabaseReference workingHoursRef = databaseRef.child("users").child(curUser.getUid()).child("hours");
+
+                        if (!(isValidTime(newSundayOpen)) || !(isValidTime(newSundayClose))
+                                || !(isValidTime(newMondayOpen)) ||!(isValidTime(newMondayClose))
+                                || !(isValidTime(newTuesdayOpen)) ||!(isValidTime(newTuesdayClose))
+                                || !(isValidTime(newWednesdayOpen)) ||!(isValidTime(newWednesdayClose))
+                                || !(isValidTime(newThursdayOpen)) ||!(isValidTime(newThursdayClose))
+                                || !(isValidTime(newFridayOpen)) ||!(isValidTime(newFridayClose))
+                                || !(isValidTime(newSaturdayOpen)) ||!(isValidTime(newSaturdayClose))) {
+                            return;
+                        }
+
+
+                        workingHoursRef.child("0").child("openTime").setValue(newSundayOpen.getText().toString());
+                        workingHoursRef.child("0").child("closeTime").setValue(newSundayClose.getText().toString());
+
+                        workingHoursRef.child("1").child("openTime").setValue(newMondayOpen.getText().toString());
+                        workingHoursRef.child("1").child("closeTime").setValue(newMondayClose.getText().toString());
+
+                        workingHoursRef.child("2").child("openTime").setValue(newTuesdayOpen.getText().toString());
+                        workingHoursRef.child("2").child("closeTime").setValue(newTuesdayClose.getText().toString());
+
+                        workingHoursRef.child("3").child("openTime").setValue(newWednesdayOpen.getText().toString());
+                        workingHoursRef.child("3").child("closeTime").setValue(newWednesdayClose.getText().toString());
+
+                        workingHoursRef.child("4").child("openTime").setValue(newThursdayOpen.getText().toString());
+                        workingHoursRef.child("4").child("closeTime").setValue(newThursdayClose.getText().toString());
+
+                        workingHoursRef.child("5").child("openTime").setValue(newFridayOpen.getText().toString());
+                        workingHoursRef.child("5").child("closeTime").setValue(newFridayClose.getText().toString());
+
+                        workingHoursRef.child("6").child("openTime").setValue(newSaturdayOpen.getText().toString());
+                        workingHoursRef.child("6").child("closeTime").setValue(newSaturdayClose.getText().toString());
+
+                        Toast.makeText(getApplicationContext(), "Hours updated!", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                        startActivity(new Intent(BranchInfo.this, BranchInfo.class));
+                        finish();
+                    }
+                });
+
+                dialog.show();
+
+            }
+        });
+
+
+    }
+
+    protected void updateBranchHours() {
+        workingHours = new ArrayList<>();
+
+        // Get Working Hours Views
+        sundayOpen = findViewById(R.id.sunday_open);
+        sundayClose = findViewById(R.id.sunday_close);
+
+        mondayOpen = findViewById(R.id.monday_open);
+        mondayClose = findViewById(R.id.monday_close);
+
+        tuesdayOpen = findViewById(R.id.tuesday_open);
+        tuesdayClose = findViewById(R.id.tuesday_close);
+
+        wednesdayOpen = findViewById(R.id.wednesday_open);
+        wednesdayClose = findViewById(R.id.tuesday_close);
+
+        thursdayOpen = findViewById(R.id.thursday_open);
+        thursdayClose = findViewById(R.id.thursday_close);
+
+        fridayOpen = findViewById(R.id.friday_open);
+        fridayClose = findViewById(R.id.friday_close);
+
+        saturdayOpen = findViewById(R.id.saturday_open);
+        saturdayClose = findViewById(R.id.saturday_close);
+
+        DatabaseReference workingHoursRef = databaseRef.child("users").child(curUser.getUid()).child("hours");
+
+        workingHoursRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Get JSON tree of working hours
+                ArrayList<Object> allData = (ArrayList<Object>) snapshot.getValue();
+
+                // Loop through allData (0-7)
+                for (int i=0; i<7; i++) {
+                    HashMap<String, String> workingInfo = (HashMap<String, String>) allData.get(i);
+
+                    String day, dayOpen, dayClose;
+
+                    day = (String) workingInfo.get("day");
+                    dayOpen = (String) workingInfo.get("openTime");
+                    dayClose = (String) workingInfo.get("closeTime");
+
+                    workingHours.add(new WorkingHours(i, dayOpen, dayClose));
+
+                }
+
+
+                sundayOpen.setText(workingHours.get(0).getOpenTime());
+                sundayClose.setText(workingHours.get(0).getCloseTime());
+
+                mondayOpen.setText(workingHours.get(1).getOpenTime());
+                mondayClose.setText(workingHours.get(1).getCloseTime());
+
+                tuesdayOpen.setText(workingHours.get(2).getOpenTime());
+                tuesdayClose.setText(workingHours.get(2).getCloseTime());
+
+                wednesdayOpen.setText(workingHours.get(3).getOpenTime());
+                wednesdayClose.setText(workingHours.get(3).getCloseTime());
+
+                thursdayOpen.setText(workingHours.get(4).getOpenTime());
+                thursdayClose.setText(workingHours.get(4).getCloseTime());
+
+                fridayOpen.setText(workingHours.get(5).getOpenTime());
+                fridayClose.setText(workingHours.get(5).getCloseTime());
+
+                saturdayOpen.setText(workingHours.get(6).getOpenTime());
+                saturdayOpen.setText(workingHours.get(6).getCloseTime());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getApplicationContext(), "Error retrieving data...", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
+    }
+
+    protected boolean isValidTime(TextView newTime) {
+        if (TextUtils.isEmpty(newTime.getText().toString())
+                                || !(newTime.getText().toString().matches("(((0[1-9])|(1[0-2])):([0-5])(0|5)\\s(A|P|a|p)(M|m))"))) {
+            newTime.setError("Example Format: 01:05 PM");
+            return false;
+        }
+
+        return true;
     }
 
 }
