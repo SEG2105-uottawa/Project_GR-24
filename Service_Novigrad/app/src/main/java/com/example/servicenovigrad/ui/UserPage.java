@@ -96,4 +96,22 @@ public abstract class UserPage extends AppCompatActivity {
         });
     }
 
+//    protected boolean isBranchEmployee(DatabaseReference ref){
+//        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
+//
+//    protected BranchEmployee getBranchObject(DatabaseReference ref){
+//
+//    }
+
 }

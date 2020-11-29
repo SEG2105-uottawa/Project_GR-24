@@ -111,6 +111,10 @@ public class BranchEmployee extends Account {
         return hours;
     }
 
+    public void setHours(ArrayList<WorkingHours> hours) {
+        this.hours = hours;
+    }
+
     @Override
     public String toString(){
         return ("Branch Name: " + branchName + "\nEmployee Name: " + getFullName());

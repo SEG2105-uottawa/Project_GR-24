@@ -12,6 +12,7 @@ import com.example.servicenovigrad.R;
 
 import com.example.servicenovigrad.data.Service;
 import com.example.servicenovigrad.data.ServiceRequest;
+import com.example.servicenovigrad.data.WorkingHours;
 import com.example.servicenovigrad.ui.UserPage;
 import com.example.servicenovigrad.ui.branchEmployee.BranchInfo;
 import com.example.servicenovigrad.ui.branchEmployee.ServiceRequests;
@@ -21,6 +22,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -123,7 +125,20 @@ public class BranchEmployeeHomePage extends HomePage {
                         }
                     }
                 }
-                //TBD - GET WORKING HOURS AND ADDRESS
+                //Get working hours and address
+                ArrayList<Object> hours = (ArrayList<Object>) snapshot.child("hours").getValue();
+                if (hours != null){
+                    ArrayList<WorkingHours> workingHours = new ArrayList<>();
+                    for(int i=0; i<hours.size(); i++){
+                        HashMap<String,String> day = (HashMap<String, String>) hours.get(i);
+                        String dayOpen = day.get("openTime");
+                        String dayClose = day.get("closeTime");
+                        workingHours.add(new WorkingHours(i, dayOpen, dayClose));
+                    }
+                    userObject.setHours(workingHours);
+                }
+                //Initialize hours in the database (for old accounts)
+                else userRef.child("hours").setValue(userObject.getHours());
                 UserPage.userObject = userObject;
             }
 

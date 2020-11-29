@@ -64,7 +64,6 @@ public class BranchInfo extends UserPage {
                 "Enter address here" : branchObject().getAddress());
         branchPhoneNumber.setText(branchObject().getPhoneNumber() == null ?
                 "Enter phone number here" : branchObject().getPhoneNumber());
-
         updateBranchHours();
 
         // Listeners
@@ -317,7 +316,7 @@ public class BranchInfo extends UserPage {
     }
 
     protected void updateBranchHours() {
-        workingHours = new ArrayList<>();
+        workingHours = branchObject().getHours();
 
         // Get Working Hours Views
         sundayOpen = findViewById(R.id.sunday_open);
@@ -341,58 +340,27 @@ public class BranchInfo extends UserPage {
         saturdayOpen = findViewById(R.id.saturday_open);
         saturdayClose = findViewById(R.id.saturday_close);
 
-        DatabaseReference workingHoursRef = databaseRef.child("users").child(curUser.getUid()).child("hours");
 
-        workingHoursRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // Get JSON tree of working hours
-                ArrayList<Object> allData = (ArrayList<Object>) snapshot.getValue();
+        sundayOpen.setText(workingHours.get(0).getOpenTime());
+        sundayClose.setText(workingHours.get(0).getCloseTime());
 
-                // Loop through allData (0-7)
-                for (int i=0; i<7; i++) {
-                    HashMap<String, String> workingInfo = (HashMap<String, String>) allData.get(i);
+        mondayOpen.setText(workingHours.get(1).getOpenTime());
+        mondayClose.setText(workingHours.get(1).getCloseTime());
 
-                    String day, dayOpen, dayClose;
+        tuesdayOpen.setText(workingHours.get(2).getOpenTime());
+        tuesdayClose.setText(workingHours.get(2).getCloseTime());
 
-                    day = (String) workingInfo.get("day");
-                    dayOpen = (String) workingInfo.get("openTime");
-                    dayClose = (String) workingInfo.get("closeTime");
+        wednesdayOpen.setText(workingHours.get(3).getOpenTime());
+        wednesdayClose.setText(workingHours.get(3).getCloseTime());
 
-                    workingHours.add(new WorkingHours(i, dayOpen, dayClose));
+        thursdayOpen.setText(workingHours.get(4).getOpenTime());
+        thursdayClose.setText(workingHours.get(4).getCloseTime());
 
-                }
+        fridayOpen.setText(workingHours.get(5).getOpenTime());
+        fridayClose.setText(workingHours.get(5).getCloseTime());
 
-
-                sundayOpen.setText(workingHours.get(0).getOpenTime());
-                sundayClose.setText(workingHours.get(0).getCloseTime());
-
-                mondayOpen.setText(workingHours.get(1).getOpenTime());
-                mondayClose.setText(workingHours.get(1).getCloseTime());
-
-                tuesdayOpen.setText(workingHours.get(2).getOpenTime());
-                tuesdayClose.setText(workingHours.get(2).getCloseTime());
-
-                wednesdayOpen.setText(workingHours.get(3).getOpenTime());
-                wednesdayClose.setText(workingHours.get(3).getCloseTime());
-
-                thursdayOpen.setText(workingHours.get(4).getOpenTime());
-                thursdayClose.setText(workingHours.get(4).getCloseTime());
-
-                fridayOpen.setText(workingHours.get(5).getOpenTime());
-                fridayClose.setText(workingHours.get(5).getCloseTime());
-
-                saturdayOpen.setText(workingHours.get(6).getOpenTime());
-                saturdayOpen.setText(workingHours.get(6).getCloseTime());
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getApplicationContext(), "Error retrieving data...", Toast.LENGTH_SHORT).show();
-            }
-
-        });
+        saturdayOpen.setText(workingHours.get(6).getOpenTime());
+        saturdayOpen.setText(workingHours.get(6).getCloseTime());
 
     }
 
