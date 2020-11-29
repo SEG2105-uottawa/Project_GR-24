@@ -11,6 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.customer.BookService"></activity>
+        <activity android:name=".ui.customer.SearchResults" />
+        <activity android:name=".ui.customer.SearchByHours" />
+        <activity android:name=".ui.customer.SearchByAdress" />
+        <activity android:name=".ui.customer.SearchByServices" />
         <activity android:name=".ui.UserPage" />
         <activity android:name=".ui.MainPage">
             <intent-filter>
@@ -60,7 +65,7 @@
             android:parentActivityName=".ui.branchEmployee.ServicesOffered" />
         <activity
             android:name=".ui.branchEmployee.ProcessRequest"
-            android:parentActivityName=".ui.branchEmployee.ServiceRequests"/>
+            android:parentActivityName=".ui.branchEmployee.ServiceRequests" />
     </application>
 
 </manifest>

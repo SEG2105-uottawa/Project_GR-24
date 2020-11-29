@@ -86,62 +86,9 @@ public class BranchEmployeeHomePage extends HomePage {
     //Auto updates userObject
     public void linkUserObject(){
         userRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            @SuppressWarnings("unchecked")
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                BranchEmployee userObject = new BranchEmployee(
-                        (String) snapshot.child("firstName").getValue(),
-                        (String) snapshot.child("lastName").getValue(),
-                        (String) snapshot.child("userName").getValue(),
-                        (String) snapshot.child("branchName").getValue(),
-                        (String) snapshot.child("address").getValue(),
-                        (String) snapshot.child("phoneNumber").getValue()
-                );
-                //Get JSON tree of all services offered (Firebase sends it as nested HashMaps)
-                HashMap<String,Object> servicesByName = (HashMap<String,Object>) snapshot.child("servicesOffered").getValue();
-                if (servicesByName != null) {
-                    //Add all services
-                    for (Map.Entry<String, Object> serviceName : servicesByName.entrySet()) {
-                        userObject.addService(allServicesMap.get(serviceName.getKey()));
-                    }
-                }
-                //Get service requests
-                //TBD - READ FORM FIELDS AND DOC TYPES!!!
-                HashMap<String,Object> serviceRequestsByID = (HashMap<String, Object>) snapshot.child("serviceRequests").getValue();
-                if (serviceRequestsByID != null){
-                    for(Map.Entry<String,Object> serviceRequest : serviceRequestsByID.entrySet()){
-                        HashMap<String, Object> requestData = (HashMap<String, Object>) serviceRequest.getValue();
-                        String dateCreated = (String) requestData.get("dateCreated");
-                        String requestID = (String) requestData.get("requestID");
-                        String serviceName = (String) requestData.get("serviceName");
-                        //If service doesn't exist, delete it
-                        if (!allServicesMap.containsKey(serviceName)){
-                            userRef.child("serviceRequests").child(requestID).removeValue();
-                        }else {
-                            Service service = allServicesMap.get(serviceName);
-                            ServiceRequest request = new ServiceRequest(service, dateCreated, requestID);
-                            //TBD - READ FORM FIELDS AND DOC TYPES!!!
-                            userObject.addServiceRequest(request);
-                        }
-                    }
-                }
-                //Get working hours and address
-                ArrayList<Object> hours = (ArrayList<Object>) snapshot.child("hours").getValue();
-                if (hours != null){
-                    ArrayList<WorkingHours> workingHours = new ArrayList<>();
-                    for(int i=0; i<hours.size(); i++){
-                        HashMap<String,String> day = (HashMap<String, String>) hours.get(i);
-                        String dayOpen = day.get("openTime");
-                        String dayClose = day.get("closeTime");
-                        workingHours.add(new WorkingHours(i, dayOpen, dayClose));
-                    }
-                    userObject.setHours(workingHours);
-                }
-                //Initialize hours in the database (for old accounts)
-                else userRef.child("hours").setValue(userObject.getHours());
-                UserPage.userObject = userObject;
+               userObject = getBranchEmployee(snapshot);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(BranchEmployeeHomePage.this, "Error retrieving data...", Toast.LENGTH_SHORT).show();

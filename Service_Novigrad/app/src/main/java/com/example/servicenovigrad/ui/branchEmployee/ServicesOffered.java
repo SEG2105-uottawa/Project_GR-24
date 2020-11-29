@@ -119,9 +119,9 @@ public class ServicesOffered extends UserPage {
                 if(isChecked){
                     if(!selectedItems.contains(which)){
                         selectedItems.add(which);
-                    }else{
-                        selectedItems.remove(which);
                     }
+                }else{
+                    selectedItems.remove(which);
                 }
             }
         });
