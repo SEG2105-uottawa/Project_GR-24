@@ -118,11 +118,12 @@ public class BranchEmployeeHomePage extends HomePage {
                         }else {
                             Service service = allServicesMap.get(serviceName);
                             ServiceRequest request = new ServiceRequest(service, dateCreated, requestID);
-                            ////TBD - READ FORM FIELDS AND DOC TYPES!!!
+                            //TBD - READ FORM FIELDS AND DOC TYPES!!!
                             userObject.addServiceRequest(request);
                         }
                     }
                 }
+                //TBD - GET WORKING HOURS AND ADDRESS
                 UserPage.userObject = userObject;
             }
 
