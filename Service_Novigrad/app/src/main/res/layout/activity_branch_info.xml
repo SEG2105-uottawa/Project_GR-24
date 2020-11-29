@@ -169,7 +169,7 @@
 
                 <TextView
                     android:id="@+id/sunday_open"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
@@ -178,7 +178,7 @@
 
                 <TextView
                     android:id="@+id/sunday_close"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
@@ -202,7 +202,7 @@
 
                 <TextView
                     android:id="@+id/monday_open"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
@@ -211,7 +211,7 @@
 
                 <TextView
                     android:id="@+id/monday_close"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
@@ -235,7 +235,7 @@
 
                 <TextView
                     android:id="@+id/tuesday_open"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
@@ -244,7 +244,7 @@
 
                 <TextView
                     android:id="@+id/tuesday_close"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
@@ -268,7 +268,7 @@
 
                 <TextView
                     android:id="@+id/wednesday_open"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
@@ -277,7 +277,7 @@
 
                 <TextView
                     android:id="@+id/wednesday_close"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
@@ -301,7 +301,7 @@
 
                 <TextView
                     android:id="@+id/thursday_open"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
@@ -310,7 +310,7 @@
 
                 <TextView
                     android:id="@+id/thursday_close"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
@@ -334,7 +334,7 @@
 
                 <TextView
                     android:id="@+id/friday_open"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
@@ -343,7 +343,7 @@
 
                 <TextView
                     android:id="@+id/friday_close"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
@@ -367,7 +367,7 @@
 
                 <TextView
                     android:id="@+id/saturday_open"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
                     android:layout_weight="1"
@@ -376,7 +376,7 @@
 
                 <TextView
                     android:id="@+id/saturday_close"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
                     android:layout_weight="1"

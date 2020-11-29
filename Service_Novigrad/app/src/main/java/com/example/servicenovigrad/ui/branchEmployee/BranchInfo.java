@@ -329,7 +329,7 @@ public class BranchInfo extends UserPage {
         tuesdayClose = findViewById(R.id.tuesday_close);
 
         wednesdayOpen = findViewById(R.id.wednesday_open);
-        wednesdayClose = findViewById(R.id.tuesday_close);
+        wednesdayClose = findViewById(R.id.wednesday_close);
 
         thursdayOpen = findViewById(R.id.thursday_open);
         thursdayClose = findViewById(R.id.thursday_close);
@@ -360,7 +360,7 @@ public class BranchInfo extends UserPage {
         fridayClose.setText(workingHours.get(5).getCloseTime());
 
         saturdayOpen.setText(workingHours.get(6).getOpenTime());
-        saturdayOpen.setText(workingHours.get(6).getCloseTime());
+        saturdayClose.setText(workingHours.get(6).getCloseTime());
 
     }
 
