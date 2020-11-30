@@ -31,8 +31,8 @@ public class BranchEmployeeHomePage extends HomePage {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_branch_employee_home_page);
+        super.onCreate(savedInstanceState);
         linkUserObject();
 
         branchInfo = findViewById(R.id.branch_info);

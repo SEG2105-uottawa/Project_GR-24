@@ -24,8 +24,8 @@ public class CustomerHomePage extends HomePage {
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_home_page);
+        super.onCreate(savedInstanceState);
         linkUserObject();
 
         //Get views

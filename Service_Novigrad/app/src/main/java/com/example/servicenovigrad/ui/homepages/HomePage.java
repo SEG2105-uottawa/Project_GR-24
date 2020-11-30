@@ -25,11 +25,18 @@ public abstract class HomePage extends UserPage {
         linkAllServices();
 
         logout = findViewById(R.id.logout);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
         curUser = FirebaseAuth.getInstance().getCurrentUser();
         userRef = FirebaseDatabase.getInstance().getReference().child("users").child(curUser.getUid());
     }
 
-    public void logout(View view) {
+    public void logout() {
         FirebaseAuth.getInstance().signOut(); // Logs out current active user
         startActivity(new Intent(getApplicationContext(), MainPage.class));
         finishAffinity();
