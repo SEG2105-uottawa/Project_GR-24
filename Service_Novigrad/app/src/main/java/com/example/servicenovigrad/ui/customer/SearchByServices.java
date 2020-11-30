@@ -160,7 +160,10 @@ public class SearchByServices extends SearchPage {
                         }
                     }
                 }
-                startActivity(new Intent(SearchByServices.this, SearchResults.class));
+                if(searchResults.size() == 0){
+                    Toast.makeText(getApplicationContext(), "No results found", Toast.LENGTH_SHORT).show();
+                }
+                else startActivity(new Intent(SearchByServices.this, SearchResults.class));
             }
 
             @Override

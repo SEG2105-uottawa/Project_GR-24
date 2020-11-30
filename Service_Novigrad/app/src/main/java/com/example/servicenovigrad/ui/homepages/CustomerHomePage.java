@@ -9,13 +9,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.servicenovigrad.R;
-import com.example.servicenovigrad.ui.customer.SearchByAdress;
+import com.example.servicenovigrad.ui.customer.SearchByAddress;
 import com.example.servicenovigrad.ui.customer.SearchByHours;
 import com.example.servicenovigrad.ui.customer.SearchByServices;
 import com.example.servicenovigrad.users.Customer;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 public class CustomerHomePage extends HomePage {
@@ -41,7 +40,7 @@ public class CustomerHomePage extends HomePage {
         searchByAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustomerHomePage.this, SearchByAdress.class));
+                startActivity(new Intent(CustomerHomePage.this, SearchByAddress.class));
             }
         });
 

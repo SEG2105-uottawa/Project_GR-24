@@ -70,4 +70,20 @@
     <string name="search_by_services_offered">Search by Services Offered</string>
     <string name="clear">Clear</string>
     <string name="search_results">Search Results</string>
+    <string name="search_by_address_subheader">Fill at least one field</string>
+    <string name="street_number">Street Number</string>
+    <string name="street_name">Street Name</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="search_by_hours_subheader">Fill either open time, close time, or both</string>
+    <string name="from_time">Open Time (Format: 09:00 AM)</string>
+    <string name="to_time">Close Time (Format: 06:00 PM)</string>
+    <string-array name="days">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
 </resources>
