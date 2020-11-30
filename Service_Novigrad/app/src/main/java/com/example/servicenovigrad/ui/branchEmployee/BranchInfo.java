@@ -40,7 +40,7 @@ public class BranchInfo extends UserPage {
     Button editBranchName, editBranchAddress, editBranchPhoneNumber, submit_button, cancel_button, editBranchWorkingHours;
     Dialog dialog;
     TextView dialog_header;
-    EditText dialog_new_value;
+    EditText dialog_street_number, dialog_street_name, dialog_postal_code, dialog_new_value;
     ArrayList<WorkingHours> workingHours;
 
     @Override
@@ -122,17 +122,21 @@ public class BranchInfo extends UserPage {
             @Override
             public void onClick(View v) {
                 dialog = new Dialog(BranchInfo.this);
-                dialog.setContentView(R.layout.dialog_enter_string);
+                dialog.setContentView(R.layout.dialog_enter_string3);
 
                 //Get Views
                 dialog_header = dialog.findViewById(R.id.entry_dialog_header);
-                dialog_new_value = dialog.findViewById(R.id.entry_dialog_string);
+                dialog_street_number = dialog.findViewById(R.id.entry_dialog_string);
+                dialog_street_name = dialog.findViewById(R.id.entry_dialog_string2);
+                dialog_postal_code = dialog.findViewById(R.id.entry_dialog_string3);
                 submit_button = dialog.findViewById(R.id.entry_dialog_submit);
                 cancel_button = dialog.findViewById(R.id.entry_dialog_cancel);
 
                 //Set text
                 dialog_header.setText("Please enter the new Branch Address...");
-                dialog_new_value.setHint("Branch Address");
+                dialog_street_number.setHint("Street Number");
+                dialog_street_name.setHint("Street Name");
+                dialog_postal_code.setHint("Postal Code");
 
                 //Listeners
                 cancel_button.setOnClickListener(new View.OnClickListener() {
@@ -145,15 +149,39 @@ public class BranchInfo extends UserPage {
                 submit_button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String newAddress = dialog_new_value.getText().toString();
+                        String newStreetNumber = dialog_street_number.getText().toString();
+                        String newStreetName = dialog_street_name.getText().toString();
+                        String newPostalCode = dialog_postal_code.getText().toString();
 
                         //Form validation
-                        if (TextUtils.isEmpty(newAddress)) {
-                            dialog_new_value.setError("Address required...");
-                            return;
+                        boolean invalid = false;
+                        if (TextUtils.isEmpty(newStreetNumber)) {
+                            dialog_street_number.setError("Street number required...");
+                            invalid = true;
+                        }
+                        else if (!newStreetNumber.matches("^\\d+$")){
+                            dialog_street_number.setError("Street number must be numeric");
+                            invalid = true;
+                        }
+                        if (TextUtils.isEmpty(newStreetName)) {
+                            dialog_street_name.setError("Street Name required...");
+                            invalid = true;
+                        }
+                        if (TextUtils.isEmpty(newPostalCode)) {
+                            dialog_postal_code.setError("Postal Code required...");
+                            invalid = true;
+                        }
+                        else if (!newPostalCode.matches("^[A-Z|a-z]\\d[A-Z|a-z]\\s\\d[A-Z|a-z]\\d$")){
+                            dialog_postal_code.setError("Invalid postal code format: LNL NLN");
+                            invalid = true;
                         }
 
-                        userRef.child("address").setValue(newAddress);
+                        if(invalid) return;
+
+
+                        userRef.child("streetNumber").setValue(newStreetNumber);
+                        userRef.child("streetName").setValue(newStreetName);
+                        userRef.child("postalCode").setValue(newPostalCode.toUpperCase());
 
                         Toast.makeText(getApplicationContext(), "Address Changed!", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();

@@ -19,7 +19,7 @@ public class BranchEmployee extends Account {
 
     private final static Roles role = Roles.BRANCH_EMPLOYEE;
 
-    private String branchName, address, phoneNumber;
+    private String branchName, phoneNumber, streetNumber, streetName, postalCode;
     private HashMap<String, Service> servicesOffered;
     private ArrayList<WorkingHours> hours = new ArrayList<WorkingHours>();
 
@@ -32,33 +32,16 @@ public class BranchEmployee extends Account {
      * @param lastName
      * @param userName
      * @param branchName
-     * @param address
-     * @param phoneNumber
      */
-
-    public BranchEmployee(String firstName, String lastName, String userName, String branchName, String address, String phoneNumber) {
+    public BranchEmployee(String firstName, String lastName, String userName, String branchName) {
         super(firstName, lastName, userName, role);
         this.branchName = branchName;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
         servicesOffered = new HashMap<>();
 
         for (int i=0; i<7; i++) {
             hours.add(i, new WorkingHours(i));
         }
         serviceRequests = new HashMap<>();
-    }
-
-    /**
-     * Constructor
-     *
-     * @param firstName
-     * @param lastName
-     * @param userName
-     * @param branchName
-     */
-    public BranchEmployee(String firstName, String lastName, String userName, String branchName) {
-        this(firstName, lastName, userName, branchName, "NO ADDRESS", "NO NUMBER");
     }
 
     public void addService(Service service){
@@ -83,9 +66,38 @@ public class BranchEmployee extends Account {
         return branchName;
     }
 
-    public String getAddress() { return address; }
+    public String getAddress() {
+        if(streetNumber == null || streetName == null || postalCode == null) return "NO ADDRESS";
+        else return streetNumber + " " + streetName + " " + postalCode;
+    }
 
-    public String getPhoneNumber() { return phoneNumber; }
+    public String getStreetNumber() {
+        return streetNumber;
+    }
+
+    public String getStreetName() {
+        return streetName;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public String getPhoneNumber() {
+        return (phoneNumber == null ? "NO NUMBER" : phoneNumber);
+    }
+
+    public void setStreetNumber(String streetNumber) {
+        this.streetNumber = streetNumber;
+    }
+
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
 
     public HashMap<String, Service> getServicesOffered(){
         return servicesOffered;
@@ -97,10 +109,6 @@ public class BranchEmployee extends Account {
 
     public void setBranchName(String branchName) {
         this.branchName = branchName;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public void setPhoneNumber(String phoneNumber) {

@@ -119,11 +119,39 @@ public abstract class UserPage extends AppCompatActivity {
                 (String) snapshot.child("firstName").getValue(),
                 (String) snapshot.child("lastName").getValue(),
                 (String) snapshot.child("userName").getValue(),
-                (String) snapshot.child("branchName").getValue(),
-                (String) snapshot.child("address").getValue(),
-                (String) snapshot.child("phoneNumber").getValue()
+                (String) snapshot.child("branchName").getValue()
         );
-        //Get JSON tree of all services offered (Firebase sends it as nested HashMaps)
+        //Get phone number
+        if (snapshot.child("phoneNumber").exists()){
+            branchEmployee.setPhoneNumber((String) snapshot.child("phoneNumber").getValue());
+        }
+
+        //Get address
+        String streetNumber = (String) snapshot.child("streetNumber").getValue();
+        String streetName = (String) snapshot.child("streetName").getValue();
+        String postalCode = (String) snapshot.child("postalCode").getValue();
+        if(streetNumber != null && streetName != null && postalCode != null){
+            branchEmployee.setStreetNumber(streetNumber);
+            branchEmployee.setStreetName(streetName);
+            branchEmployee.setPostalCode(postalCode);
+        }
+
+        //Get working hours
+        ArrayList<Object> hours = (ArrayList<Object>) snapshot.child("hours").getValue();
+        if (hours != null) {
+            ArrayList<WorkingHours> workingHours = new ArrayList<>();
+            for (int i = 0; i < hours.size(); i++) {
+                HashMap<String, String> day = (HashMap<String, String>) hours.get(i);
+                String dayOpen = day.get("openTime");
+                String dayClose = day.get("closeTime");
+                workingHours.add(new WorkingHours(i, dayOpen, dayClose));
+            }
+            branchEmployee.setHours(workingHours);
+        }
+        //Initialize hours in the database (for old accounts)
+        else snapshot.getRef().child("hours").setValue(branchEmployee.getHours());
+
+        //Get JSON tree of all services offered
         HashMap<String, Object> servicesByName = (HashMap<String, Object>) snapshot.child("servicesOffered").getValue();
         if (servicesByName != null) {
             //Add all services
@@ -151,20 +179,6 @@ public abstract class UserPage extends AppCompatActivity {
                 }
             }
         }
-        //Get working hours and address
-        ArrayList<Object> hours = (ArrayList<Object>) snapshot.child("hours").getValue();
-        if (hours != null) {
-            ArrayList<WorkingHours> workingHours = new ArrayList<>();
-            for (int i = 0; i < hours.size(); i++) {
-                HashMap<String, String> day = (HashMap<String, String>) hours.get(i);
-                String dayOpen = day.get("openTime");
-                String dayClose = day.get("closeTime");
-                workingHours.add(new WorkingHours(i, dayOpen, dayClose));
-            }
-            branchEmployee.setHours(workingHours);
-        }
-        //Initialize hours in the database (for old accounts)
-        else snapshot.getRef().child("hours").setValue(branchEmployee.getHours());
 
         return branchEmployee;
     }
