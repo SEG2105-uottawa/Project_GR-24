@@ -72,7 +72,7 @@ public class BranchEmployeeHomePage extends HomePage {
                 String branchName = dataSnapshot.child("branchName").getValue().toString();
                 String firstName = dataSnapshot.child("firstName").getValue().toString();
                 String role = dataSnapshot.child("role").getValue().toString();
-                String welcomeMessage = "Welcome, "+ firstName + " of branch: "+ branchName + ", to the Employee homepage!\nYou are logged in as: " + role;
+                String welcomeMessage = "Welcome, "+ firstName + " of branch: "+ branchName + ", to the Employee homepage!";
                 message.setText(welcomeMessage);
             }
 

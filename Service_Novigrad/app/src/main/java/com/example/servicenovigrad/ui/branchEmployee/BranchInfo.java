@@ -283,6 +283,27 @@ public class BranchInfo extends UserPage {
                 newSaturdayOpen = dialog.findViewById(R.id.new_saturday_open);
                 newSaturdayClose = dialog.findViewById(R.id.new_saturday_close);
 
+                newSundayOpen.setText(workingHours.get(0).getOpenTime());
+                newSundayClose.setText(workingHours.get(0).getCloseTime());
+
+                newMondayOpen.setText(workingHours.get(1).getOpenTime());
+                newMondayClose.setText(workingHours.get(1).getCloseTime());
+
+                newTuesdayOpen.setText(workingHours.get(2).getOpenTime());
+                newTuesdayClose.setText(workingHours.get(2).getCloseTime());
+
+                newWednesdayOpen.setText(workingHours.get(3).getOpenTime());
+                newWednesdayClose.setText(workingHours.get(3).getCloseTime());
+
+                newThursdayOpen.setText(workingHours.get(4).getOpenTime());
+                newThursdayClose.setText(workingHours.get(4).getCloseTime());
+
+                newFridayOpen.setText(workingHours.get(5).getOpenTime());
+                newFridayClose.setText(workingHours.get(5).getCloseTime());
+
+                newSaturdayOpen.setText(workingHours.get(6).getOpenTime());
+                newSaturdayClose.setText(workingHours.get(6).getCloseTime());
+
                 // Listeners
                 cancel_button.setOnClickListener(new View.OnClickListener() {
                     @Override

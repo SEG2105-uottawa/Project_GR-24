@@ -67,7 +67,7 @@ public class CustomerHomePage extends HomePage {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String firstName = snapshot.child("firstName").getValue().toString();
                 String role = snapshot.child("role").getValue().toString();
-                String welcomeMessage = "Welcome, " + firstName + ", to the customer homepage!\nYou are logged in as: " + role;
+                String welcomeMessage = "Welcome, " + firstName + ", to the Customer homepage!";
                 message.setText(welcomeMessage);
             }
 
