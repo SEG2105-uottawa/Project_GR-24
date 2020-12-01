@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.example.servicenovigrad.ui.UserPage;
 import com.example.servicenovigrad.users.BranchEmployee;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,7 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class AdminEditBranchAccounts extends AppCompatActivity {
+public class AdminEditBranchAccounts extends UserPage {
 
     ListView admin_branch_list;
     Button admin_delete_branch_btn, admin_edit_cancel_btn,
@@ -35,7 +36,6 @@ public class AdminEditBranchAccounts extends AppCompatActivity {
     TextView edit_branch_branchName, edit_branch_employeeName,
                 edit_branch_userName, are_you_sure;
     Dialog dialog, confirmDelete;
-    DatabaseReference allUsersReference;
     ArrayList<BranchEmployee> allBranchEmployees;
     ArrayAdapter<BranchEmployee> arrayAdapter;
 
@@ -51,32 +51,23 @@ public class AdminEditBranchAccounts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_edit_branch_accounts);
 
-        allUsersReference = FirebaseDatabase.getInstance().getReference().child("users");
         admin_branch_list = findViewById(R.id.admin_branch_list);
 
-        allUsersReference.addValueEventListener(new ValueEventListener() {
+        allUsersRef.addValueEventListener(new ValueEventListener() {
             @Override
             @SuppressWarnings("unchecked")
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 allBranchEmployees = new ArrayList<>();
                 employeeIDs = new HashMap<>();
 
-                //Get JSON tree of all users (Firebase sends it as nested HashMaps)
-                HashMap<String,Object> allUsers = (HashMap<String,Object>) snapshot.getValue();
-
-                //Loop through outer HashMap (user IDs)
-                for (Map.Entry<String, Object> user : allUsers.entrySet()){
-                    //Convert each value to a HashMap of strings (this is the user object)
-                    HashMap<String, String> userData = (HashMap<String,String>) user.getValue();
-                    //Find the branch employees and add them to both collections
-                    if (userData.get("role").equals("BRANCH_EMPLOYEE")){
-                        BranchEmployee branchEmployee = new BranchEmployee(
-                            userData.get("firstName"), userData.get("lastName"),
-                            userData.get("userName"), userData.get("branchName"));
-                        allBranchEmployees.add(branchEmployee);
-                        employeeIDs.put(branchEmployee, user.getKey());
+                for (DataSnapshot user: snapshot.getChildren()){
+                    if (isBranchEmployee(user)){
+                        BranchEmployee employee = getBranchEmployee(user);
+                        allBranchEmployees.add(employee);
+                        employeeIDs.put(employee, user.getKey());
                     }
                 }
+
                 //Put the data into the list view
                 arrayAdapter = new ArrayAdapter<>(AdminEditBranchAccounts.this,
                     android.R.layout.simple_expandable_list_item_1, allBranchEmployees);
@@ -172,7 +163,7 @@ public class AdminEditBranchAccounts extends AppCompatActivity {
     public void deleteUser(){
         //Firebase calls OnDataChange when a value is deleted
         //So the ListView will auto update
-        allUsersReference.child(currEmployeeID).removeValue(new DatabaseReference.CompletionListener() {
+        allUsersRef.child(currEmployeeID).removeValue(new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                 if (error == null){

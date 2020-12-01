@@ -25,6 +25,8 @@ public class AdminHomePage extends UserPage {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home_page);
+        //Sign out any active users
+        FirebaseAuth.getInstance().signOut();
 
         linkAllServices();
 

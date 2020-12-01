@@ -62,7 +62,7 @@ public class CustomerHomePage extends HomePage {
     }
 
     public void updateHomePage() {
-        userRef.addValueEventListener(new ValueEventListener() {
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String firstName = snapshot.child("firstName").getValue().toString();
@@ -82,6 +82,8 @@ public class CustomerHomePage extends HomePage {
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (!snapshot.exists()) return;
+                if (!curUser.getUid().equals(snapshot.getKey())) return;
                 String firstName = snapshot.child("firstName").getValue().toString();
                 String lastName = snapshot.child("lastName").getValue().toString();
                 String userName = snapshot.child("userName").getValue().toString();

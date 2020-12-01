@@ -87,7 +87,9 @@ public class BranchEmployeeHomePage extends HomePage {
     public void linkUserObject(){
         userRef.addValueEventListener(new ValueEventListener() {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-               userObject = getBranchEmployee(snapshot);
+                if (!snapshot.exists()) return;
+                if (!curUser.getUid().equals(snapshot.getKey())) return;
+                userObject = getBranchEmployee(snapshot);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
