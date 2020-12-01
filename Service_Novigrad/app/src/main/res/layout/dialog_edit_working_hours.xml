@@ -62,7 +62,7 @@
 
             <TextView
                 android:id="@+id/sunday"
-                android:layout_width="35dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
@@ -71,7 +71,7 @@
 
             <EditText
                 android:id="@+id/new_sunday_open"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
@@ -80,7 +80,7 @@
 
             <EditText
                 android:id="@+id/new_sunday_close"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
@@ -95,7 +95,7 @@
 
             <TextView
                 android:id="@+id/monday"
-                android:layout_width="35dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
@@ -104,7 +104,7 @@
 
             <EditText
                 android:id="@+id/new_monday_open"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
@@ -113,7 +113,7 @@
 
             <EditText
                 android:id="@+id/new_monday_close"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
@@ -128,7 +128,7 @@
 
             <TextView
                 android:id="@+id/tuesday"
-                android:layout_width="35dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
@@ -137,7 +137,7 @@
 
             <EditText
                 android:id="@+id/new_tuesday_open"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
@@ -146,7 +146,7 @@
 
             <EditText
                 android:id="@+id/new_tuesday_close"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
@@ -161,7 +161,7 @@
 
             <TextView
                 android:id="@+id/wednesday"
-                android:layout_width="35dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
@@ -170,7 +170,7 @@
 
             <EditText
                 android:id="@+id/new_wednesday_open"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
@@ -179,7 +179,7 @@
 
             <EditText
                 android:id="@+id/new_wednesday_close"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
@@ -194,7 +194,7 @@
 
             <TextView
                 android:id="@+id/thursday"
-                android:layout_width="35dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
@@ -203,7 +203,7 @@
 
             <EditText
                 android:id="@+id/new_thursday_open"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
@@ -212,7 +212,7 @@
 
             <EditText
                 android:id="@+id/new_thursday_close"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
@@ -227,7 +227,7 @@
 
             <TextView
                 android:id="@+id/friday"
-                android:layout_width="35dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
@@ -236,7 +236,7 @@
 
             <EditText
                 android:id="@+id/new_friday_open"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
@@ -245,7 +245,7 @@
 
             <EditText
                 android:id="@+id/new_friday_close"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
@@ -260,7 +260,7 @@
 
             <TextView
                 android:id="@+id/saturday"
-                android:layout_width="35dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
@@ -269,7 +269,7 @@
 
             <EditText
                 android:id="@+id/new_saturday_open"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
@@ -278,7 +278,7 @@
 
             <EditText
                 android:id="@+id/new_saturday_close"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:layout_weight="1"
