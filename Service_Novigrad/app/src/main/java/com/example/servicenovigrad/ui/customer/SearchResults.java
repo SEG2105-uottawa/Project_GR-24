@@ -2,12 +2,15 @@ package com.example.servicenovigrad.ui.customer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.servicenovigrad.R;
 import com.example.servicenovigrad.users.BranchEmployee;
@@ -20,6 +23,9 @@ public class SearchResults extends SearchPage {
     ArrayList<BranchEmployee> branchEmployees;
     ArrayAdapter<BranchEmployee> adapter;
     ListView list;
+    Dialog dialog;
+    TextView branchName, branchAddress;
+    Button rateBranch, bookService, cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +48,50 @@ public class SearchResults extends SearchPage {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selection = (BranchEmployee) list.getItemAtPosition(position);
-                startActivity(new Intent(SearchResults.this, BookService.class));
+
+                dialog = new Dialog(SearchResults.this);
+                dialog.setContentView(R.layout.dialog_branch_result);
+
+                // Get views
+                branchName = dialog.findViewById(R.id.chosen_branch_name);
+                branchAddress = dialog.findViewById(R.id.chosen_branch_address);
+                rateBranch = dialog.findViewById(R.id.rate_branch);
+                bookService = dialog.findViewById(R.id.book_service);
+                cancel = dialog.findViewById(R.id.cancel);
+
+                // Set Text
+                branchName.setText(selection.getBranchName());
+                branchAddress.setText(selection.getAddress());
+
+                // Listeners
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                rateBranch.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        startActivity(new Intent(SearchResults.this, RateBranch.class));
+                        finish();
+
+                    }
+                });
+
+                bookService.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        startActivity(new Intent(SearchResults.this, BookService.class));
+                        finish();
+
+                    }
+                });
+
+                dialog.show();
             }
         });
     }

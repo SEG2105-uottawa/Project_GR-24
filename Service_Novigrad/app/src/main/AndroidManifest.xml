@@ -76,6 +76,9 @@
         <activity
             android:name=".ui.customer.SearchByServices"
             android:parentActivityName=".ui.homepages.CustomerHomePage"/>
+        <activity
+            android:name=".ui.customer.RateBranch"
+            android:parentActivityName=".ui.customer.SearchResults"/>
     </application>
 
 </manifest>

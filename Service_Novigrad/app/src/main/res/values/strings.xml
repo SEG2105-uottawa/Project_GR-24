@@ -77,6 +77,9 @@
     <string name="search_by_hours_subheader">Fill either open time, close time, or both</string>
     <string name="from_time">Open Time (Format: 09:00 AM)</string>
     <string name="to_time">Close Time (Format: 06:00 PM)</string>
+    <string name="rate_branch">Rate</string>
+    <string name="branch_request">Request</string>
+    <string name="enter_comment">Please enter comments here...</string>
     <string-array name="days">
         <item>Sunday</item>
         <item>Monday</item>
