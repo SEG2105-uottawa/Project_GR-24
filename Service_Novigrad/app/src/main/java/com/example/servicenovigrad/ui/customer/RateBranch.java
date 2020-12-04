@@ -19,7 +19,7 @@ import java.util.Date;
 public class RateBranch extends SearchPage {
     RatingBar ratingBar;
     Button submit;
-    TextView comment;
+    TextView comment, branchName, branchAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +27,15 @@ public class RateBranch extends SearchPage {
         setContentView(R.layout.activity_rate_branch);
 
         // Get views
+        branchName = findViewById(R.id.branch_name_to_review);
+        branchAddress = findViewById(R.id.branch_address_to_review);
         comment = findViewById(R.id.rating_comment);
         ratingBar = findViewById(R.id.simpleRatingBar);
         submit = findViewById(R.id.submit);
+
+        // Set Values
+        branchName.setText(selection.getBranchName());
+        branchAddress.setText(selection.getAddress());
 
         // Listeners
         submit.setOnClickListener(new View.OnClickListener() {
