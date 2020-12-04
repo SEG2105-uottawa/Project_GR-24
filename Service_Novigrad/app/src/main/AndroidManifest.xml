@@ -79,6 +79,9 @@
         <activity
             android:name=".ui.customer.RateBranch"
             android:parentActivityName=".ui.customer.SearchResults"/>
+        <activity
+            android:name=".ui.branchEmployee.BranchReviews"
+            android:parentActivityName=".ui.homepages.BranchEmployeeHomePage"/>
     </application>
 
 </manifest>

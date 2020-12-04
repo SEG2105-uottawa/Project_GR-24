@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.example.servicenovigrad.R;
+import com.example.servicenovigrad.data.BranchReview;
 import com.example.servicenovigrad.data.Service;
 import com.example.servicenovigrad.data.ServiceRequest;
 import com.example.servicenovigrad.data.WorkingHours;
@@ -151,6 +152,20 @@ public abstract class UserPage extends AppCompatActivity {
         }
         //Initialize hours in the database (for old accounts)
         else snapshot.getRef().child("hours").setValue(branchEmployee.getHours());
+
+        // Get reviews
+        HashMap<String, Object> reviewsByDate = (HashMap<String, Object>) snapshot.child("reviews").getValue();
+        if (reviewsByDate!=null) {
+            for (Map.Entry<String, Object> review: reviewsByDate.entrySet()) {
+                String date = review.getKey();
+                String comment = (String) snapshot.child("reviews").child(date).child("comment").getValue();
+                String rating = (String) snapshot.child("reviews").child(date).child("rating").getValue();
+
+                branchEmployee.addBranchReview(new BranchReview(date, comment, rating));
+            }
+
+        }
+        else snapshot.getRef().child("reviews").setValue(branchEmployee.getBranchReviews());
 
         //Get JSON tree of all services offered
         HashMap<String, Object> servicesByName = (HashMap<String, Object>) snapshot.child("servicesOffered").getValue();

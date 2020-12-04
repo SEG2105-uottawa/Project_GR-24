@@ -15,6 +15,7 @@ import com.example.servicenovigrad.data.ServiceRequest;
 import com.example.servicenovigrad.data.WorkingHours;
 import com.example.servicenovigrad.ui.UserPage;
 import com.example.servicenovigrad.ui.branchEmployee.BranchInfo;
+import com.example.servicenovigrad.ui.branchEmployee.BranchReviews;
 import com.example.servicenovigrad.ui.branchEmployee.ServiceRequests;
 import com.example.servicenovigrad.ui.branchEmployee.ServicesOffered;
 import com.example.servicenovigrad.users.BranchEmployee;
@@ -27,8 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BranchEmployeeHomePage extends HomePage {
-    Button branchInfo, servicesOffered, serviceRequests;
-    BranchEmployee branchEmployee;
+    Button branchInfo, servicesOffered, serviceRequests, branchReviews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +36,10 @@ public class BranchEmployeeHomePage extends HomePage {
         super.onCreate(savedInstanceState);
         linkUserObject();
 
-        if (userObject == null) {
-            Toast.makeText(getApplicationContext(), "ITS NULL", Toast.LENGTH_LONG).show();
-        }
-
         branchInfo = findViewById(R.id.branch_info);
         servicesOffered = findViewById(R.id.services_offered);
         serviceRequests = findViewById(R.id.service_requests);
+        branchReviews = findViewById(R.id.branch_reviews);
 
         message = findViewById(R.id.message_employee_HP);
         updateHomePage();
@@ -65,6 +62,13 @@ public class BranchEmployeeHomePage extends HomePage {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(BranchEmployeeHomePage.this, ServiceRequests.class));
+            }
+        });
+
+        branchReviews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(BranchEmployeeHomePage.this, BranchReviews.class));
             }
         });
 

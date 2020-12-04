@@ -37,12 +37,12 @@ public class RateBranch extends SearchPage {
             public void onClick(View v) {
                 BranchReview curReview = new BranchReview( new Date().toString(),
                         comment.getText().toString(),
-                        ratingBar.getRating());
+                        String.valueOf(ratingBar.getRating()));
 
                 selection.addBranchReview(curReview);
                 branchRef.child("reviews").setValue(selection.getBranchReviews());
 
-                Toast.makeText(getApplicationContext(), "Rating recieved!"+selection.getBranchName(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Rating received!", Toast.LENGTH_LONG).show();
 
                 startActivity(new Intent(RateBranch.this, CustomerHomePage.class));
                 finish();

@@ -81,6 +81,8 @@
     <string name="branch_request">Request</string>
     <string name="enter_comment">Please enter comments here...</string>
     <string name="branch_reviews">Branch Reviews</string>
+    <string name="all_reviews">Reviews</string>
+    <string name="back">Back</string>
     <string-array name="days">
         <item>Sunday</item>
         <item>Monday</item>
