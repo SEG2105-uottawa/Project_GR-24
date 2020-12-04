@@ -16,7 +16,6 @@ public abstract class HomePage extends UserPage {
     protected Button logout;
     protected TextView message;
 
-
     public abstract void updateHomePage();
 
     @Override

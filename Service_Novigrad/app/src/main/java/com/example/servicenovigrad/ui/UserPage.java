@@ -121,6 +121,7 @@ public abstract class UserPage extends AppCompatActivity {
                 (String) snapshot.child("userName").getValue(),
                 (String) snapshot.child("branchName").getValue()
         );
+
         //Get phone number
         if (snapshot.child("phoneNumber").exists()){
             branchEmployee.setPhoneNumber((String) snapshot.child("phoneNumber").getValue());

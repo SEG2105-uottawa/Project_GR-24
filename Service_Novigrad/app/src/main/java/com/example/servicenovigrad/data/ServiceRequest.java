@@ -12,7 +12,7 @@ public class ServiceRequest extends Service{
         this.requestID = requestID;
     }
 
-    public void fillFormField(String field, String value){
+    public void fillFormField(String field, String value) {
         if (formFields.containsKey(field)){
             formFields.put(field,value);
         }

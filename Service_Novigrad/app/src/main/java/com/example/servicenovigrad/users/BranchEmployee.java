@@ -7,6 +7,7 @@
 package com.example.servicenovigrad.users;
 
 
+import com.example.servicenovigrad.data.BranchReview;
 import com.example.servicenovigrad.data.Service;
 import com.example.servicenovigrad.data.ServiceRequest;
 
@@ -22,8 +23,8 @@ public class BranchEmployee extends Account {
     private String branchName, phoneNumber, streetNumber, streetName, postalCode;
     private HashMap<String, Service> servicesOffered;
     private ArrayList<WorkingHours> hours = new ArrayList<WorkingHours>();
-
     private HashMap<String, ServiceRequest> serviceRequests;
+    private HashMap<String, BranchReview> branchReviews;
 
     /**
      * Constructor
@@ -41,6 +42,8 @@ public class BranchEmployee extends Account {
         for (int i=0; i<7; i++) {
             hours.add(i, new WorkingHours(i));
         }
+
+        branchReviews = new HashMap<>();
         serviceRequests = new HashMap<>();
     }
 
@@ -60,6 +63,11 @@ public class BranchEmployee extends Account {
                 request.getRequestID() + " is a duplicate..." +
                 "\nExisting request: " + serviceRequests.get(request.getRequestID()) +
                 "\nNew Request: " + request);
+    }
+
+    public void addBranchReview(BranchReview branchReview) {
+        branchReviews.put(branchReview.getDateCreated(), branchReview);
+
     }
 
     public String getBranchName() {
@@ -122,6 +130,8 @@ public class BranchEmployee extends Account {
     public void setHours(ArrayList<WorkingHours> hours) {
         this.hours = hours;
     }
+
+    public HashMap<String, BranchReview> getBranchReviews() { return branchReviews; }
 
     @Override
     public String toString(){

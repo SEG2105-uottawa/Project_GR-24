@@ -80,6 +80,7 @@
     <string name="rate_branch">Rate</string>
     <string name="branch_request">Request</string>
     <string name="enter_comment">Please enter comments here...</string>
+    <string name="branch_reviews">Branch Reviews</string>
     <string-array name="days">
         <item>Sunday</item>
         <item>Monday</item>

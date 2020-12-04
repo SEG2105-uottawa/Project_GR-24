@@ -48,6 +48,7 @@ public class SearchResults extends SearchPage {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selection = (BranchEmployee) list.getItemAtPosition(position);
+                branchRef = searchResults.get(selection);
 
                 dialog = new Dialog(SearchResults.this);
                 dialog.setContentView(R.layout.dialog_branch_result);

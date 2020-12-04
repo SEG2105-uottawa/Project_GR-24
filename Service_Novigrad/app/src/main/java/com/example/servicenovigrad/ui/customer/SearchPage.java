@@ -9,4 +9,5 @@ import java.util.HashMap;
 public class SearchPage extends UserPage {
     protected static HashMap<BranchEmployee, DatabaseReference> searchResults;
     protected static BranchEmployee selection;
+    protected static DatabaseReference branchRef;
 }

@@ -28,12 +28,17 @@ import java.util.Map;
 
 public class BranchEmployeeHomePage extends HomePage {
     Button branchInfo, servicesOffered, serviceRequests;
+    BranchEmployee branchEmployee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_branch_employee_home_page);
         super.onCreate(savedInstanceState);
         linkUserObject();
+
+        if (userObject == null) {
+            Toast.makeText(getApplicationContext(), "ITS NULL", Toast.LENGTH_LONG).show();
+        }
 
         branchInfo = findViewById(R.id.branch_info);
         servicesOffered = findViewById(R.id.services_offered);
@@ -89,6 +94,7 @@ public class BranchEmployeeHomePage extends HomePage {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (!snapshot.exists()) return;
                 if (!curUser.getUid().equals(snapshot.getKey())) return;
+
                 userObject = getBranchEmployee(snapshot);
             }
             @Override

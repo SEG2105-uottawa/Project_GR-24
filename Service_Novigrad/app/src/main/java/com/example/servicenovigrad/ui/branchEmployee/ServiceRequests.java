@@ -78,6 +78,7 @@ public class ServiceRequests extends UserPage {
                 randomService,
                 new Date().toString(),
                 UUID.randomUUID().toString());
+
         userRef.child("serviceRequests").child(request.getRequestID()).setValue(request).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
