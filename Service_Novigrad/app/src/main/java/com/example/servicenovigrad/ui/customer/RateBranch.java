@@ -18,7 +18,7 @@ import java.util.Date;
 
 public class RateBranch extends SearchPage {
     RatingBar ratingBar;
-    Button submit;
+    Button submit, back;
     TextView comment, branchName, branchAddress;
 
     @Override
@@ -32,6 +32,7 @@ public class RateBranch extends SearchPage {
         comment = findViewById(R.id.rating_comment);
         ratingBar = findViewById(R.id.simpleRatingBar);
         submit = findViewById(R.id.submit);
+        back = findViewById(R.id.rate_backBtn);
 
         // Set Values
         branchName.setText(selection.getBranchName());
@@ -53,6 +54,14 @@ public class RateBranch extends SearchPage {
                 startActivity(new Intent(RateBranch.this, CustomerHomePage.class));
                 finishAffinity();
 
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RateBranch.this, CustomerHomePage.class));
+                finishAffinity();
             }
         });
 

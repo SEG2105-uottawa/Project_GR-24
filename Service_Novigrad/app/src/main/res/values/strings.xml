@@ -94,4 +94,5 @@
     </string-array>
     <string name="customer_choose_service">Choose a service to request</string>
     <string name="upload">Upload</string>
+    <string name="back_to_home_page">Back to home page</string>
 </resources>

@@ -40,11 +40,11 @@ public class ServiceRequests extends UserPage {
         list = findViewById(R.id.employee_service_requests);
         updateList();
 
-        //refresh button currently creates a random request as well as refreshing
+        //Call createRequest() to randomly generate a request
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createRequest();
+                updateList();
             }
         });
 
@@ -70,7 +70,8 @@ public class ServiceRequests extends UserPage {
         });
     }
 
-    public  void createRequest(){
+    //for testing
+    public void createRequest(){
         Random generator = new Random();
         Object[] allServices = allServicesMap.values().toArray();
         Service randomService = (Service) allServices[generator.nextInt(allServices.length)];

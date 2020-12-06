@@ -167,30 +167,36 @@ public abstract class UserPage extends AppCompatActivity {
         }
         else snapshot.getRef().child("reviews").setValue(branchEmployee.getBranchReviews());
 
-        //Get JSON tree of all services offered
-        HashMap<String, Object> servicesByName = (HashMap<String, Object>) snapshot.child("servicesOffered").getValue();
-        if (servicesByName != null) {
+        //Get services Offered
+        if (snapshot.child("servicesOffered").exists()) {
             //Add all services
-            for (Map.Entry<String, Object> serviceName : servicesByName.entrySet()) {
-                branchEmployee.addService(allServicesMap.get(serviceName.getKey()));
+            for (DataSnapshot serviceName : snapshot.child("servicesOffered").getChildren()) {
+                //If service doesn't exist, delete it
+                if (!allServicesMap.containsKey(serviceName.getKey())){
+                    snapshot.getRef().child("servicesOffered").child(serviceName.getKey()).removeValue();
+                }
+                else branchEmployee.addService(allServicesMap.get(serviceName.getKey()));
             }
         }
         //Get service requests
-        //TBD - READ FORM FIELDS AND DOC TYPES!!!
-        HashMap<String, Object> serviceRequestsByID = (HashMap<String, Object>) snapshot.child("serviceRequests").getValue();
-        if (serviceRequestsByID != null) {
-            for (Map.Entry<String, Object> serviceRequest : serviceRequestsByID.entrySet()) {
-                HashMap<String, Object> requestData = (HashMap<String, Object>) serviceRequest.getValue();
-                String dateCreated = (String) requestData.get("dateCreated");
-                String requestID = (String) requestData.get("requestID");
-                String serviceName = (String) requestData.get("serviceName");
+        //TBD - GET DOCUMENT IMAGES!!!
+        if (snapshot.child("serviceRequests").exists()) {
+            for (DataSnapshot serviceRequest : snapshot.child("serviceRequests").getChildren()) {
+                String dateCreated = (String) serviceRequest.child("dateCreated").getValue();
+                String requestID = (String) serviceRequest.child("requestID").getValue();
+                String serviceName = (String) serviceRequest.child("serviceName").getValue();
                 //If service doesn't exist, delete it
                 if (!allServicesMap.containsKey(serviceName)) {
-                    snapshot.getRef().child("serviceRequests").child(requestID).removeValue();
+                    serviceRequest.getRef().child(requestID).removeValue();
                 } else {
                     Service service = allServicesMap.get(serviceName);
                     ServiceRequest request = new ServiceRequest(service, dateCreated, requestID);
-                    //TBD - READ FORM FIELDS AND DOC TYPES!!!
+                    if (serviceRequest.child("formFields").exists()){
+                        for (DataSnapshot formField : serviceRequest.child("formFields").getChildren()){
+                            request.fillFormField(formField.getKey(), formField.getValue().toString());
+                        }
+                    }
+                    //TBD - GET DOCUMENT IMAGES!!!
                     branchEmployee.addServiceRequest(request);
                 }
             }
