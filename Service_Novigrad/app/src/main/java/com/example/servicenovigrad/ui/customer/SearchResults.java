@@ -86,7 +86,7 @@ public class SearchResults extends SearchPage {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
-                        startActivity(new Intent(SearchResults.this, BookService.class));
+                        startActivity(new Intent(SearchResults.this, ChooseService.class));
                         finish();
 
                     }
