@@ -69,6 +69,8 @@ public class ProcessRequest extends UserPage {
         docsAdapter = new ArrayAdapter<>(ProcessRequest.this, android.R.layout.simple_expandable_list_item_1, allDocs);
         docList.setAdapter(docsAdapter);
 
+
+
         //Listeners
         approve.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +80,7 @@ public class ProcessRequest extends UserPage {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Successfully approved request.", Toast.LENGTH_SHORT).show();
+                            //TODO delete the request from the database
                             finish();
                         } else {
                             Toast.makeText(getApplicationContext(), "Unable to approve request...", Toast.LENGTH_SHORT).show();
@@ -95,6 +98,7 @@ public class ProcessRequest extends UserPage {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Successfully denied request.", Toast.LENGTH_SHORT).show();
+                            //TODO delete the request from the database
                             finish();
                         } else {
                             Toast.makeText(getApplicationContext(), "Unable to deny request...", Toast.LENGTH_SHORT).show();

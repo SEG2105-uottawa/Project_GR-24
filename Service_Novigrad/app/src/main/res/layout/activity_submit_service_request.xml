@@ -41,6 +41,13 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
+        <EditText
+            android:id="@+id/form_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+
     </ListView>
 
     <TextView
@@ -53,10 +60,16 @@
         android:textStyle="bold" />
 
     <ListView
-        android:id="@+id/process_request_doc_list"
+        android:id="@+id/request_doc_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
+
+        <EditText
+            android:id="@+id/doc_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
 
     </ListView>
 
@@ -71,7 +84,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:text="@string/cancel" />
+            android:text="@string/cancel"
+            android:onClick="cancelSubmission"/>
 
         <Space
             android:layout_width="wrap_content"
@@ -84,7 +98,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:text="@string/submit" />
+            android:text="@string/submit"
+            android:onClick="submitServiceRequest"/>
     </LinearLayout>
 
 
