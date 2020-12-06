@@ -29,6 +29,7 @@ public class BookService extends AppCompatActivity {
     protected static Service selection;
     protected static DatabaseReference branchRef;
     ArrayAdapter<Service> adapter;
+    public static final String EXTRA_SERVICE = "com.example.servicenovigrad.extra.SERVICE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +54,9 @@ public class BookService extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selection = (Service) list.getItemAtPosition(position);
                 branchRef = services.get(selection);
-
-                Intent intent = new Intent(this, )
+                Intent intent = new Intent(BookService.this, SubmitServiceRequest.class);
+                intent.putExtra(EXTRA_SERVICE, selection);
+                startActivity(intent);
             }
         });
     }
