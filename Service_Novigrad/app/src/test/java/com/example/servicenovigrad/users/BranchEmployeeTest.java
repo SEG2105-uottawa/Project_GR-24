@@ -1,5 +1,6 @@
 package com.example.servicenovigrad.users;
 
+import com.example.servicenovigrad.data.BranchReview;
 import com.example.servicenovigrad.data.Service;
 import com.example.servicenovigrad.data.ServiceRequest;
 import com.example.servicenovigrad.users.BranchEmployee;
@@ -15,12 +16,16 @@ import static org.junit.Assert.*;
 
 public class BranchEmployeeTest extends TestCase {
     BranchEmployee branch = new BranchEmployee("firstName",
-            "lastName", "userName", "branchName",
-            "address", "phoneNumber");
+            "lastName", "userName", "branchName");
     Service service = new Service("serviceName", 22.00);
     String date = new Date().toString();
     String id = UUID.randomUUID().toString();
     ServiceRequest request = new ServiceRequest(service, date, id);
+
+    String curDate = new Date().toString();
+    String comment = "comment";
+    String rating = "5.0";
+    BranchReview review = new BranchReview(curDate, comment, rating);
 
     @Test
     public void testBranchEmployee(){
@@ -55,5 +60,20 @@ public class BranchEmployeeTest extends TestCase {
         HashMap<String, ServiceRequest> requestsMap = new HashMap<>();
         requestsMap.put(id,request);
         assertEquals(branch.getServiceRequests(), requestsMap);
+    }
+
+    @Test
+    public void testBranchReview() {
+        assertEquals(review.getDateCreated(), curDate);
+        assertEquals(review.getComment(), comment);
+        assertEquals(review.getRating(), rating);
+    }
+
+    @Test
+    public void testAddReview() {
+        branch.addBranchReview(review);
+        HashMap<String, BranchReview> reviewsMap = new HashMap<>();
+        reviewsMap.put(curDate, review);
+        assertEquals(branch.getBranchReviews(), reviewsMap);
     }
 }
