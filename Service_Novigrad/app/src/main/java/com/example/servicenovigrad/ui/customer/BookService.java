@@ -24,6 +24,7 @@ import com.example.servicenovigrad.ui.UserPage;
 import com.example.servicenovigrad.ui.admin.AdminEditAllServices;
 import com.example.servicenovigrad.ui.admin.AdminEditService;
 import com.example.servicenovigrad.ui.customer.SearchPage;
+import com.example.servicenovigrad.ui.homepages.CustomerHomePage;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
@@ -75,6 +76,20 @@ public class BookService extends SearchPage {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 openDocDialog(position);
+            }
+        });
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                branchRef.child("serviceRequests").child(request.getRequestID())
+                        .setValue(request).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(getApplicationContext(), "Request Submitted", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(BookService.this, RateBranch.class));
+                    }
+                });
             }
         });
     }
@@ -173,24 +188,14 @@ public class BookService extends SearchPage {
         dialog_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //Get image from phone
             }
         });
 
         dialog_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                String input = dialog_input.getText().toString();
-//
-//                if (TextUtils.isEmpty(input)){
-//                    dialog_input.setError(formField + " is required");
-//                }
-//
-//                else{
-//                    request.fillFormField(formField, input);
-//                    updateLists();
-//                    dialog.dismiss();
-//                }
+                //Upload image to firebase storage
             }
         });
 

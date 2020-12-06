@@ -51,7 +51,7 @@ public class RateBranch extends SearchPage {
                 Toast.makeText(getApplicationContext(), "Rating received!", Toast.LENGTH_LONG).show();
 
                 startActivity(new Intent(RateBranch.this, CustomerHomePage.class));
-                finish();
+                finishAffinity();
 
             }
         });
