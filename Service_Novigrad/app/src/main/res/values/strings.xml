@@ -83,6 +83,9 @@
     <string name="branch_reviews">Branch Reviews</string>
     <string name="all_reviews">Reviews</string>
     <string name="back">Back</string>
+    <string name="book_service">Book Service</string>
+    <string name="service_name">Service Name</string>
+    <string name="request_date">date: 00/00/00</string>
     <string-array name="days">
         <item>Sunday</item>
         <item>Monday</item>
