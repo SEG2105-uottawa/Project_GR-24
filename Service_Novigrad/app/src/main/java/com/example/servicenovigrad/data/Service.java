@@ -4,11 +4,14 @@ import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map;
 
 //Serializable interface allows objects to be passed between activities
 public class Service implements Serializable {
 
-    private static final String EMPTY = "<EMPTY>";
+    public static final String EMPTY = "<EMPTY>";
+    public static final String UPLOADED = "<UPLOADED>";
+
     private String name;
     private double price;
     protected HashMap<String,String> formFields;
@@ -26,6 +29,12 @@ public class Service implements Serializable {
         price = service.returnPrice();
         formFields = service.getFormFields();
         documentTypes = service.getDocumentTypes();
+        for (Map.Entry<String,String> formField : formFields.entrySet()){
+            formFields.put(formField.getKey(), EMPTY);
+        }
+        for (Map.Entry<String,Object> docType : documentTypes.entrySet()){
+            documentTypes.put(docType.getKey(), EMPTY);
+        }
     }
 
     public void addFormField(String field){

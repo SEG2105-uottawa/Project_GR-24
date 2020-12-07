@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,6 +29,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,6 +44,7 @@ public abstract class UserPage extends AppCompatActivity {
     protected static final DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
     protected static final DatabaseReference serviceRef = databaseRef.child("services");
     protected static final DatabaseReference allUsersRef = databaseRef.child("users");
+    protected static final StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
     //Used for displaying in list views
     protected static ArrayList<Service> allServices;
@@ -196,7 +200,11 @@ public abstract class UserPage extends AppCompatActivity {
                             request.fillFormField(formField.getKey(), formField.getValue().toString());
                         }
                     }
-                    //TBD - GET DOCUMENT IMAGES!!!
+                    if (serviceRequest.child("documentTypes").exists()){
+                        for (DataSnapshot docType : serviceRequest.child("documentTypes").getChildren()){
+                            request.addDocument(docType.getKey(), docType.getValue().toString());
+                        }
+                    }
                     branchEmployee.addServiceRequest(request);
                 }
             }

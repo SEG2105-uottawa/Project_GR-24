@@ -3,11 +3,15 @@ package com.example.servicenovigrad.ui.branchEmployee;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,21 +20,28 @@ import com.example.servicenovigrad.R;
 import com.example.servicenovigrad.data.Service;
 import com.example.servicenovigrad.data.ServiceRequest;
 import com.example.servicenovigrad.ui.UserPage;
-import com.example.servicenovigrad.ui.admin.AdminEditAllServices;
-import com.example.servicenovigrad.ui.admin.AdminEditService;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class ProcessRequest extends UserPage {
-    TextView header, date;
-    Button approve, deny;
+    TextView header, date, dialog_header;
+    Button approve, deny, dialog_dismiss;
     ServiceRequest request;
     ArrayList<String> allForms, allDocs;
     ArrayAdapter<String> formsAdapter, docsAdapter;
     ListView formList, docList;
+    Dialog dialog;
+    ImageView dialog_image;
+    HashMap<Integer, String> docTypes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +51,7 @@ public class ProcessRequest extends UserPage {
         request = (ServiceRequest) getIntent().getSerializableExtra("serviceRequest");
         allForms = new ArrayList<>();
         allDocs = new ArrayList<>();
+        docTypes = new HashMap<>();
 
         //get views
         header = findViewById(R.id.process_request_header);
@@ -58,9 +70,12 @@ public class ProcessRequest extends UserPage {
             String string = formField.getKey() + ": " + formField.getValue();
             allForms.add(string);
         }
+        int i = 0;
         for (Map.Entry<String, Object> docType : request.getDocumentTypes().entrySet()){
-            String string = docType.getKey() + ": " + docType.getValue();
+            String string = docType.getKey() + ": " + (docType.getValue().equals(Service.EMPTY) ?
+                    Service.EMPTY : "<CLICK TO SEE>");
             allDocs.add(string);
+            docTypes.put(i++, docType.getKey());
         }
 
         formsAdapter = new ArrayAdapter<>(ProcessRequest.this, android.R.layout.simple_expandable_list_item_1, allForms);
@@ -68,6 +83,13 @@ public class ProcessRequest extends UserPage {
 
         docsAdapter = new ArrayAdapter<>(ProcessRequest.this, android.R.layout.simple_expandable_list_item_1, allDocs);
         docList.setAdapter(docsAdapter);
+
+        docList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                openImageDialog(position);
+            }
+        });
 
         //Listeners
         approve.setOnClickListener(new View.OnClickListener() {
@@ -103,5 +125,55 @@ public class ProcessRequest extends UserPage {
                 });
             }
         });
+    }
+
+    public void openImageDialog(int position){
+        dialog = new Dialog(ProcessRequest.this);
+        dialog.setContentView(R.layout.dialog_view_image);
+
+        //Get views
+        dialog_header = dialog.findViewById(R.id.view_image_header);
+        dialog_dismiss = dialog.findViewById(R.id.view_image_dismiss);
+        dialog_image = dialog.findViewById(R.id.view_image_image);
+
+        //Set text
+        String docName = docTypes.get(position).toString();
+        dialog_header.setText(docName);
+
+        dialog_dismiss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        String path = request.getDocumentTypes().get(docName).toString();
+        StorageReference ref = storageRef.child(path);
+        String ext = "";
+        int i = path.lastIndexOf('.');
+        if (i > 0) {
+            ext = path.substring(i);
+        }
+        try{
+            final File tempFile = File.createTempFile(docName, ext);
+            ref.getFile(tempFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    dialog_image.setImageURI(Uri.fromFile(tempFile));
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getApplicationContext(), "Error downloading image...", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
+        catch (Exception e){
+            Toast.makeText(getApplicationContext(), "Error downloading image...", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+
+        dialog.show();
     }
 }
