@@ -47,7 +47,7 @@ Password: geralt
 
 Address: 74 Jagiellonska C1D 2P3
 
-822 519 6900
+Phone: 822 519 6900
 
 Hours: Weekdays 6AM to 4PM & Weekends 8AM to 12PM
 
