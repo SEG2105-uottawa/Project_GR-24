@@ -5,7 +5,7 @@ Repo link: https://github.com/SEG2105-uottawa/Project_GR-24
 
 ## Members
 
-Chris Hamilton 300048928
+Chris Hamilton 300048928  
 Akarsh Gharge 300113523
 
 ## Admin credentials
